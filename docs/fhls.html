@@ -1,0 +1,1186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foundational Healthcare Leadership Self-Assessment</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #5c6670;
+      --paper: #fbfaf7;
+      --surface: #ffffff;
+      --line: #d8dce0;
+      --navy: #18324a;
+      --teal: #1f7a7a;
+      --gold: #b77818;
+      --rose: #b44b5a;
+      --green: #47734c;
+      --focus: #0f6fbd;
+      --shadow: 0 18px 44px rgba(22, 31, 42, 0.11);
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(24, 50, 74, 0.08), transparent 360px),
+        var(--paper);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      border-bottom: 1px solid rgba(24, 50, 74, 0.14);
+      background: rgba(251, 250, 247, 0.94);
+      backdrop-filter: blur(16px);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--navy);
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: 0;
+      flex: 0 0 auto;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.15;
+      font-weight: 750;
+    }
+
+    .brand-subtitle {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 235px;
+    }
+
+    .progress-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .progress-track {
+      width: 150px;
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e6e0d4;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      transition: width 180ms ease;
+    }
+
+    .hero {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 32px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 46px 22px 34px;
+      align-items: end;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2rem, 4.2vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 720px;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.03rem;
+    }
+
+    .scale-panel {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 18px;
+      border-radius: 8px;
+    }
+
+    .scale-panel h2,
+    .results h2,
+    .domains h2,
+    .questions h2 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .scale-list {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 0.92rem;
+    }
+
+    .scale-list strong {
+      color: #fff;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 22px 58px;
+    }
+
+    .domains {
+      padding: 22px 0 28px;
+    }
+
+    .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .domain-tile {
+      min-height: 136px;
+      border-top: 5px solid var(--domain-color);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 8px 24px rgba(22, 31, 42, 0.08);
+      padding: 15px;
+    }
+
+    .domain-tile h3 {
+      margin: 0 0 8px;
+      font-size: 0.88rem;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .domain-tile p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .assessment-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .questions {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 4px;
+    }
+
+    .section-heading p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .question-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(250px, auto) 118px;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--domain-color);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 14px 16px;
+      box-shadow: 0 8px 20px rgba(22, 31, 42, 0.05);
+    }
+
+    #questionList {
+      display: grid;
+      gap: 12px;
+    }
+
+    .question-text {
+      min-width: 0;
+    }
+
+    .question-text p {
+      margin: 4px 0 0;
+      font-size: 1rem;
+      font-weight: 650;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .number {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .rating {
+      display: grid;
+      grid-template-columns: repeat(5, 42px);
+      gap: 8px;
+      justify-content: end;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .rating input,
+    .improve input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .rating label {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid #c8ced3;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 800;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
+    }
+
+    .rating label:hover {
+      transform: translateY(-1px);
+      border-color: var(--domain-color);
+    }
+
+    .rating input:focus-visible + label,
+    .improve input:focus-visible + span {
+      outline: 3px solid rgba(15, 111, 189, 0.28);
+      outline-offset: 2px;
+    }
+
+    .rating input:checked + label {
+      border-color: var(--domain-color);
+      background: var(--domain-color);
+      color: #fff;
+    }
+
+    .improve {
+      justify-self: end;
+    }
+
+    .improve span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 118px;
+      min-height: 40px;
+      border: 1px solid #c8ced3;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 750;
+      transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
+    }
+
+    .improve input:checked + span {
+      border-color: var(--gold);
+      background: #fff4df;
+      color: #70460b;
+    }
+
+    .results {
+      position: sticky;
+      top: 80px;
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(24, 50, 74, 0.14);
+      overflow: hidden;
+    }
+
+    .results-head {
+      padding: 18px 18px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .results-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .radar-wrap {
+      padding: 14px 18px 6px;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: 1;
+    }
+
+    .score-list {
+      display: grid;
+      gap: 9px;
+      padding: 8px 18px 18px;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      font-size: 0.92rem;
+    }
+
+    .score-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      font-weight: 650;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      background: var(--domain-color);
+      flex: 0 0 auto;
+    }
+
+    .score-value {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .result-actions {
+      display: grid;
+      gap: 10px;
+      padding: 18px;
+      background: #f4f2ed;
+      border-top: 1px solid var(--line);
+    }
+
+    .name-field {
+      display: grid;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .name-field input {
+      width: 100%;
+      border: 1px solid #c4c9ce;
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .button-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .primary-button,
+    .secondary-button {
+      min-height: 44px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      padding: 9px 12px;
+      font-weight: 800;
+    }
+
+    .primary-button {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .primary-button:disabled {
+      cursor: not-allowed;
+      background: #aab1b7;
+    }
+
+    .secondary-button {
+      background: #fff;
+      border-color: #c4c9ce;
+      color: var(--ink);
+    }
+
+    .message {
+      min-height: 20px;
+      margin: 0;
+      color: var(--rose);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .certificate {
+      display: none;
+      max-width: 920px;
+      margin: 28px auto 0;
+      background: #fff;
+      border: 8px solid #d9b36f;
+      padding: 34px;
+      color: #17202a;
+    }
+
+    .certificate.is-ready {
+      display: block;
+    }
+
+    .certificate-inner {
+      border: 1px solid #d6dce1;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .certificate-kicker {
+      margin: 0;
+      color: var(--gold);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.82rem;
+    }
+
+    .certificate h2 {
+      margin: 12px 0 6px;
+      color: var(--navy);
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      line-height: 1.05;
+    }
+
+    .recipient {
+      margin: 24px auto 8px;
+      max-width: 620px;
+      border-bottom: 1px solid #9aa4ad;
+      padding: 0 10px 8px;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .certificate-copy {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+
+    .certificate-grid {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.8fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: center;
+      margin-top: 26px;
+      text-align: left;
+    }
+
+    .certificate-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .certificate-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid #ece7dd;
+      padding-bottom: 7px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .certificate-date {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .copyright {
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 1020px) {
+      .hero-inner,
+      .assessment-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .results {
+        position: static;
+      }
+
+      .domain-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .progress-wrap,
+      .progress-track {
+        width: 100%;
+      }
+
+      .hero-inner {
+        padding-top: 32px;
+      }
+
+      .domain-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .question-card {
+        grid-template-columns: 1fr;
+      }
+
+      .rating {
+        grid-template-columns: repeat(5, minmax(40px, 1fr));
+        justify-content: stretch;
+      }
+
+      .rating label {
+        width: 100%;
+      }
+
+      .improve {
+        justify-self: stretch;
+      }
+
+      .improve span {
+        width: 100%;
+      }
+
+      .certificate-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .button-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      @page {
+        size: letter;
+        margin: 0.45in;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .topbar,
+      .hero,
+      main > .domains,
+      main > .assessment-shell {
+        display: none !important;
+      }
+
+      main {
+        max-width: none;
+        padding: 0;
+      }
+
+      .certificate {
+        display: none !important;
+      }
+
+      .certificate.is-ready {
+        display: block !important;
+        margin: 0;
+        border-width: 6px;
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .certificate-inner {
+        min-height: 9in;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">FH</div>
+        <div>
+          <p class="brand-title">Foundational Healthcare Leadership Self-Assessment</p>
+          <p class="brand-subtitle">21 items across five leadership dimensions</p>
+        </div>
+      </div>
+      <div class="progress-wrap" aria-live="polite">
+        <span class="progress-label"><span id="answeredCount">0</span> of 21 answered</span>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>Foundational Healthcare Leadership Self-Assessment</h1>
+        <p class="intro">Rate each statement from beginner to expert, then review your average score for Accountability, Collaboration, Communication, Team Management, and Self-Management.</p>
+      </div>
+      <div class="scale-panel" aria-label="Response scale">
+        <h2>Response Scale</h2>
+        <ul class="scale-list">
+          <li><strong>1 = Beginner:</strong> rarely use this skill, or do not do it well (&lt;10%).</li>
+          <li><strong>3 = Intermediate:</strong> use this skill half of the time, and do it well sometimes (~50%).</li>
+          <li><strong>5 = Expert:</strong> use this skill most of the time, and do this well (&gt;90%).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="domains" aria-labelledby="domainDefinitions">
+      <h2 id="domainDefinitions">Leadership Domain Definitions</h2>
+      <div class="domain-grid" id="domainGrid"></div>
+    </section>
+
+    <div class="assessment-shell">
+      <section class="questions" aria-labelledby="questionsTitle">
+        <div class="section-heading">
+          <div>
+            <h2 id="questionsTitle">Self-Assessment Statements</h2>
+            <p>Select one rating for each item. Mark the improvement option where it would help guide your development plan.</p>
+          </div>
+        </div>
+        <div id="questionList"></div>
+      </section>
+
+      <aside class="results" aria-labelledby="resultsTitle">
+        <div class="results-head">
+          <h2 id="resultsTitle">Results</h2>
+          <p id="resultsStatus">Complete all 21 ratings to generate your radar plot and certificate.</p>
+        </div>
+        <div class="radar-wrap">
+          <canvas id="radarCanvas" width="760" height="760" aria-label="Radar plot of leadership dimension scores" role="img"></canvas>
+        </div>
+        <div class="score-list" id="scoreList"></div>
+        <div class="result-actions">
+          <label class="name-field">
+            Participant name
+            <input id="participantName" autocomplete="name" placeholder="Name for certificate">
+          </label>
+          <div class="button-row">
+            <button type="button" class="secondary-button" id="resetButton">Reset</button>
+            <button type="button" class="primary-button" id="printButton" disabled>Print Certificate</button>
+          </div>
+          <p class="message" id="message"></p>
+        </div>
+      </aside>
+    </div>
+
+    <section class="certificate" id="certificate" aria-labelledby="certificateTitle">
+      <div class="certificate-inner">
+        <p class="certificate-kicker">Certificate of Completion</p>
+        <h2 id="certificateTitle">Healthcare Leadership Self-Assessment</h2>
+        <p class="certificate-copy">This acknowledges completion of the Foundational Healthcare Leadership Self-Assessment and summarizes average scores across the five leadership domains.</p>
+        <div class="recipient" id="certificateName">Participant</div>
+        <div class="certificate-grid">
+          <canvas id="certificateCanvas" width="560" height="560" aria-label="Certificate radar plot" role="img"></canvas>
+          <ul class="certificate-list" id="certificateScores"></ul>
+        </div>
+        <p class="certificate-date" id="certificateDate"></p>
+        <p class="copyright">FHLS (c) 2016 Van Hala S, Cochella S, Frost C, Gren L, Jaggi R, Pohl S, Kiraly B. All Rights Reserved.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const domains = [
+      {
+        id: "accountability",
+        name: "Accountability",
+        color: "#b44b5a",
+        definition: "Demonstrates responsibility for the impact of one's own behaviors",
+        items: [3, 6, 11, 12, 13]
+      },
+      {
+        id: "collaboration",
+        name: "Collaboration",
+        color: "#1f7a7a",
+        definition: "Works with others to accomplish a mission",
+        items: [2, 15, 17]
+      },
+      {
+        id: "communication",
+        name: "Communication",
+        color: "#b77818",
+        definition: "Creates understanding through exchange of information and ideas",
+        items: [5, 10, 16, 18]
+      },
+      {
+        id: "team",
+        name: "Team Management",
+        color: "#47734c",
+        definition: "Facilitates group engagement, operations, and performance",
+        items: [7, 8, 9, 19, 21]
+      },
+      {
+        id: "self",
+        name: "Self-Management",
+        color: "#345995",
+        definition: "Handles oneself with discipline and compassion",
+        items: [1, 4, 14, 20]
+      }
+    ];
+
+    const questions = [
+      { id: 1, text: "I prioritize my activities", domain: "self" },
+      { id: 2, text: "I engage stakeholders in the change process", domain: "collaboration" },
+      { id: 3, text: "I am accountable for my attitude", domain: "accountability" },
+      { id: 4, text: "I cultivate a healthy personal life", domain: "self" },
+      { id: 5, text: "I communicate in a timely manner", domain: "communication" },
+      { id: 6, text: "I approach problems in a positive and constructive manner", domain: "accountability" },
+      { id: 7, text: "I hold team members accountable for their assigned work", domain: "team" },
+      { id: 8, text: "I delegate work to the appropriate team member", domain: "team" },
+      { id: 9, text: "I conduct effective meetings", domain: "team" },
+      { id: 10, text: "I use active listening", domain: "communication" },
+      { id: 11, text: "I forgive others", domain: "accountability" },
+      { id: 12, text: "I change my behavior based on constructive feedback", domain: "accountability" },
+      { id: 13, text: "I apologize when appropriate", domain: "accountability" },
+      { id: 14, text: "I effectively manage my time", domain: "self" },
+      { id: 15, text: "I empower team members to develop solutions", domain: "collaboration" },
+      { id: 16, text: "I communicate in a respectful manner", domain: "communication" },
+      { id: 17, text: "I elicit input so that various opinions can be heard", domain: "collaboration" },
+      { id: 18, text: "I communicate clearly", domain: "communication" },
+      { id: 19, text: "I select a decision-making process based on the situation", domain: "team" },
+      { id: 20, text: "I forgive myself", domain: "self" },
+      { id: 21, text: "I help my team get the resources they need", domain: "team" }
+    ];
+
+    const answers = new Map();
+    const improvements = new Set();
+    const domainById = Object.fromEntries(domains.map((domain) => [domain.id, domain]));
+
+    const domainGrid = document.getElementById("domainGrid");
+    const questionList = document.getElementById("questionList");
+    const scoreList = document.getElementById("scoreList");
+    const answeredCount = document.getElementById("answeredCount");
+    const progressFill = document.getElementById("progressFill");
+    const resultsStatus = document.getElementById("resultsStatus");
+    const message = document.getElementById("message");
+    const printButton = document.getElementById("printButton");
+    const resetButton = document.getElementById("resetButton");
+    const participantName = document.getElementById("participantName");
+    const certificate = document.getElementById("certificate");
+    const certificateName = document.getElementById("certificateName");
+    const certificateScores = document.getElementById("certificateScores");
+    const certificateDate = document.getElementById("certificateDate");
+    const radarCanvas = document.getElementById("radarCanvas");
+    const certificateCanvas = document.getElementById("certificateCanvas");
+
+    function buildDomainTiles() {
+      domainGrid.innerHTML = domains.map((domain) => `
+        <article class="domain-tile" style="--domain-color: ${domain.color}">
+          <h3>${domain.name}</h3>
+          <p>${domain.definition}</p>
+        </article>
+      `).join("");
+    }
+
+    function buildQuestions() {
+      questionList.innerHTML = questions.map((question) => {
+        const domain = domainById[question.domain];
+        const ratingControls = [1, 2, 3, 4, 5].map((value) => `
+          <input id="q${question.id}-${value}" type="radio" name="q${question.id}" value="${value}">
+          <label for="q${question.id}-${value}" title="${value}">${value}</label>
+        `).join("");
+
+        return `
+          <article class="question-card" data-question="${question.id}" style="--domain-color: ${domain.color}">
+            <div class="question-text">
+              <div class="meta">
+                <span class="number">${question.id}</span>
+                <span>${domain.name}</span>
+              </div>
+              <p>${question.text}</p>
+            </div>
+            <fieldset class="rating" aria-label="Rating for question ${question.id}">
+              <legend class="visually-hidden">Rating</legend>
+              ${ratingControls}
+            </fieldset>
+            <label class="improve">
+              <input type="checkbox" data-improve="${question.id}">
+              <span>Improve</span>
+            </label>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function buildScoreRows(scores) {
+      scoreList.innerHTML = domains.map((domain) => {
+        const score = scores[domain.id];
+        const label = score == null ? "--" : score.average.toFixed(2);
+        const total = score == null ? "" : ` (${score.total}/${domain.items.length * 5})`;
+        return `
+          <div class="score-row" style="--domain-color: ${domain.color}">
+            <span class="score-label"><span class="swatch"></span>${domain.name}</span>
+            <span class="score-value">${label}${total}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function getScores() {
+      const scores = {};
+
+      for (const domain of domains) {
+        const values = domain.items.map((id) => answers.get(id));
+        if (values.some((value) => value == null)) {
+          scores[domain.id] = null;
+          continue;
+        }
+
+        const total = values.reduce((sum, value) => sum + value, 0);
+        scores[domain.id] = {
+          total,
+          average: total / values.length
+        };
+      }
+
+      return scores;
+    }
+
+    function getCompletion() {
+      return answers.size;
+    }
+
+    function isComplete() {
+      return getCompletion() === questions.length;
+    }
+
+    function drawRadar(canvas, scores, options = {}) {
+      const ctx = canvas.getContext("2d");
+      const width = canvas.width;
+      const height = canvas.height;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const radius = Math.min(width, height) * (options.compact ? 0.31 : 0.34);
+      const labelRadius = radius + (options.compact ? 54 : 76);
+      const maxScore = 5;
+      const count = domains.length;
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "#d8dce0";
+      ctx.fillStyle = "#5c6670";
+      ctx.font = `${options.compact ? 18 : 20}px Segoe UI, Arial, sans-serif`;
+
+      for (let level = 1; level <= maxScore; level += 1) {
+        const levelRadius = radius * (level / maxScore);
+        drawPolygon(ctx, centerX, centerY, levelRadius, count);
+        ctx.stroke();
+        ctx.fillText(String(level), centerX + 6, centerY - levelRadius + 4);
+      }
+
+      domains.forEach((domain, index) => {
+        const point = getPoint(centerX, centerY, radius, index, count);
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(point.x, point.y);
+        ctx.stroke();
+
+        const labelPoint = getPoint(centerX, centerY, labelRadius, index, count);
+        ctx.fillStyle = domain.color;
+        ctx.font = `700 ${options.compact ? 18 : 22}px Segoe UI, Arial, sans-serif`;
+        ctx.textAlign = labelPoint.x < centerX - 12 ? "right" : labelPoint.x > centerX + 12 ? "left" : "center";
+        ctx.textBaseline = labelPoint.y < centerY ? "bottom" : "top";
+        wrapCanvasText(ctx, domain.name, labelPoint.x, labelPoint.y, options.compact ? 124 : 155, options.compact ? 20 : 24);
+      });
+
+      const complete = domains.every((domain) => scores[domain.id]);
+
+      if (complete) {
+        ctx.beginPath();
+        domains.forEach((domain, index) => {
+          const value = scores[domain.id].average;
+          const point = getPoint(centerX, centerY, radius * (value / maxScore), index, count);
+          if (index === 0) ctx.moveTo(point.x, point.y);
+          else ctx.lineTo(point.x, point.y);
+        });
+        ctx.closePath();
+        ctx.fillStyle = "rgba(31, 122, 122, 0.24)";
+        ctx.strokeStyle = "#1f7a7a";
+        ctx.lineWidth = 4;
+        ctx.fill();
+        ctx.stroke();
+
+        domains.forEach((domain, index) => {
+          const value = scores[domain.id].average;
+          const point = getPoint(centerX, centerY, radius * (value / maxScore), index, count);
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, options.compact ? 5 : 7, 0, Math.PI * 2);
+          ctx.fillStyle = domain.color;
+          ctx.fill();
+          ctx.strokeStyle = "#ffffff";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        });
+      } else {
+        ctx.fillStyle = "#5c6670";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.font = `700 ${options.compact ? 18 : 24}px Segoe UI, Arial, sans-serif`;
+        ctx.fillText("Complete all ratings", centerX, centerY - 10);
+        ctx.font = `${options.compact ? 16 : 18}px Segoe UI, Arial, sans-serif`;
+        ctx.fillText("to generate your radar plot", centerX, centerY + 22);
+      }
+    }
+
+    function drawPolygon(ctx, centerX, centerY, radius, sides) {
+      ctx.beginPath();
+      for (let index = 0; index < sides; index += 1) {
+        const point = getPoint(centerX, centerY, radius, index, sides);
+        if (index === 0) ctx.moveTo(point.x, point.y);
+        else ctx.lineTo(point.x, point.y);
+      }
+      ctx.closePath();
+    }
+
+    function getPoint(centerX, centerY, radius, index, count) {
+      const angle = -Math.PI / 2 + index * (Math.PI * 2 / count);
+      return {
+        x: centerX + Math.cos(angle) * radius,
+        y: centerY + Math.sin(angle) * radius
+      };
+    }
+
+    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(" ");
+      const lines = [];
+      let line = "";
+
+      for (const word of words) {
+        const testLine = line ? `${line} ${word}` : word;
+        if (ctx.measureText(testLine).width > maxWidth && line) {
+          lines.push(line);
+          line = word;
+        } else {
+          line = testLine;
+        }
+      }
+      lines.push(line);
+
+      const offset = ctx.textBaseline === "bottom" ? -lineHeight * (lines.length - 1) : 0;
+      lines.forEach((entry, index) => ctx.fillText(entry, x, y + offset + index * lineHeight));
+    }
+
+    function updateCertificate(scores) {
+      const name = participantName.value.trim() || "Participant";
+      certificateName.textContent = name;
+      certificateDate.textContent = `Completed ${new Date().toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      })}`;
+
+      certificateScores.innerHTML = domains.map((domain) => `
+        <li>
+          <strong>${domain.name}</strong>
+          <span>${scores[domain.id].average.toFixed(2)} / 5</span>
+        </li>
+      `).join("");
+
+      drawRadar(certificateCanvas, scores, { compact: true });
+      certificate.classList.add("is-ready");
+    }
+
+    function update() {
+      const completion = getCompletion();
+      const scores = getScores();
+      const complete = isComplete();
+
+      answeredCount.textContent = completion;
+      progressFill.style.width = `${completion / questions.length * 100}%`;
+      resultsStatus.textContent = complete
+        ? "Your domain averages are ready. The radar plot uses a 1 to 5 scale."
+        : "Complete all 21 ratings to generate your radar plot and certificate.";
+
+      printButton.disabled = !complete;
+      message.textContent = "";
+      buildScoreRows(scores);
+      drawRadar(radarCanvas, scores);
+
+      if (complete) {
+        updateCertificate(scores);
+      } else {
+        certificate.classList.remove("is-ready");
+      }
+    }
+
+    function resetAssessment() {
+      answers.clear();
+      improvements.clear();
+      document.querySelectorAll("input[type='radio'], input[type='checkbox']").forEach((input) => {
+        input.checked = false;
+      });
+      message.textContent = "";
+      update();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function attachEvents() {
+      questionList.addEventListener("change", (event) => {
+        const target = event.target;
+        if (target.matches("input[type='radio']")) {
+          const questionId = Number(target.name.replace("q", ""));
+          answers.set(questionId, Number(target.value));
+          update();
+        }
+
+        if (target.matches("input[type='checkbox'][data-improve]")) {
+          const questionId = Number(target.dataset.improve);
+          if (target.checked) improvements.add(questionId);
+          else improvements.delete(questionId);
+        }
+      });
+
+      participantName.addEventListener("input", () => {
+        if (isComplete()) updateCertificate(getScores());
+      });
+
+      resetButton.addEventListener("click", resetAssessment);
+
+      printButton.addEventListener("click", () => {
+        if (!isComplete()) {
+          message.textContent = "Please answer every statement before printing.";
+          return;
+        }
+        updateCertificate(getScores());
+        window.print();
+      });
+    }
+
+    buildDomainTiles();
+    buildQuestions();
+    buildScoreRows(getScores());
+    drawRadar(radarCanvas, getScores());
+    drawRadar(certificateCanvas, getScores(), { compact: true });
+    attachEvents();
+  </script>
+</body>
+</html>
