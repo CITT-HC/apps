@@ -14,9 +14,25 @@
 
         @media print {
             .no-print { display: none !important; }
-            .print-only { display: flex !important; }
-            body, html { background: white !important; margin: 0; padding: 0; }
-            #certificate-section { border: none !important; box-shadow: none !important; }
+            .print-only { display: block !important; }
+            body, html { 
+                background: white !important; 
+                margin: 0; 
+                padding: 0;
+            }
+            .page-break { 
+                page-break-before: always; 
+                break-before: page;
+                padding-top: 2rem;
+            }
+            /* Adjust sizing to ensure charts and boxes fit on A4/Letter */
+            .print-container {
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
+            /* Hide border/shadows for print clarity */
+            .print-no-border { border: none !important; box-shadow: none !important; }
         }
         .print-only { display: none; }
         
@@ -94,7 +110,7 @@
                 <div class="space-y-6">
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Key Strengths (What are you doing well?)</label>
-                        <textarea class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="2"></textarea>
+                        <textarea id="actionPlanStrengths" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="2"></textarea>
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Key Development Need (Focus Area)</label>
@@ -102,16 +118,16 @@
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">SMART Goal (Specific, Measurable, Action-oriented, Realistic, Time-bound)</label>
-                        <textarea class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="2" placeholder="Describe the desired new behavior..."></textarea>
+                        <textarea id="actionPlanSMART" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="2" placeholder="Describe the desired new behavior..."></textarea>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-2">Potential Obstacles</label>
-                            <textarea class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="3"></textarea>
+                            <textarea id="actionPlanObstacles" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="3"></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-2">Resources / Support Needed</label>
-                            <textarea class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="3"></textarea>
+                            <textarea id="actionPlanResources" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -120,11 +136,11 @@
             <!-- Certificate Generator Generator -->
             <div class="bg-slate-800 text-white shadow-md rounded-xl p-8">
                 <h2 class="text-2xl font-bold mb-4">Complete Assessment</h2>
-                <p class="mb-4 text-slate-300">Enter your name below to generate your completion certificate.</p>
+                <p class="mb-4 text-slate-300">Enter your name below to generate your completion certificate and comprehensive multi-page report.</p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <input type="text" id="studentName" class="flex-1 p-3 border border-slate-600 bg-slate-700 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-sky-500" placeholder="Your Full Name">
                     <button type="button" id="printCertBtn" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-                        Generate & Print Certificate
+                        Generate & Print Full Report
                     </button>
                 </div>
             </div>
@@ -132,40 +148,113 @@
         </section>
     </div>
 
-    <!-- Certificate Overlay (Only visible when printing) -->
-    <div id="certificate-section" class="print-only hidden fixed inset-0 bg-white z-50 flex-col items-center justify-center p-12">
-        <div class="w-full max-w-4xl border-8 border-sky-800 p-12 text-center relative bg-white m-auto shadow-2xl rounded-sm">
-            <!-- Decorative borders -->
-            <div class="absolute inset-2 border-2 border-sky-600 opacity-50"></div>
-            
-            <div class="mb-8 mt-6 text-sky-800">
-                <svg class="w-20 h-20 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                </svg>
-            </div>
-            
-            <h1 class="text-5xl font-bold cert-font text-slate-800 tracking-wide uppercase mb-2">Certificate of Completion</h1>
-            <p class="text-lg text-slate-500 tracking-widest uppercase mb-12">Clinical Leadership Competency Framework</p>
-            
-            <p class="text-xl text-slate-600 mb-4">This acknowledges that</p>
-            <h2 id="certNameDisplay" class="text-4xl font-bold text-sky-700 cert-font border-b-2 border-sky-700 inline-block px-8 pb-2 mb-8 min-w-[300px]">
-                Student Name
-            </h2>
-            <p class="text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-                has successfully completed the self-assessment for Medical Laboratory Operations, demonstrating a commitment to professional growth across personal qualities, working with others, managing services, improving services, and setting direction.
-            </p>
-            
-            <div class="flex justify-between items-end mt-16 px-12">
-                <div class="text-left w-64 border-t-2 border-slate-400 pt-2">
-                    <p class="text-slate-800 font-bold">Date of Completion</p>
-                    <p class="text-slate-600" id="certDateDisplay"></p>
+    <!-- Print Layout (Multi-page document) -->
+    <div id="print-document-container" class="print-only">
+        
+        <!-- PAGE 1: Certificate -->
+        <div class="print-container flex flex-col items-center justify-center pt-12 pb-12 h-screen max-h-[1050px]">
+            <div class="w-full border-8 border-sky-800 p-12 text-center relative bg-white m-auto">
+                <div class="absolute inset-2 border-2 border-sky-600 opacity-50"></div>
+                
+                <div class="mb-8 mt-6 text-sky-800">
+                    <svg class="w-20 h-20 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                    </svg>
                 </div>
-                <div class="text-right w-64 border-t-2 border-slate-400 pt-2">
-                    <p class="text-slate-800 font-bold">Program Instructor</p>
-                    <p class="text-slate-600">Medical Lab Sciences</p>
+                
+                <h1 class="text-4xl font-bold cert-font text-slate-800 tracking-wide uppercase mb-2">Certificate of Completion</h1>
+                <p class="text-md text-slate-500 tracking-widest uppercase mb-12">Clinical Leadership Competency Framework</p>
+                
+                <p class="text-lg text-slate-600 mb-4">This acknowledges that</p>
+                <h2 id="certNameDisplay" class="text-3xl font-bold text-sky-700 cert-font border-b-2 border-sky-700 inline-block px-8 pb-2 mb-8 min-w-[300px]">
+                    Student Name
+                </h2>
+                <p class="text-lg text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+                    has successfully completed the comprehensive self-assessment for Medical Laboratory Operations, demonstrating a commitment to professional growth across personal qualities, working with others, managing services, improving services, and setting direction.
+                </p>
+                
+                <div class="flex justify-between items-end mt-16 px-12">
+                    <div class="text-left w-56 border-t-2 border-slate-400 pt-2">
+                        <p class="text-slate-800 font-bold text-sm">Date of Completion</p>
+                        <p class="text-slate-600 text-sm" id="certDateDisplay"></p>
+                    </div>
+                    <div class="text-right w-56 border-t-2 border-slate-400 pt-2">
+                        <p class="text-slate-800 font-bold text-sm">Program Instructor</p>
+                        <p class="text-slate-600 text-sm">Medical Lab Sciences</p>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- PAGE 2: Leadership Profile & Chart -->
+        <div class="page-break print-container">
+            <div class="border-b-2 border-slate-200 pb-4 mb-8">
+                <h1 class="text-3xl font-bold text-slate-800">Leadership Profile Results</h1>
+                <p class="text-slate-500 mt-2" id="printReportName"></p>
+            </div>
+            
+            <div class="flex flex-col items-center mb-10">
+                <img id="printRadarImage" class="max-w-lg w-full mb-6" alt="Leadership Radar Chart" />
+            </div>
+
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Domain Breakdown</h2>
+            <div id="printScoresContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Scores injected dynamically -->
+            </div>
+        </div>
+
+        <!-- PAGE 3: Scenario Response -->
+        <div class="page-break print-container">
+            <div class="border-b-2 border-slate-200 pb-4 mb-8">
+                <h1 class="text-3xl font-bold text-slate-800">Growth Opportunity Reflection</h1>
+            </div>
+            
+            <div class="bg-slate-50 border border-slate-200 p-6 rounded-lg mb-8">
+                <h2 id="printScenarioDomain" class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2"></h2>
+                <p id="printScenarioText" class="text-xl text-slate-800 italic leading-relaxed"></p>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-800 mb-4">Student Response:</h3>
+            <div class="border border-slate-300 p-6 rounded-lg min-h-[200px] bg-white">
+                <p id="printScenarioResponse" class="whitespace-pre-wrap text-slate-700 leading-relaxed text-lg"></p>
+            </div>
+        </div>
+
+        <!-- PAGE 4: Action Plan -->
+        <div class="page-break print-container">
+            <div class="border-b-2 border-slate-200 pb-4 mb-8">
+                <h1 class="text-3xl font-bold text-slate-800">Personal Action Plan</h1>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">Key Strengths</h3>
+                    <p id="printStrengths" class="text-slate-700 whitespace-pre-wrap mt-2"></p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">Key Development Need (Focus Area)</h3>
+                    <p id="printDevNeed" class="text-slate-700 whitespace-pre-wrap mt-2 font-semibold"></p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">SMART Goal</h3>
+                    <p id="printSMART" class="text-slate-700 whitespace-pre-wrap mt-2"></p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">Potential Obstacles</h3>
+                        <p id="printObstacles" class="text-slate-700 whitespace-pre-wrap mt-2"></p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">Resources / Support Needed</h3>
+                        <p id="printResources" class="text-slate-700 whitespace-pre-wrap mt-2"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -263,13 +352,63 @@
             document.getElementById('printCertBtn').addEventListener('click', () => {
                 const name = document.getElementById('studentName').value.trim();
                 if(!name) {
-                    alert("Please enter your name for the certificate.");
+                    alert("Please enter your name to generate the report.");
                     return;
                 }
                 
+                // PAGE 1: Populate Certificate Name & Date
                 document.getElementById('certNameDisplay').innerText = name;
                 document.getElementById('certDateDisplay').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                document.getElementById('printReportName').innerText = `Prepared for: ${name}`;
                 
+                // PAGE 2: Capture Chart as Image (Crucial for printing consistency)
+                const chartCanvas = document.getElementById('radarChart');
+                if (radarChartInstance) {
+                    document.getElementById('printRadarImage').src = chartCanvas.toDataURL('image/png');
+                }
+
+                // PAGE 2: Populate Scores
+                let scoresHtml = '';
+                framework.forEach((domainData, domainIndex) => {
+                    let domainScore = 0;
+                    for(let qIndex = 0; qIndex < 4; qIndex++) {
+                        const radios = document.getElementsByName(`d${domainIndex}_q${qIndex}`);
+                        for(let radio of radios) {
+                            if(radio.checked) domainScore += parseInt(radio.value);
+                        }
+                    }
+                    
+                    // Determine color based on score
+                    let colorClass = domainScore >= 10 ? 'text-green-700' : (domainScore >= 7 ? 'text-amber-600' : 'text-red-600');
+                    
+                    scoresHtml += `
+                        <div class="bg-slate-50 p-4 border border-slate-200 rounded-lg">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-slate-800">${domainData.domain}</h4>
+                                <span class="font-bold text-lg ${colorClass}">${domainScore} / 12</span>
+                            </div>
+                            <p class="text-sm text-slate-600">${domainData.description}</p>
+                        </div>
+                    `;
+                });
+                document.getElementById('printScoresContainer').innerHTML = scoresHtml;
+
+                // PAGE 3: Populate Scenario Data
+                document.getElementById('printScenarioDomain').innerText = document.getElementById('scenarioDomainTitle').innerText;
+                document.getElementById('printScenarioText').innerText = document.getElementById('scenarioText').innerText;
+                const scenarioRes = document.getElementById('scenarioResponse').value.trim();
+                document.getElementById('printScenarioResponse').innerText = scenarioRes ? scenarioRes : "No response provided.";
+
+                // PAGE 4: Populate Action Plan Data
+                const getVal = (id) => document.getElementById(id).value.trim() || "No response provided.";
+                
+                document.getElementById('printStrengths').innerText = getVal('actionPlanStrengths');
+                document.getElementById('printDevNeed').innerText = getVal('devNeedInput');
+                document.getElementById('printSMART').innerText = getVal('actionPlanSMART');
+                document.getElementById('printObstacles').innerText = getVal('actionPlanObstacles');
+                document.getElementById('printResources').innerText = getVal('actionPlanResources');
+
+                // Trigger Print Dialog
                 window.print();
             });
         });
@@ -415,6 +554,8 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: true,
+                    // Prevent chart animation from breaking the print rendering process
+                    animation: { duration: 500 }, 
                     scales: {
                         r: {
                             angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
