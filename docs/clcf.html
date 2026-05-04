@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Leadership Competency Framework - Medical Lab Operations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .cert-font { font-family: 'Playfair Display', serif; }
+
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: flex !important; }
+            body, html { background: white !important; margin: 0; padding: 0; }
+            #certificate-section { border: none !important; box-shadow: none !important; }
+        }
+        .print-only { display: none; }
+        
+        /* Custom radio button styling */
+        input[type="radio"] {
+            accent-color: #0284c7; /* Tailwind light-blue 600 */
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto no-print">
+        
+        <!-- Header -->
+        <header class="bg-sky-700 text-white rounded-t-xl p-8 shadow-md">
+            <h1 class="text-3xl font-bold mb-2">Clinical Leadership Competency Framework</h1>
+            <h2 class="text-xl font-light text-sky-100">Self-Assessment Tool for Medical Lab Operations</h2>
+            <p class="mt-4 text-sm text-sky-50 leading-relaxed">
+                This tool helps medical laboratory students and professionals reflect on their leadership behaviors across five domains. 
+                Read each statement in the context of laboratory operations and rate how frequently it applies to you. 
+            </p>
+        </header>
+
+        <!-- Main Assessment Form -->
+        <main class="bg-white shadow-md rounded-b-xl p-8 mb-8 border border-slate-200">
+            <form id="assessmentForm">
+                <div id="questionsContainer"></div>
+                
+                <div class="mt-10 flex justify-center">
+                    <button type="button" id="calculateBtn" class="bg-sky-600 hover:bg-sky-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors text-lg w-full md:w-auto">
+                        Calculate Results & Generate Profile
+                    </button>
+                </div>
+            </form>
+        </main>
+
+        <!-- Results Section (Hidden initially) -->
+        <section id="resultsSection" class="hidden space-y-8">
+            
+            <div class="bg-white shadow-md rounded-xl p-8 border border-slate-200">
+                <h2 class="text-2xl font-bold text-slate-800 border-b pb-3 mb-6">Your Leadership Profile</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <!-- Radar Chart -->
+                    <div class="relative w-full aspect-square max-w-md mx-auto">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                    
+                    <!-- Feedback List -->
+                    <div id="feedbackContainer" class="space-y-4">
+                        <!-- Dynamic feedback injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weakest Domain Scenario -->
+            <div class="bg-amber-50 shadow-md rounded-xl p-8 border border-amber-200">
+                <div class="flex items-center gap-3 border-b border-amber-200 pb-3 mb-6">
+                    <svg class="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <h2 class="text-2xl font-bold text-slate-800">Growth Opportunity: Lab Scenario</h2>
+                </div>
+                <p class="text-slate-600 mb-4 text-sm font-semibold uppercase tracking-wider" id="scenarioDomainTitle">DOMAIN</p>
+                <p class="text-lg text-slate-800 mb-6 italic" id="scenarioText"></p>
+                
+                <label for="scenarioResponse" class="block text-sm font-bold text-slate-700 mb-2">How would you respond to this situation?</label>
+                <textarea id="scenarioResponse" rows="4" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" placeholder="Type your reflection here..."></textarea>
+            </div>
+
+            <!-- Action Plan Section -->
+            <div class="bg-white shadow-md rounded-xl p-8 border border-slate-200">
+                <h2 class="text-2xl font-bold text-slate-800 border-b pb-3 mb-6">Personal Action Plan</h2>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Key Strengths (What are you doing well?)</label>
+                        <textarea class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="2"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Key Development Need (Focus Area)</label>
+                        <input type="text" id="devNeedInput" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" placeholder="e.g., Enhancing cross-departmental communication">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">SMART Goal (Specific, Measurable, Action-oriented, Realistic, Time-bound)</label>
+                        <textarea class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="2" placeholder="Describe the desired new behavior..."></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Potential Obstacles</label>
+                            <textarea class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="3"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Resources / Support Needed</label>
+                            <textarea class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificate Generator Generator -->
+            <div class="bg-slate-800 text-white shadow-md rounded-xl p-8">
+                <h2 class="text-2xl font-bold mb-4">Complete Assessment</h2>
+                <p class="mb-4 text-slate-300">Enter your name below to generate your completion certificate.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input type="text" id="studentName" class="flex-1 p-3 border border-slate-600 bg-slate-700 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-sky-500" placeholder="Your Full Name">
+                    <button type="button" id="printCertBtn" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                        Generate & Print Certificate
+                    </button>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- Certificate Overlay (Only visible when printing) -->
+    <div id="certificate-section" class="print-only hidden fixed inset-0 bg-white z-50 flex-col items-center justify-center p-12">
+        <div class="w-full max-w-4xl border-8 border-sky-800 p-12 text-center relative bg-white m-auto shadow-2xl rounded-sm">
+            <!-- Decorative borders -->
+            <div class="absolute inset-2 border-2 border-sky-600 opacity-50"></div>
+            
+            <div class="mb-8 mt-6 text-sky-800">
+                <svg class="w-20 h-20 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                </svg>
+            </div>
+            
+            <h1 class="text-5xl font-bold cert-font text-slate-800 tracking-wide uppercase mb-2">Certificate of Completion</h1>
+            <p class="text-lg text-slate-500 tracking-widest uppercase mb-12">Clinical Leadership Competency Framework</p>
+            
+            <p class="text-xl text-slate-600 mb-4">This acknowledges that</p>
+            <h2 id="certNameDisplay" class="text-4xl font-bold text-sky-700 cert-font border-b-2 border-sky-700 inline-block px-8 pb-2 mb-8 min-w-[300px]">
+                Student Name
+            </h2>
+            <p class="text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+                has successfully completed the self-assessment for Medical Laboratory Operations, demonstrating a commitment to professional growth across personal qualities, working with others, managing services, improving services, and setting direction.
+            </p>
+            
+            <div class="flex justify-between items-end mt-16 px-12">
+                <div class="text-left w-64 border-t-2 border-slate-400 pt-2">
+                    <p class="text-slate-800 font-bold">Date of Completion</p>
+                    <p class="text-slate-600" id="certDateDisplay"></p>
+                </div>
+                <div class="text-right w-64 border-t-2 border-slate-400 pt-2">
+                    <p class="text-slate-800 font-bold">Program Instructor</p>
+                    <p class="text-slate-600">Medical Lab Sciences</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Define the framework structure tailored for Medical Labs
+        const framework = [
+            {
+                domain: "Demonstrating Personal Qualities",
+                description: "Developing self awareness, managing yourself, continuing personal development, and acting with integrity.",
+                questions: [
+                    "I reflect on how my values influence my behavior with lab colleagues and clinical staff.",
+                    "I remain calm and focused when handling high-volume workloads or STAT samples.",
+                    "I actively seek opportunities to learn new analytical techniques or lab instrumentation.",
+                    "I act with integrity, reporting errors or quality control issues immediately and honestly."
+                ],
+                feedback: {
+                    high: "You demonstrate excellent self-awareness and integrity under pressure. You are a steady presence at the bench.",
+                    med: "You show solid personal qualities, but may occasionally feel overwhelmed. Focus on stress management during peak lab hours.",
+                    low: "Self-management under lab pressure is an area for growth. Consider seeking mentorship on handling STAT demands and recognizing your stress triggers."
+                },
+                scenario: "A senior pathologist criticizes your handling of a STAT slide in front of your colleagues, but you know you followed the standard operating procedure exactly. How do you handle your immediate reaction and the subsequent professional follow-up?"
+            },
+            {
+                domain: "Working with Others",
+                description: "Developing networks, building relationships, encouraging contribution, and working within teams.",
+                questions: [
+                    "I collaborate effectively with cross-functional hospital teams (nurses, physicians, phlebotomists).",
+                    "I communicate clearly and respectfully about sample requirements and test limitations.",
+                    "I encourage junior lab staff or peers to share their ideas for improving the workspace.",
+                    "I acknowledge and appreciate the efforts of my lab team during exceptionally busy shifts."
+                ],
+                feedback: {
+                    high: "You are a strong team player and build excellent bridges between the lab and clinical departments.",
+                    med: "You work well within your immediate team, but could benefit from building stronger networks with other hospital departments.",
+                    low: "Collaboration seems challenging. Focus on active listening and clearly communicating lab needs to non-laboratory staff without using excessive jargon."
+                },
+                scenario: "The phlebotomy team has been chronically short-staffed, leading to delayed sample arrivals and tension between the wards and the lab. As a lab leader, how do you foster better collaboration and understanding during this stressful period rather than assigning blame?"
+            },
+            {
+                domain: "Managing Services",
+                description: "Planning, managing resources, managing people, and managing performance.",
+                questions: [
+                    "I plan my bench workflow to ensure efficient turnaround times (TAT) for all patient samples.",
+                    "I use lab reagents and supplies efficiently to minimize waste and manage inventory.",
+                    "I support the training, safety, and development of new laboratory technicians.",
+                    "I review proficiency testing and quality assurance metrics to improve bench performance."
+                ],
+                feedback: {
+                    high: "You have a strong grasp of lab logistics, resource management, and quality assurance.",
+                    med: "Your operational skills are adequate, but you might need to focus more on long-term resource planning rather than daily troubleshooting.",
+                    low: "Managing bench workflow efficiently is a priority for development. Focus on time-management techniques and understanding inventory lifecycles."
+                },
+                scenario: "Reagent supplies are critically low for a common chemistry panel due to an unexpected global supply chain issue. How do you prioritize testing, communicate with clinicians, and manage the workflow until the new shipment arrives?"
+            },
+            {
+                domain: "Improving Services",
+                description: "Ensuring patient safety, critically evaluating, encouraging innovation, and facilitating transformation.",
+                questions: [
+                    "I take immediate action when I notice a potential safety hazard or protocol breach in the lab.",
+                    "I use feedback from clinicians to improve the quality of our testing services.",
+                    "I suggest new workflows or technologies to improve lab efficiency or reduce error rates.",
+                    "I help implement new standard operating procedures (SOPs) smoothly and encourage adoption."
+                ],
+                feedback: {
+                    high: "You are a catalyst for positive change and prioritize patient safety and continuous improvement.",
+                    med: "You ensure basic safety, but could take a more active role in proposing new, innovative workflows for the lab.",
+                    low: "You tend to stick to the status quo. Start looking for small, incremental improvements you can suggest to reduce errors or save time at your bench."
+                },
+                scenario: "You've noticed that a specific automated analyzer frequently flags samples for manual review unnecessarily, slowing down workflow and frustrating the team. How do you investigate this objectively and propose a data-driven solution to the lab manager?"
+            },
+            {
+                domain: "Setting Direction",
+                description: "Identifying contexts for change, applying knowledge and evidence, making decisions, and evaluating impact.",
+                questions: [
+                    "I stay informed about new diagnostic technologies, changing guidelines, and regulatory requirements (e.g., CLIA).",
+                    "I use lab data (e.g., error rates, TAT) to advocate for structural lab improvements.",
+                    "I heavily weigh the impact on patient care when making critical decisions at the bench.",
+                    "I evaluate the actual outcomes of changes implemented in our laboratory processes."
+                ],
+                feedback: {
+                    high: "You have great strategic vision and understand how the lab fits into the broader healthcare ecosystem.",
+                    med: "You make good daily decisions, but could improve at looking at the 'big picture' of laboratory medicine trends.",
+                    low: "Strategic thinking is an area for growth. Try to learn more about laboratory regulations, healthcare economics, and how your daily work impacts hospital-wide metrics."
+                },
+                scenario: "The hospital is shifting to a completely new Electronic Health Record (EHR) and Laboratory Information System (LIS). This will drastically change how the lab receives orders and reports results. How do you prepare yourself and assist your team in adapting to this major operational shift?"
+            }
+        ];
+
+        let radarChartInstance = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestions();
+
+            document.getElementById('calculateBtn').addEventListener('click', calculateResults);
+            
+            document.getElementById('printCertBtn').addEventListener('click', () => {
+                const name = document.getElementById('studentName').value.trim();
+                if(!name) {
+                    alert("Please enter your name for the certificate.");
+                    return;
+                }
+                
+                document.getElementById('certNameDisplay').innerText = name;
+                document.getElementById('certDateDisplay').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                
+                window.print();
+            });
+        });
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            
+            framework.forEach((domainData, domainIndex) => {
+                const section = document.createElement('div');
+                section.className = "mb-10";
+                
+                section.innerHTML = `
+                    <div class="bg-sky-50 border-l-4 border-sky-600 p-4 mb-6 rounded-r-lg">
+                        <h3 class="text-xl font-bold text-sky-900">${domainIndex + 1}. ${domainData.domain}</h3>
+                        <p class="text-sm text-sky-700 mt-1">${domainData.description}</p>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-600 text-sm">
+                                    <th class="p-3 w-1/2 rounded-tl-lg">Statement</th>
+                                    <th class="p-3 text-center">A lot of the time (3)</th>
+                                    <th class="p-3 text-center">Some of the time (2)</th>
+                                    <th class="p-3 text-center rounded-tr-lg">Very little / None (1)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${domainData.questions.map((q, qIndex) => `
+                                    <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+                                        <td class="p-3 text-sm text-slate-800">${q}</td>
+                                        <td class="p-3 text-center"><input type="radio" name="d${domainIndex}_q${qIndex}" value="3" required></td>
+                                        <td class="p-3 text-center"><input type="radio" name="d${domainIndex}_q${qIndex}" value="2"></td>
+                                        <td class="p-3 text-center"><input type="radio" name="d${domainIndex}_q${qIndex}" value="1"></td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                container.appendChild(section);
+            });
+        }
+
+        function calculateResults() {
+            // Check if all answered
+            const form = document.getElementById('assessmentForm');
+            if(!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const scores = [];
+            let minScore = Infinity;
+            let weakestDomainIndex = 0;
+
+            const feedbackHTML = [];
+
+            framework.forEach((domainData, domainIndex) => {
+                let domainScore = 0;
+                for(let qIndex = 0; qIndex < 4; qIndex++) {
+                    const radios = document.getElementsByName(`d${domainIndex}_q${qIndex}`);
+                    for(let radio of radios) {
+                        if(radio.checked) {
+                            domainScore += parseInt(radio.value);
+                        }
+                    }
+                }
+                
+                scores.push(domainScore);
+                
+                // Track weakest
+                if (domainScore < minScore) {
+                    minScore = domainScore;
+                    weakestDomainIndex = domainIndex;
+                }
+
+                // Determine feedback tier
+                let feedbackText = "";
+                let colorClass = "";
+                if (domainScore >= 10) {
+                    feedbackText = domainData.feedback.high;
+                    colorClass = "bg-green-50 border-green-200 text-green-800";
+                } else if (domainScore >= 7) {
+                    feedbackText = domainData.feedback.med;
+                    colorClass = "bg-yellow-50 border-yellow-200 text-yellow-800";
+                } else {
+                    feedbackText = domainData.feedback.low;
+                    colorClass = "bg-red-50 border-red-200 text-red-800";
+                }
+
+                feedbackHTML.push(`
+                    <div class="p-4 rounded-lg border ${colorClass}">
+                        <h4 class="font-bold text-sm uppercase tracking-wider mb-1">${domainData.domain} (Score: ${domainScore}/12)</h4>
+                        <p class="text-sm">${feedbackText}</p>
+                    </div>
+                `);
+            });
+
+            // Update UI
+            document.getElementById('resultsSection').classList.remove('hidden');
+            document.getElementById('feedbackContainer').innerHTML = feedbackHTML.join('');
+            
+            // Set Scenario
+            const weakDomain = framework[weakestDomainIndex];
+            document.getElementById('scenarioDomainTitle').innerText = `Focus Area: ${weakDomain.domain}`;
+            document.getElementById('scenarioText').innerText = `"${weakDomain.scenario}"`;
+            
+            // Pre-fill Action plan focus
+            document.getElementById('devNeedInput').value = `Improving competency in: ${weakDomain.domain}`;
+
+            // Draw Chart
+            drawRadarChart(scores);
+            
+            // Scroll to results
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function drawRadarChart(dataScores) {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            
+            if (radarChartInstance) {
+                radarChartInstance.destroy();
+            }
+
+            const labels = framework.map(f => f.domain.split(' ')); // Split text for better wrapping on chart
+
+            radarChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Your Assessment Score',
+                        data: dataScores,
+                        backgroundColor: 'rgba(2, 132, 199, 0.2)', // Sky 600
+                        borderColor: 'rgba(2, 132, 199, 1)',
+                        pointBackgroundColor: 'rgba(2, 132, 199, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(2, 132, 199, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            pointLabels: {
+                                font: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+                                color: '#475569'
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                max: 12,
+                                stepSize: 3,
+                                display: false // hide numbers on the axis
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
