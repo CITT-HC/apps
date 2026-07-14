@@ -1,0 +1,1485 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Choices: Coursework Consequences Adventure</title>
+  <style>
+    :root {
+      --ink: #172026;
+      --muted: #5e6c76;
+      --bg: #f6f8f5;
+      --paper: #ffffff;
+      --line: #cfdbd5;
+      --teal: #08666f;
+      --teal-dark: #044a51;
+      --gold: #b86f12;
+      --green: #26724f;
+      --red: #b23b2e;
+      --blue: #225b9c;
+      --shadow: 0 18px 38px rgba(23, 32, 38, 0.12);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      color: var(--ink);
+      background:
+        linear-gradient(145deg, rgba(8, 102, 111, 0.1), transparent 26rem),
+        linear-gradient(0deg, var(--bg), #ffffff 42rem);
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .shell {
+      width: min(1080px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 44px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+      gap: 22px;
+      align-items: center;
+      padding: 24px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--teal);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.18;
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 13ch;
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: clamp(1.35rem, 3vw, 2rem);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .lead {
+      max-width: 66ch;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-visual {
+      min-height: 240px;
+      display: grid;
+      place-items: center;
+      border-left: 1px solid var(--line);
+      padding-left: 20px;
+    }
+
+    .map {
+      width: min(360px, 100%);
+      aspect-ratio: 1;
+    }
+
+    .map text {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .map .small {
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .btn:hover {
+      border-color: var(--teal);
+      background: #eef7f5;
+    }
+
+    .btn-primary {
+      border-color: var(--teal-dark);
+      background: var(--teal);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      color: #ffffff;
+    }
+
+    .btn-ghost {
+      background: transparent;
+    }
+
+    .btn[disabled] {
+      cursor: not-allowed;
+      opacity: 0.62;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .panel {
+      margin-top: 20px;
+      padding: 22px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 24px rgba(23, 32, 38, 0.07);
+    }
+
+    .scenario-card {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      min-height: 265px;
+      padding: 20px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 24px rgba(23, 32, 38, 0.07);
+    }
+
+    .scenario-card strong {
+      color: var(--teal-dark);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #f2f4ed;
+      color: #3f4b37;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .status-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meter {
+      padding: 14px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .meter-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .bar {
+      height: 10px;
+      margin-top: 10px;
+      overflow: hidden;
+      background: #e5ece8;
+      border-radius: 999px;
+    }
+
+    .bar span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      transition: width 240ms ease;
+    }
+
+    .bar-learning span {
+      background: var(--green);
+    }
+
+    .bar-integrity span {
+      background: var(--teal);
+    }
+
+    .bar-confidence span {
+      background: var(--gold);
+    }
+
+    .adventure-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(310px, 1.05fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .story-box {
+      padding: 22px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 24px rgba(23, 32, 38, 0.07);
+    }
+
+    .story-meta {
+      margin-bottom: 12px;
+      color: var(--teal);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.85rem;
+    }
+
+    .story-text {
+      margin-top: 14px;
+      color: var(--muted);
+    }
+
+    .choices {
+      display: grid;
+      gap: 12px;
+    }
+
+    .choice {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--ink);
+      text-align: left;
+      box-shadow: 0 7px 18px rgba(23, 32, 38, 0.05);
+    }
+
+    .choice:hover {
+      border-color: var(--teal);
+      background: #f1f9f7;
+    }
+
+    .choice-letter {
+      width: 32px;
+      height: 32px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #e7f2ef;
+      color: var(--teal-dark);
+      font-weight: 700;
+    }
+
+    .choice-title {
+      display: block;
+      font-weight: 700;
+    }
+
+    .choice-detail {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 18px;
+      padding: 18px;
+      border-left: 5px solid var(--teal);
+      background: #f3faf8;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.warning {
+      border-left-color: var(--red);
+      background: #fff4f2;
+    }
+
+    .feedback.strong {
+      border-left-color: var(--green);
+      background: #f2faf5;
+    }
+
+    .feedback h3 {
+      margin-bottom: 8px;
+    }
+
+    .delta-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .delta {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .delta.bad {
+      color: var(--red);
+    }
+
+    .delta.good {
+      color: var(--green);
+    }
+
+    .route {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .reflection {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 112px;
+      resize: vertical;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--ink);
+      background: #ffffff;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--ink);
+      background: #ffffff;
+    }
+
+    .validation {
+      min-height: 1.4em;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .debrief-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .takeaway {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+    }
+
+    .takeaway p {
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    .history {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .history li {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfcfa;
+    }
+
+    .certificate-form {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+      margin-top: 18px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfcfa;
+    }
+
+    .certificate-form label {
+      display: grid;
+      gap: 8px;
+      font-weight: 700;
+    }
+
+    .certificate {
+      display: none;
+      margin-top: 20px;
+      padding: 26px;
+      border: 4px double var(--teal);
+      border-radius: var(--radius);
+      background: #ffffff;
+    }
+
+    .certificate.show {
+      display: block;
+    }
+
+    .certificate-name {
+      margin-top: 10px;
+      color: var(--teal-dark);
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .certificate-meta {
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .certificate-reflections {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .certificate-reflection {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #f8fbfa;
+    }
+
+    .source-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .source-note details {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+    }
+
+    .source-note summary {
+      cursor: pointer;
+      color: var(--teal-dark);
+      font-weight: 700;
+    }
+
+    .source-note ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+    }
+
+    .print-area {
+      display: none;
+    }
+
+    @media (max-width: 820px) {
+      .hero,
+      .adventure-layout,
+      .grid,
+      .debrief-grid,
+      .certificate-form {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 180px;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+        padding: 18px 0 0;
+      }
+
+      .status-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(100% - 18px, 1080px);
+        padding-top: 10px;
+      }
+
+      .hero,
+      .panel,
+      .story-box,
+      .scenario-card {
+        padding: 16px;
+      }
+
+      .choice {
+        grid-template-columns: 1fr;
+      }
+
+      .choice-letter {
+        width: 28px;
+        height: 28px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+
+      .toolbar,
+      .choices,
+      .route,
+      .hero-visual,
+      .source-note,
+      .screen:not(.active) {
+        display: none !important;
+      }
+
+      .shell {
+        width: auto;
+        padding: 0;
+      }
+
+      .hero,
+      .panel,
+      .story-box,
+      .takeaway,
+      .certificate,
+      .meter {
+        box-shadow: none;
+      }
+
+      body.certificate-generated .hero,
+      body.certificate-generated .source-note,
+      body.certificate-generated #debrief > :not(.certificate) {
+        display: none !important;
+      }
+
+      body.certificate-generated #debrief,
+      body.certificate-generated .certificate {
+        display: block !important;
+        border-color: #000000;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Choose your own AI path</p>
+        <h1 id="page-title">The Co-Pilot or the Shortcut?</h1>
+        <p class="lead">Make realistic coursework decisions and see how AI choices affect learning, academic integrity, and confidence when the next exam, draft, or workplace task arrives.</p>
+        <div class="toolbar">
+          <button class="btn btn-primary" type="button" data-begin-activity>Start Required Activity</button>
+          <button class="btn btn-ghost" type="button" id="resetAll">Reset Activity</button>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg class="map" viewBox="0 0 320 320" role="img" aria-label="Two paths through AI use: co-pilot and shortcut">
+          <defs>
+            <linearGradient id="roadGood" x1="0" x2="1">
+              <stop offset="0" stop-color="#08666f"></stop>
+              <stop offset="1" stop-color="#26724f"></stop>
+            </linearGradient>
+            <linearGradient id="roadRisk" x1="0" x2="1">
+              <stop offset="0" stop-color="#b86f12"></stop>
+              <stop offset="1" stop-color="#b23b2e"></stop>
+            </linearGradient>
+          </defs>
+          <rect x="22" y="22" width="276" height="276" rx="8" fill="#f7faf8" stroke="#cfdbd5"></rect>
+          <path d="M60 248 C92 214, 110 190, 132 156 C152 126, 186 98, 238 72" fill="none" stroke="url(#roadGood)" stroke-width="15" stroke-linecap="round"></path>
+          <path d="M62 250 C112 238, 174 226, 238 248" fill="none" stroke="url(#roadRisk)" stroke-width="15" stroke-linecap="round"></path>
+          <circle cx="60" cy="248" r="17" fill="#172026"></circle>
+          <circle cx="238" cy="72" r="20" fill="#26724f"></circle>
+          <circle cx="238" cy="248" r="20" fill="#b23b2e"></circle>
+          <text x="52" y="254" fill="#ffffff" font-size="16">AI</text>
+          <text x="190" y="57" fill="#172026" font-size="17">Co-pilot</text>
+          <text x="190" y="224" fill="#172026" font-size="17">Shortcut</text>
+          <text x="78" y="96" fill="#5e6c76" class="small">You still think, write, solve, and decide.</text>
+          <text x="72" y="283" fill="#5e6c76" class="small">AI does the work. Confidence rises, learning drops.</text>
+        </svg>
+      </div>
+    </section>
+
+    <section id="scenarioSelect" class="screen active panel" aria-labelledby="select-title">
+      <h2 id="select-title">Complete both scenarios in order</h2>
+      <p class="story-text">This activity starts with the English 101 composition scenario, then continues to the college algebra exam-prep scenario. You must enter a reflection after each scenario before moving forward.</p>
+      <div class="grid">
+        <article class="scenario-card">
+          <div class="tag-row">
+            <span class="tag">Composition</span>
+            <span class="tag">Writing-as-thinking</span>
+          </div>
+          <h3>English 101: The Source-Based Paper</h3>
+          <p>You work late, your paper is due soon, and AI can either help you reason through your own draft or produce text that is not yours.</p>
+          <button class="btn btn-primary" type="button" data-begin-activity>Begin required sequence</button>
+        </article>
+        <article class="scenario-card">
+          <div class="tag-row">
+            <span class="tag">Algebra</span>
+            <span class="tag">Desirable difficulty</span>
+          </div>
+          <h3>College Algebra: The Exam Prep Week</h3>
+          <p>You need to prepare for a proctored exam. This scenario unlocks after the composition reflection is submitted.</p>
+          <button class="btn" type="button" disabled>Second scenario</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="adventure" class="screen" aria-live="polite">
+      <div class="status-wrap" aria-label="Current outcomes">
+        <div class="meter">
+          <div class="meter-label"><span>Learning strength</span><span id="learningValue">50</span></div>
+          <div class="bar bar-learning"><span id="learningBar"></span></div>
+        </div>
+        <div class="meter">
+          <div class="meter-label"><span>Integrity standing</span><span id="integrityValue">50</span></div>
+          <div class="bar bar-integrity"><span id="integrityBar"></span></div>
+        </div>
+        <div class="meter">
+          <div class="meter-label"><span>Real confidence</span><span id="confidenceValue">50</span></div>
+          <div class="bar bar-confidence"><span id="confidenceBar"></span></div>
+        </div>
+      </div>
+
+      <div class="adventure-layout">
+        <article class="story-box" aria-labelledby="stepTitle">
+          <p class="story-meta" id="stepMeta">Scenario</p>
+          <h2 id="stepTitle"></h2>
+          <p class="story-text" id="stepText"></p>
+          <div id="feedback" class="feedback" aria-live="polite"></div>
+        </article>
+
+        <aside class="story-box" aria-labelledby="choiceTitle">
+          <h2 id="choiceTitle">What do you do?</h2>
+          <div id="choices" class="choices"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="reflectionScreen" class="screen panel" aria-labelledby="reflectionTitle">
+      <h2 id="reflectionTitle">Pause and explain your judgment</h2>
+      <p class="story-text" id="reflectionPrompt"></p>
+      <label class="reflection">
+        <span><strong>Your response</strong></span>
+        <textarea id="reflectionText" placeholder="Write 2-4 sentences about what made the ethical choice different from the shortcut."></textarea>
+      </label>
+      <p class="validation" id="reflectionError" aria-live="polite"></p>
+      <div class="toolbar">
+        <button class="btn btn-primary" type="button" id="saveReflection">Save reflection</button>
+      </div>
+    </section>
+
+    <section id="debrief" class="screen panel" aria-labelledby="debriefTitle">
+      <p class="eyebrow">Debrief</p>
+      <h2 id="debriefTitle">What your choices show</h2>
+      <p class="story-text" id="endingText"></p>
+
+      <div class="debrief-grid">
+        <article class="takeaway">
+          <h3>What</h3>
+          <p>Knowing AI tools exist is only the first layer of AI literacy.</p>
+        </article>
+        <article class="takeaway">
+          <h3>How</h3>
+          <p>Stronger choices used AI for feedback, explanation, practice, and questions while you still did the core work.</p>
+        </article>
+        <article class="takeaway">
+          <h3>When and why</h3>
+          <p>The most responsible choices depended on context: course policy, learning goal, disclosure, and whether AI replaced your thinking.</p>
+        </article>
+      </div>
+
+      <h3 style="margin-top: 22px;">Your path</h3>
+      <ul class="history" id="historyList"></ul>
+
+      <div class="reflection">
+        <label for="finalReflection"><strong>Final reflection</strong></label>
+        <textarea id="finalReflection" placeholder="What is one AI use you would allow yourself, and one use you would avoid, in your next course? Why?"></textarea>
+      </div>
+
+      <div class="certificate-form">
+        <label for="studentName">
+          Student name for certificate
+          <input type="text" id="studentName" autocomplete="name" placeholder="Enter your name">
+        </label>
+        <button class="btn btn-primary" type="button" id="generateCertificate">Generate certificate</button>
+      </div>
+      <p class="validation" id="certificateError" aria-live="polite"></p>
+
+      <div class="toolbar">
+        <button class="btn" type="button" id="printDebrief">Print debrief</button>
+        <button class="btn btn-ghost" type="button" id="returnHome">Return to scenarios</button>
+      </div>
+
+      <article class="certificate" id="certificate" aria-labelledby="certificateTitle">
+        <p class="eyebrow">Certificate of completion</p>
+        <h2 id="certificateTitle">AI Coursework Choices Adventure</h2>
+        <p class="certificate-meta">This certifies that</p>
+        <p class="certificate-name" id="certificateName"></p>
+        <p class="certificate-meta" id="certificateDate"></p>
+        <p class="story-text">completed both required scenarios and submitted reflections on ethical AI use in composition and algebra coursework.</p>
+        <div class="certificate-reflections" id="certificateReflections"></div>
+        <div class="toolbar">
+          <button class="btn btn-primary" type="button" id="printCertificate">Print certificate</button>
+          <a class="btn" id="downloadCertificate" href="#" download="ai-coursework-choices-certificate.html">Download certificate</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="source-note" aria-label="Source informed design notes">
+      <details>
+        <summary>Source-informed design notes</summary>
+        <ul>
+          <li>Uses scenario-based learning so students make choices and see consequences, matching the module design guidance for practical ethical judgment.</li>
+          <li>Frames AI as co-pilot versus shortcut or ghostwriter, with consequences tied to cognitive offloading, desirable difficulty, writing-as-thinking, and illusion of mastery.</li>
+          <li>Prompts declarative, procedural, and conditional thinking: what AI can do, how it is being used, and when or why that use is appropriate.</li>
+          <li>Uses short, mobile-friendly screens, plain language, formative feedback, and reflective prompts for community college learners.</li>
+          <li>Includes performance-style choices and reflection because the meta-analysis found AI literacy interventions vary by context and should move beyond recall toward skills, ethics, attitudes, and reflective application.</li>
+        </ul>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    const scenarios = {
+      composition: {
+        label: "Composition",
+        other: "algebra",
+        reflection: "In the writing scenario, where was the line between getting support and outsourcing the work? Name one prompt that kept you in control of the thinking.",
+        steps: [
+          {
+            id: "comp-blank",
+            title: "The blank page at 9:30 PM",
+            text: "Your English 101 paper is due tomorrow. The assignment asks for your own argument about whether community colleges should require AI literacy. You have two class readings, rough notes, and no thesis yet.",
+            choices: [
+              {
+                title: "Ask AI to write the full paper",
+                detail: "Prompt: Write a 900-word essay with citations and a strong thesis.",
+                feedbackTitle: "Shortcut: the paper appears, but the thinking disappears.",
+                feedback: "This is ghostwriting. It may feel efficient, but you did not practice forming a claim, choosing evidence, or connecting ideas. If asked to explain the argument, you may not be able to defend it.",
+                type: "warning",
+                delta: { learning: -22, integrity: -30, confidence: -12 },
+                tag: "Used AI as a ghostwriter for the paper.",
+                next: "comp-draft"
+              },
+              {
+                title: "Use AI as a brainstorming partner",
+                detail: "Prompt: Ask me five questions that help me narrow my topic and turn my notes into a thesis.",
+                feedbackTitle: "Co-pilot: AI supports your planning.",
+                feedback: "This keeps you in the writing-as-thinking loop. AI helps you surface options, but you still decide what you believe and which evidence fits.",
+                type: "strong",
+                delta: { learning: 18, integrity: 16, confidence: 10 },
+                tag: "Used AI to ask planning questions before drafting.",
+                next: "comp-draft"
+              },
+              {
+                title: "Paste a class reading and ask for a summary only",
+                detail: "Prompt: Summarize the main ideas so I can compare them with my own notes.",
+                feedbackTitle: "Useful, but incomplete.",
+                feedback: "Summaries can lower the barrier to reading, but they can also hide nuance or errors. The responsible move is to compare the output with the reading and mark what you verified.",
+                type: "",
+                delta: { learning: 6, integrity: 8, confidence: 4 },
+                tag: "Used AI to summarize a reading, with verification still needed.",
+                next: "comp-draft"
+              }
+            ]
+          },
+          {
+            id: "comp-draft",
+            title: "Your draft has weak spots",
+            text: "You now have a rough draft. The introduction is clunky, one paragraph sounds unsupported, and you are tempted to let AI clean everything up.",
+            choices: [
+              {
+                title: "Ask AI to rewrite the paper so it sounds better",
+                detail: "Prompt: Rewrite this essay to make it polished and college-level.",
+                feedbackTitle: "Risk: the voice and reasoning may no longer be yours.",
+                feedback: "A rewrite prompt can replace your sentences, structure, and judgment. Even if the ideas started with you, the submitted work may not represent your writing ability.",
+                type: "warning",
+                delta: { learning: -16, integrity: -18, confidence: -8 },
+                tag: "Asked AI to rewrite the draft instead of giving targeted feedback.",
+                next: "comp-policy"
+              },
+              {
+                title: "Ask for targeted feedback",
+                detail: "Prompt: Identify three places where my evidence does not support my thesis. Do not rewrite for me.",
+                feedbackTitle: "Co-pilot: feedback without replacement.",
+                feedback: "This is a strong learning move. You get a first pass on weaknesses, then you revise. It also leaves room for a writing center tutor, peer, or instructor to give human feedback.",
+                type: "strong",
+                delta: { learning: 20, integrity: 18, confidence: 12 },
+                tag: "Requested targeted feedback and kept revision decisions.",
+                next: "comp-policy"
+              },
+              {
+                title: "Use AI only for grammar flags",
+                detail: "Prompt: List possible grammar or citation errors. Do not change my wording.",
+                feedbackTitle: "Low-risk support.",
+                feedback: "This can be appropriate when allowed by the course policy. You still need to check each suggestion because AI can make bad corrections or misunderstand citation rules.",
+                type: "strong",
+                delta: { learning: 10, integrity: 14, confidence: 8 },
+                tag: "Used AI for grammar and citation flags without accepting automatic rewrites.",
+                next: "comp-policy"
+              }
+            ]
+          },
+          {
+            id: "comp-policy",
+            title: "The submission box asks about AI use",
+            text: "Your instructor allows AI for brainstorming and feedback if students disclose how they used it. The final paper must be your own writing and reasoning.",
+            choices: [
+              {
+                title: "Disclose the allowed AI support",
+                detail: "You write: I used AI to generate planning questions and identify places where my evidence needed revision.",
+                feedbackTitle: "Transparency protects trust.",
+                feedback: "Disclosure makes the process visible. It helps your instructor judge your work fairly and shows that you understand the difference between support and substitution.",
+                type: "strong",
+                delta: { learning: 8, integrity: 22, confidence: 8 },
+                tag: "Disclosed allowed AI support accurately.",
+                end: true
+              },
+              {
+                title: "Do not mention AI because the final wording is mostly yours",
+                detail: "You leave the disclosure blank.",
+                feedbackTitle: "A small omission can become an integrity problem.",
+                feedback: "If the policy asks for disclosure, leaving it out breaks the agreement even when the AI use was otherwise productive. Ethical use includes following the local rules.",
+                type: "warning",
+                delta: { learning: -2, integrity: -18, confidence: -6 },
+                tag: "Skipped a required AI disclosure.",
+                end: true
+              },
+              {
+                title: "Claim you did not use AI because it was only for ideas",
+                detail: "You check the no-AI box.",
+                feedbackTitle: "Misrepresentation changes the situation.",
+                feedback: "The original AI use may have been allowed, but a false statement creates a new integrity violation. Responsible AI use includes honesty about process.",
+                type: "warning",
+                delta: { learning: -8, integrity: -28, confidence: -10 },
+                tag: "Misrepresented the AI process on submission.",
+                end: true
+              }
+            ]
+          }
+        ]
+      },
+      algebra: {
+        label: "Algebra",
+        other: "composition",
+        reflection: "In the algebra scenario, what kind of AI help built durable skill? What kind created an illusion of mastery?",
+        steps: [
+          {
+            id: "alg-stuck",
+            title: "The factoring homework feels impossible",
+            text: "Your algebra exam is in four days. You are stuck on factoring quadratics. The course allows AI for studying, but not for submitting copied homework solutions.",
+            choices: [
+              {
+                title: "Ask AI for answers to the homework set",
+                detail: "Prompt: Give me the answers to problems 1-25.",
+                feedbackTitle: "Shortcut: completion without practice.",
+                feedback: "This is similar to copying homework. The gradebook may show completion, but your brain has not practiced recognizing patterns or checking steps.",
+                type: "warning",
+                delta: { learning: -24, integrity: -24, confidence: -10 },
+                tag: "Used AI to obtain homework answers.",
+                next: "alg-practice"
+              },
+              {
+                title: "Ask AI to coach one example step by step",
+                detail: "Prompt: Show me how to factor x^2 + 7x + 12, then give me a similar one to try without the answer.",
+                feedbackTitle: "Co-pilot: explanation plus retrieval practice.",
+                feedback: "This keeps the desirable difficulty. You get a model, then you have to do the next problem yourself and check your reasoning.",
+                type: "strong",
+                delta: { learning: 20, integrity: 16, confidence: 12 },
+                tag: "Used AI as a tutor, then attempted a similar problem independently.",
+                next: "alg-practice"
+              },
+              {
+                title: "Ask AI to make a mistake checklist",
+                detail: "Prompt: What are common factoring mistakes, and how can I catch them?",
+                feedbackTitle: "Good support for metacognition.",
+                feedback: "A checklist helps you monitor your own process. It does not replace practice, but it can make practice more effective.",
+                type: "strong",
+                delta: { learning: 12, integrity: 14, confidence: 8 },
+                tag: "Used AI to build a checklist for self-monitoring.",
+                next: "alg-practice"
+              }
+            ]
+          },
+          {
+            id: "alg-practice",
+            title: "The practice test is tomorrow",
+            text: "You have one hour to study. You can feel the pressure to look fluent quickly, but the exam will require you to solve problems without AI.",
+            choices: [
+              {
+                title: "Read AI-generated solutions until they make sense",
+                detail: "Prompt: Solve these ten practice problems and explain each answer.",
+                feedbackTitle: "Passive fluency can fool you.",
+                feedback: "Worked solutions can look clear while you remain unable to produce the steps yourself. This is the illusion of mastery: recognition feels like understanding.",
+                type: "warning",
+                delta: { learning: -14, integrity: 2, confidence: -8 },
+                tag: "Relied on reading AI solutions instead of solving.",
+                next: "alg-exam"
+              },
+              {
+                title: "Take a closed-notes mini-test, then use AI to review errors",
+                detail: "You solve five problems first. Then you ask AI to explain only the mistakes you marked.",
+                feedbackTitle: "Strong exam preparation.",
+                feedback: "You practice retrieval before feedback. That struggle is productive because it exposes gaps while there is still time to fix them.",
+                type: "strong",
+                delta: { learning: 24, integrity: 16, confidence: 14 },
+                tag: "Practiced first, then used AI to review errors.",
+                next: "alg-exam"
+              },
+              {
+                title: "Ask AI to create a formula sheet",
+                detail: "Prompt: Make a one-page algebra cheat sheet for factoring, linear equations, and functions.",
+                feedbackTitle: "Helpful if you turn it into practice.",
+                feedback: "A study sheet can organize concepts, but it does not build skill by itself. The learning happens when you use it to solve new problems and then remove the support.",
+                type: "",
+                delta: { learning: 6, integrity: 10, confidence: 4 },
+                tag: "Created a study sheet, with practice still needed.",
+                next: "alg-exam"
+              }
+            ]
+          },
+          {
+            id: "alg-exam",
+            title: "Exam day exposes the path you chose",
+            text: "The proctored exam begins. No AI tools are allowed. One question asks you to solve x^2 - 5x + 6 = 0 and explain your steps.",
+            choices: [
+              {
+                title: "You can solve and explain because you practiced",
+                detail: "You factor, check both solutions, and write a short explanation in your own words.",
+                feedbackTitle: "Durable skill transfers.",
+                feedback: "This is the payoff for using AI as a tutor instead of a replacement. You can perform when the tool is gone.",
+                type: "strong",
+                delta: { learning: 16, integrity: 18, confidence: 20 },
+                tag: "Transferred practice to the no-AI exam setting.",
+                end: true
+              },
+              {
+                title: "You recognize the style but cannot start",
+                detail: "The AI explanations looked clear last night, but you did not practice producing steps.",
+                feedbackTitle: "The illusion of mastery shows up.",
+                feedback: "This consequence is academic and practical. The problem looked familiar, but familiarity did not become usable skill.",
+                type: "warning",
+                delta: { learning: -18, integrity: 4, confidence: -22 },
+                tag: "Experienced illusion of mastery during the exam.",
+                end: true
+              },
+              {
+                title: "You try to sneak AI on your phone",
+                detail: "You know it violates the exam rules, but you panic.",
+                feedbackTitle: "Misconduct compounds the learning gap.",
+                feedback: "Using AI during a no-AI exam is an integrity violation. It also prevents you and your instructor from seeing what you actually need to relearn.",
+                type: "warning",
+                delta: { learning: -20, integrity: -36, confidence: -24 },
+                tag: "Attempted prohibited AI use during an exam.",
+                end: true
+              }
+            ]
+          }
+        ]
+      }
+    };
+
+    const state = {
+      currentScenario: null,
+      stepIndex: 0,
+      sequence: ["composition", "algebra"],
+      sequenceIndex: 0,
+      scores: {
+        learning: 50,
+        integrity: 50,
+        confidence: 50
+      },
+      history: [],
+      reflections: {},
+      completed: {}
+    };
+
+    const screens = {
+      select: document.getElementById("scenarioSelect"),
+      adventure: document.getElementById("adventure"),
+      reflection: document.getElementById("reflectionScreen"),
+      debrief: document.getElementById("debrief")
+    };
+
+    const stepMeta = document.getElementById("stepMeta");
+    const stepTitle = document.getElementById("stepTitle");
+    const stepText = document.getElementById("stepText");
+    const choices = document.getElementById("choices");
+    const feedback = document.getElementById("feedback");
+    const reflectionPrompt = document.getElementById("reflectionPrompt");
+    const reflectionText = document.getElementById("reflectionText");
+    const reflectionError = document.getElementById("reflectionError");
+    const finalReflection = document.getElementById("finalReflection");
+    const endingText = document.getElementById("endingText");
+    const historyList = document.getElementById("historyList");
+    const studentName = document.getElementById("studentName");
+    const certificateError = document.getElementById("certificateError");
+    const certificate = document.getElementById("certificate");
+    const certificateName = document.getElementById("certificateName");
+    const certificateDate = document.getElementById("certificateDate");
+    const certificateReflections = document.getElementById("certificateReflections");
+    const downloadCertificate = document.getElementById("downloadCertificate");
+
+    function clamp(value) {
+      return Math.max(0, Math.min(100, value));
+    }
+
+    function showScreen(name) {
+      Object.values(screens).forEach((screen) => screen.classList.remove("active"));
+      screens[name].classList.add("active");
+      screens[name].scrollIntoView({ block: "start" });
+    }
+
+    function resetScores() {
+      state.scores.learning = 50;
+      state.scores.integrity = 50;
+      state.scores.confidence = 50;
+    }
+
+    function resetAll() {
+      state.currentScenario = null;
+      state.stepIndex = 0;
+      state.sequenceIndex = 0;
+      resetScores();
+      state.history = [];
+      state.reflections = {};
+      state.completed = {};
+      reflectionText.value = "";
+      reflectionError.textContent = "";
+      finalReflection.value = "";
+      studentName.value = "";
+      certificateError.textContent = "";
+      certificate.classList.remove("show");
+      document.body.classList.remove("certificate-generated");
+      revokeCertificateUrl();
+      updateMeters();
+      showScreen("select");
+    }
+
+    function updateMeters() {
+      const entries = [
+        ["learning", "learningValue", "learningBar"],
+        ["integrity", "integrityValue", "integrityBar"],
+        ["confidence", "confidenceValue", "confidenceBar"]
+      ];
+
+      entries.forEach(([key, valueId, barId]) => {
+        const value = clamp(state.scores[key]);
+        document.getElementById(valueId).textContent = String(value);
+        document.getElementById(barId).style.width = value + "%";
+      });
+    }
+
+    function startRequiredActivity() {
+      state.sequenceIndex = 0;
+      resetScores();
+      state.history = [];
+      state.reflections = {};
+      state.completed = {};
+      reflectionText.value = "";
+      reflectionError.textContent = "";
+      finalReflection.value = "";
+      studentName.value = "";
+      certificateError.textContent = "";
+      certificate.classList.remove("show");
+      document.body.classList.remove("certificate-generated");
+      revokeCertificateUrl();
+      startScenario(state.sequence[state.sequenceIndex]);
+    }
+
+    function startScenario(key) {
+      state.currentScenario = key;
+      state.stepIndex = 0;
+      reflectionError.textContent = "";
+      reflectionText.value = state.reflections[key] || "";
+      renderStep();
+      showScreen("adventure");
+    }
+
+    function renderStep() {
+      const scenario = scenarios[state.currentScenario];
+      const step = scenario.steps[state.stepIndex];
+      stepMeta.textContent = scenario.label + " scenario - step " + (state.stepIndex + 1) + " of " + scenario.steps.length;
+      stepTitle.textContent = step.title;
+      stepText.textContent = step.text;
+      feedback.className = "feedback";
+      feedback.innerHTML = "";
+      choices.innerHTML = "";
+
+      step.choices.forEach((choice, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "choice";
+        button.innerHTML = `
+          <span class="choice-letter">${String.fromCharCode(65 + index)}</span>
+          <span>
+            <span class="choice-title">${choice.title}</span>
+            <span class="choice-detail">${choice.detail}</span>
+          </span>
+        `;
+        button.addEventListener("click", () => selectChoice(choice));
+        choices.appendChild(button);
+      });
+
+      updateMeters();
+    }
+
+    function selectChoice(choice) {
+      Object.entries(choice.delta).forEach(([key, value]) => {
+        state.scores[key] = clamp(state.scores[key] + value);
+      });
+
+      state.history.push({
+        scenario: scenarios[state.currentScenario].label,
+        step: stepTitle.textContent,
+        choice: choice.title,
+        tag: choice.tag
+      });
+
+      updateMeters();
+      feedback.className = "feedback show " + (choice.type || "");
+      feedback.innerHTML = `
+        <h3>${choice.feedbackTitle}</h3>
+        <p>${choice.feedback}</p>
+        <div class="delta-list">
+          ${formatDelta("Learning", choice.delta.learning)}
+          ${formatDelta("Integrity", choice.delta.integrity)}
+          ${formatDelta("Confidence", choice.delta.confidence)}
+        </div>
+        <div class="route">
+          <button class="btn btn-primary" type="button" id="continuePath">${choice.end ? "Continue to reflection" : "Continue"}</button>
+        </div>
+      `;
+
+      choices.querySelectorAll("button").forEach((button) => {
+        button.disabled = true;
+      });
+
+      document.getElementById("continuePath").addEventListener("click", () => {
+        if (choice.end) {
+          showReflection();
+          return;
+        }
+
+        const scenario = scenarios[state.currentScenario];
+        const nextIndex = scenario.steps.findIndex((step) => step.id === choice.next);
+        state.stepIndex = nextIndex >= 0 ? nextIndex : state.stepIndex + 1;
+        renderStep();
+      });
+    }
+
+    function formatDelta(label, value) {
+      const direction = value >= 0 ? "+" : "";
+      const className = value >= 0 ? "good" : "bad";
+      return `<span class="delta ${className}">${label} ${direction}${value}</span>`;
+    }
+
+    function showReflection() {
+      const scenario = scenarios[state.currentScenario];
+      state.completed[state.currentScenario] = true;
+      reflectionPrompt.textContent = scenario.reflection;
+      reflectionText.value = state.reflections[state.currentScenario] || "";
+      showScreen("reflection");
+    }
+
+    function saveReflection() {
+      const response = reflectionText.value.trim();
+      if (!response) {
+        reflectionError.textContent = "Enter your reflection before continuing.";
+        reflectionText.focus();
+        return;
+      }
+
+      state.reflections[state.currentScenario] = response;
+      reflectionError.textContent = "";
+
+      if (state.currentScenario === "composition") {
+        state.sequenceIndex = 1;
+        startScenario("algebra");
+        return;
+      }
+
+      renderDebrief();
+      showScreen("debrief");
+    }
+
+    function renderDebrief() {
+      const lowLearning = state.scores.learning < 50;
+      const lowIntegrity = state.scores.integrity < 50;
+      const highLearning = state.scores.learning >= 70 && state.scores.integrity >= 70;
+
+      if (highLearning) {
+        endingText.textContent = "Your path mostly used AI as a co-pilot: a tool for questions, feedback, practice, and reflection while you stayed responsible for the thinking.";
+      } else if (lowIntegrity) {
+        endingText.textContent = "Your path shows how quickly helpful AI can become misconduct when it replaces your work, violates course rules, or hides the process from the instructor.";
+      } else if (lowLearning) {
+        endingText.textContent = "Your path avoided some integrity risk, but it leaned toward passive help. The next step is to make AI support produce practice, explanation, and self-checking.";
+      } else {
+        endingText.textContent = "Your path mixed productive support with some risky shortcuts. The key question is whether AI helped you do the learning task or quietly did it for you.";
+      }
+
+      historyList.innerHTML = "";
+      state.history.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${index + 1}. ${item.scenario}: ${item.choice}</strong><br>${item.tag}`;
+        historyList.appendChild(li);
+      });
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function formatDate(date) {
+      return date.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+
+    function revokeCertificateUrl() {
+      const currentUrl = downloadCertificate.dataset.objectUrl;
+      if (currentUrl) {
+        URL.revokeObjectURL(currentUrl);
+        delete downloadCertificate.dataset.objectUrl;
+      }
+      downloadCertificate.setAttribute("href", "#");
+    }
+
+    function buildCertificateHtml(name, dateText) {
+      const finalText = finalReflection.value.trim();
+      const reflectionBlocks = [
+        ["Composition reflection", state.reflections.composition],
+        ["Algebra reflection", state.reflections.algebra],
+        ["Final reflection", finalText || "No additional final reflection entered."]
+      ];
+
+      return `
+        <p class="certificate-meta">This certifies that</p>
+        <p class="certificate-name">${escapeHtml(name)}</p>
+        <p class="certificate-meta">completed on ${escapeHtml(dateText)}</p>
+        <p class="story-text">Completed both required scenarios and submitted reflections on ethical AI use in composition and algebra coursework.</p>
+        <div class="certificate-reflections">
+          ${reflectionBlocks.map(([label, text]) => `
+            <section class="certificate-reflection">
+              <h3>${escapeHtml(label)}</h3>
+              <p>${escapeHtml(text)}</p>
+            </section>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function generateCertificate() {
+      const name = studentName.value.trim();
+      if (!name) {
+        certificateError.textContent = "Enter your name before generating the certificate.";
+        studentName.focus();
+        return;
+      }
+
+      if (!state.reflections.composition || !state.reflections.algebra) {
+        certificateError.textContent = "Complete both scenario reflections before generating the certificate.";
+        return;
+      }
+
+      certificateError.textContent = "";
+      const dateText = formatDate(new Date());
+      certificateName.textContent = name;
+      certificateDate.textContent = "Completed on " + dateText;
+      certificateReflections.innerHTML = `
+        <section class="certificate-reflection">
+          <h3>Composition reflection</h3>
+          <p>${escapeHtml(state.reflections.composition)}</p>
+        </section>
+        <section class="certificate-reflection">
+          <h3>Algebra reflection</h3>
+          <p>${escapeHtml(state.reflections.algebra)}</p>
+        </section>
+        <section class="certificate-reflection">
+          <h3>Final reflection</h3>
+          <p>${escapeHtml(finalReflection.value.trim() || "No additional final reflection entered.")}</p>
+        </section>
+      `;
+
+      const certificateBody = buildCertificateHtml(name, dateText);
+      const documentHtml = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Coursework Choices Certificate</title>
+  <style>
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #172026; background: #f6f8f5; line-height: 1.5; }
+    main { width: min(900px, calc(100% - 32px)); margin: 28px auto; padding: 28px; border: 4px double #08666f; background: #ffffff; }
+    h1, h2, h3, p { margin-top: 0; }
+    .eyebrow { color: #08666f; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .certificate-name { color: #044a51; font-size: clamp(2rem, 8vw, 4rem); font-weight: 700; line-height: 1.1; }
+    .certificate-meta { color: #5e6c76; font-weight: 700; }
+    .certificate-reflections { display: grid; gap: 12px; margin-top: 18px; }
+    .certificate-reflection { padding: 12px; border: 1px solid #cfdbd5; border-radius: 8px; background: #f8fbfa; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Certificate of completion</p>
+    <h1>AI Coursework Choices Adventure</h1>
+    ${certificateBody}
+  </main>
+</body>
+</html>`;
+
+      revokeCertificateUrl();
+      const blob = new Blob([documentHtml], { type: "text/html" });
+      const objectUrl = URL.createObjectURL(blob);
+      downloadCertificate.href = objectUrl;
+      downloadCertificate.dataset.objectUrl = objectUrl;
+      certificate.classList.add("show");
+      document.body.classList.add("certificate-generated");
+      certificate.scrollIntoView({ block: "start" });
+    }
+
+    document.querySelectorAll("[data-begin-activity]").forEach((button) => {
+      button.addEventListener("click", startRequiredActivity);
+    });
+
+    document.getElementById("resetAll").addEventListener("click", resetAll);
+    document.getElementById("saveReflection").addEventListener("click", saveReflection);
+    document.getElementById("returnHome").addEventListener("click", () => showScreen("select"));
+    document.getElementById("printDebrief").addEventListener("click", () => window.print());
+    document.getElementById("generateCertificate").addEventListener("click", generateCertificate);
+    document.getElementById("printCertificate").addEventListener("click", () => window.print());
+
+    updateMeters();
+  </script>
+</body>
+</html>
