@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assignment Redesign Worksheet</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        .slide-in { animation: slideIn 0.3s ease-out; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-900 font-sans p-4 md:p-8 min-h-screen">
+
+    <div id="app" class="max-w-4xl mx-auto space-y-6">
+        <!-- Content will be injected here by JavaScript -->
+    </div>
+
+    <script>
+        const steps = [
+            {
+                id: 1,
+                title: "Learning Outcomes",
+                icon: "target",
+                iconColor: "text-blue-500",
+                question: "What learning outcome is this serving?",
+                description: "Identify the core purpose of this assignment or module.",
+                insight: "Before integrating AI, we must anchor the task in explicit pedagogical goals. AI should serve the outcome, not become the outcome.",
+                fields: [
+                    { id: 'assignmentName', label: 'Assignment/Module Name', type: 'text', placeholder: 'e.g., Final Research Essay' },
+                    { id: 'originalDescription', label: 'Brief Description of the Task', type: 'textarea', placeholder: 'Describe what students currently do...' },
+                    { id: 'learningOutcomes', label: 'Core Learning Outcomes', type: 'textarea', placeholder: 'What specific skills or knowledge should students demonstrate?' }
+                ]
+            },
+            {
+                id: 2,
+                title: "Cognitive Boundary",
+                icon: "brain-circuit",
+                iconColor: "text-purple-500",
+                question: "What thinking must remain with the learner?",
+                description: "Define the 'productive struggle' that is essential for learning to occur.",
+                insight: "The Boundary Principle: Complete task offloading compromises skill acquisition. Implement 'Think First, AI Second'—require students to generate ideas, predictions, or plans before interacting with AI.",
+                fields: [
+                    { id: 'studentThinking', label: 'Essential Student Thinking', type: 'textarea', placeholder: 'What cognitive tasks (e.g., synthesizing, evaluating, hypothesizing) must the student do themselves?' },
+                    { id: 'productiveStruggle', label: 'The Productive Struggle', type: 'textarea', placeholder: 'Where is the friction actually necessary for durable learning in this task?' }
+                ]
+            },
+            {
+                id: 3,
+                title: "The AI's Role",
+                icon: "bot",
+                iconColor: "text-green-500",
+                question: "What does the AI contribute?",
+                description: "Determine how AI will act as a 'coach' rather than a 'crutch'.",
+                insight: "Design for Intentional Friction. Avoid frictionless automation. Proactive AI agents that solve problems immediately bypass self-regulation. Educationally designed AI provides hints, feedback, or Socratic questioning, not just answers.",
+                fields: [
+                    { id: 'aiContribution', label: 'AI Function', type: 'textarea', placeholder: 'How exactly will students use AI here? (e.g., brainstorming partner, code reviewer, opponent in a debate)' },
+                    { id: 'frictionDesign', label: 'Designing Friction', type: 'textarea', placeholder: 'How will you ensure the AI does not just give them the final answer?' }
+                ]
+            },
+            {
+                id: 4,
+                title: "Epistemic Vigilance",
+                icon: "search-check",
+                iconColor: "text-amber-500",
+                question: "How will the learner/instructor verify and evaluate it?",
+                description: "Plan how students will critically assess AI-generated outputs.",
+                insight: "Fluent AI generation undermines critical evaluation. Educators must assess and scaffold student verification habits. Prompting students to evaluate AI suggestions increases actual enactment of feedback.",
+                fields: [
+                    { id: 'verificationMethod', label: 'Verification Process', type: 'textarea', placeholder: 'How will students verify the accuracy and bias of the AI output?' },
+                    { id: 'evaluationRubric', label: 'Evaluation Shift', type: 'textarea', placeholder: 'How will your grading/rubric shift to evaluate their process and critique, rather than just the final product?' }
+                ]
+            },
+            {
+                id: 5,
+                title: "Assessment & Transfer",
+                icon: "graduation-cap",
+                iconColor: "text-indigo-500",
+                question: "What evidence will show that learning transfers?",
+                description: "Determine how you will know they actually learned the skill, independent of the tool.",
+                insight: "Measure delayed learning and transfer, not merely the quality of AI-assisted products. Shift assessment criteria from final deliverables to iterative reasoning, defense, and ability to perform when AI support is removed.",
+                fields: [
+                    { id: 'transferEvidence', label: 'Evidence of Transfer', type: 'textarea', placeholder: 'What will students do to prove they retain this skill without the AI?' },
+                    { id: 'futureAssessment', label: 'Unassisted Assessment', type: 'textarea', placeholder: 'Describe a follow-up task, oral defense, or in-class assessment that requires unassisted recall or application.' }
+                ]
+            }
+        ];
+
+        let currentStepIndex = 0;
+        let formData = {};
+
+        // Listen for input changes and save to formData
+        document.addEventListener('input', (e) => {
+            if (e.target.matches('.form-input')) {
+                formData[e.target.id] = e.target.value;
+            }
+        });
+
+        function renderApp() {
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <!-- Header Banner -->
+                <header class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div>
+                            <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
+                                AI Assignment Redesign Worksheet
+                            </h1>
+                            <p class="text-slate-600 text-lg">
+                                Based on evidence-informed principles for AI in Education.
+                            </p>
+                        </div>
+                        <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-xl max-w-sm">
+                            <p class="text-sm text-indigo-900 font-medium leading-relaxed italic">
+                                "AI should remove unnecessary friction while preserving necessary thinking."
+                            </p>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Main Content Area -->
+                <main class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    ${renderProgressBar()}
+                    
+                    <div class="p-6 md:p-8">
+                        ${currentStepIndex < steps.length ? renderStep() : renderSummary()}
+                    </div>
+
+                    ${renderFooter()}
+                </main>
+            `;
+            lucide.createIcons(); // Initialize icons after rendering
+        }
+
+        function renderProgressBar() {
+            let progressHtml = `<div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center gap-2 overflow-x-auto">`;
+            
+            steps.forEach((step, idx) => {
+                const isActive = currentStepIndex === idx;
+                const isCompleted = currentStepIndex > idx;
+                
+                let circleClass = 'bg-slate-200 text-slate-500';
+                if (isCompleted) circleClass = 'bg-indigo-600 text-white';
+                if (isActive) circleClass = 'bg-indigo-100 text-indigo-700 border-2 border-indigo-600';
+
+                progressHtml += `
+                    <div class="flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold shrink-0 transition-colors ${circleClass}">
+                        ${step.id}
+                    </div>
+                `;
+
+                if (idx < steps.length - 1) {
+                    const lineClass = isCompleted ? 'bg-indigo-600' : 'bg-slate-200';
+                    progressHtml += `<div class="h-1 w-12 shrink-0 rounded ${lineClass}"></div>`;
+                }
+            });
+
+            // Final Save Icon Step
+            const isFinished = currentStepIndex === steps.length;
+            const finalLineClass = isFinished ? 'bg-indigo-600' : 'bg-slate-200';
+            const finalCircleClass = isFinished ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-500';
+
+            progressHtml += `
+                <div class="h-1 w-12 shrink-0 rounded ${finalLineClass}"></div>
+                <div class="flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold shrink-0 transition-colors ${finalCircleClass}">
+                    <i data-lucide="save" class="w-4 h-4"></i>
+                </div>
+            </div>`;
+
+            return progressHtml;
+        }
+
+        function renderStep() {
+            const step = steps[currentStepIndex];
+            
+            let fieldsHtml = step.fields.map(field => {
+                const value = formData[field.id] || '';
+                const inputHtml = field.type === 'textarea' 
+                    ? `<textarea id="${field.id}" rows="4" placeholder="${field.placeholder}" class="form-input w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors resize-y text-slate-700 bg-slate-50 focus:bg-white outline-none">${value}</textarea>`
+                    : `<input type="text" id="${field.id}" placeholder="${field.placeholder}" value="${value}" class="form-input w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-slate-700 bg-slate-50 focus:bg-white outline-none" />`;
+
+                return `
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-slate-700">
+                            ${field.label}
+                        </label>
+                        ${inputHtml}
+                    </div>
+                `;
+            }).join('');
+
+            return `
+                <div class="slide-in">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="${step.icon}" class="w-6 h-6 ${step.iconColor}"></i>
+                        <h2 class="text-2xl font-bold text-slate-800">${step.title}</h2>
+                    </div>
+                    <h3 class="text-xl text-slate-600 mb-6 font-medium">${step.question}</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2 space-y-6">
+                            <p class="text-slate-600">${step.description}</p>
+                            ${fieldsHtml}
+                        </div>
+
+                        <div class="lg:col-span-1">
+                            <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 sticky top-6">
+                                <div class="flex items-center gap-2 mb-3 text-blue-800">
+                                    <i data-lucide="lightbulb" class="w-5 h-5"></i>
+                                    <h4 class="font-semibold">Research Insight</h4>
+                                </div>
+                                <p class="text-sm text-blue-900 leading-relaxed">
+                                    ${step.insight}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSummary() {
+            let summaryHtml = `
+                <div class="fade-in space-y-8">
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <h2 class="text-2xl font-bold text-slate-800 mb-2">Your Redesign Plan</h2>
+                        <p class="text-slate-600 mb-6">Review your assignment redesign based on the 5-question AI framework.</p>
+            `;
+
+            steps.forEach(step => {
+                let fieldsHtml = step.fields.map(field => `
+                    <div>
+                        <h4 class="text-sm font-medium text-slate-500 uppercase tracking-wider mb-1">${field.label}</h4>
+                        <p class="text-slate-800 whitespace-pre-wrap bg-white p-3 rounded border border-slate-100">${formData[field.id] ? escapeHtml(formData[field.id]) : '<span class="text-slate-400 italic">No response provided</span>'}</p>
+                    </div>
+                `).join('');
+
+                summaryHtml += `
+                    <div class="mb-8 last:mb-0">
+                        <h3 class="text-lg font-semibold text-slate-800 flex items-center gap-2 border-b border-slate-200 pb-2 mb-4">
+                            <i data-lucide="${step.icon}" class="w-5 h-5 ${step.iconColor}"></i>
+                            ${step.title}: ${step.question}
+                        </h3>
+                        <div class="space-y-4 pl-8">
+                            ${fieldsHtml}
+                        </div>
+                    </div>
+                `;
+            });
+
+            summaryHtml += `
+                    </div>
+                    <div class="flex justify-center">
+                        <button id="copy-btn" onclick="copyToClipboard()" class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-sm">
+                            <i data-lucide="copy" class="w-5 h-5"></i>
+                            Copy Plan to Clipboard
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            return summaryHtml;
+        }
+
+        function renderFooter() {
+            let leftButton = `<button onclick="prevStep()" ${currentStepIndex === 0 ? 'disabled' : ''} class="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${currentStepIndex === 0 ? 'text-slate-400 cursor-not-allowed' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900'}">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i> Back
+            </button>`;
+
+            let rightButton = currentStepIndex < steps.length 
+                ? `<button onclick="nextStep()" class="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-2 rounded-lg font-medium transition-colors shadow-sm">
+                    Next <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                   </button>`
+                : `<button onclick="startOver()" class="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-800 px-6 py-2 rounded-lg font-medium transition-colors">
+                    Start Over
+                   </button>`;
+
+            return `
+                <div class="bg-slate-50 border-t border-slate-200 px-6 py-4 flex items-center justify-between">
+                    ${leftButton}
+                    ${rightButton}
+                </div>
+            `;
+        }
+
+        // Navigation Functions
+        window.nextStep = () => {
+            if (currentStepIndex < steps.length) {
+                currentStepIndex++;
+                renderApp();
+            }
+        };
+
+        window.prevStep = () => {
+            if (currentStepIndex > 0) {
+                currentStepIndex--;
+                renderApp();
+            }
+        };
+
+        window.startOver = () => {
+            currentStepIndex = 0;
+            renderApp();
+        };
+
+        // Clipboard Functionality
+        window.copyToClipboard = () => {
+            let textToCopy = "AI-Resilient Assignment Redesign Plan\n\n";
+            
+            steps.forEach(step => {
+                textToCopy += `--- Step ${step.id}: ${step.title} ---\n`;
+                textToCopy += `Q: ${step.question}\n\n`;
+                step.fields.forEach(field => {
+                    textToCopy += `> ${field.label}:\n${formData[field.id] || '[No response provided]'}\n\n`;
+                });
+            });
+
+            const copyBtn = document.getElementById('copy-btn');
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showCopiedState(copyBtn);
+            }).catch(err => {
+                // Fallback for older browsers or iframes
+                const textArea = document.createElement("textarea");
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showCopiedState(copyBtn);
+                } catch (err) {
+                    console.error('Failed to copy text', err);
+                }
+                document.body.removeChild(textArea);
+            });
+        };
+
+        function showCopiedState(btn) {
+            btn.innerHTML = `<i data-lucide="check-circle-2" class="w-5 h-5"></i> Copied to Clipboard!`;
+            lucide.createIcons();
+            setTimeout(() => {
+                btn.innerHTML = `<i data-lucide="copy" class="w-5 h-5"></i> Copy Plan to Clipboard`;
+                lucide.createIcons();
+            }, 3000);
+        }
+
+        // Utility to prevent HTML injection in summary
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // Initialize App
+        renderApp();
+    </script>
+</body>
+</html>
