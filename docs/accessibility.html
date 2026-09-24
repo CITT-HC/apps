@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Course Access Check — Canvas Accessibility Guide</title>
+  <style>
+    :root {
+      --ink: #17313a;
+      --muted: #52656b;
+      --paper: #fffaf3;
+      --surface: #ffffff;
+      --teal: #005f69;
+      --teal-dark: #003f47;
+      --teal-soft: #dceff0;
+      --amber: #a55f00;
+      --amber-soft: #fff0cd;
+      --coral: #b8472d;
+      --line: #d7ddd9;
+      --focus: #6b4eff;
+      --success: #197044;
+      --shadow: 0 12px 34px rgba(23, 49, 58, .10);
+      --radius: 1.15rem;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 95% 3%, rgba(165, 95, 0, .17) 0 2px, transparent 2.5px) 0 0 / 18px 18px,
+        var(--paper);
+      font: 1rem/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--teal-dark); text-decoration-thickness: .12em; text-underline-offset: .16em; }
+    a:hover { text-decoration-thickness: .18em; }
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .skip-link {
+      position: fixed;
+      top: .75rem;
+      left: .75rem;
+      z-index: 100;
+      padding: .65rem 1rem;
+      color: white;
+      background: var(--teal-dark);
+      border-radius: .5rem;
+      transform: translateY(-180%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .wrap { width: min(1120px, calc(100% - 2rem)); margin-inline: auto; }
+
+    header {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background: linear-gradient(120deg, var(--teal-dark), var(--teal) 68%, #167985);
+      border-bottom: 7px solid #ffc45c;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      width: 18rem;
+      height: 18rem;
+      right: -6rem;
+      bottom: -10rem;
+      border: 2rem solid rgba(255,255,255,.09);
+      transform: rotate(45deg);
+    }
+    .hero { padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(1.3rem, 3vw, 2.2rem); position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-flex;
+      gap: .55rem;
+      align-items: center;
+      margin: 0 0 .65rem;
+      color: #ffe3aa;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 2.5rem; height: 3px; background: currentColor; }
+    h1 { margin: 0; max-width: 20ch; font-size: clamp(2.15rem, 5vw, 4.25rem); line-height: 1; letter-spacing: -.04em; }
+    .lede { max-width: 70ch; margin: .85rem 0 0; font-size: clamp(1rem, 1.7vw, 1.18rem); color: #eaf7f8; }
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1.15rem;
+    }
+    .jump-nav > span { margin-right: .15rem; color: #ffe3aa; font-weight: 850; }
+    .jump-nav a {
+      display: inline-flex;
+      min-height: 2.65rem;
+      align-items: center;
+      padding: .48rem .78rem;
+      color: var(--teal-dark);
+      background: white;
+      border: 2px solid white;
+      border-radius: 999px;
+      font-weight: 800;
+      line-height: 1.15;
+      text-decoration: none;
+    }
+    .jump-nav a:hover { background: var(--amber-soft); border-color: #ffd078; }
+
+    main { padding: 2.2rem 0 5rem; }
+    h2 { font-size: clamp(1.75rem, 4vw, 2.7rem); line-height: 1.12; letter-spacing: -.025em; margin: 0 0 .7rem; }
+    h3 { line-height: 1.25; }
+    .section-intro { max-width: 70ch; color: var(--muted); margin: 0 0 1.5rem; }
+    .panel {
+      background: color-mix(in srgb, var(--surface) 96%, var(--teal-soft));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .builder { padding: clamp(1.2rem, 4vw, 2.4rem); scroll-margin-top: 1rem; }
+    .step-marker { margin: 0 0 .35rem; color: var(--amber); font-weight: 850; text-transform: uppercase; letter-spacing: .07em; font-size: .84rem; }
+    fieldset { border: 0; padding: 0; margin: 0; }
+    legend { width: 100%; font-size: 1.35rem; font-weight: 800; line-height: 1.25; margin-bottom: .35rem; }
+    .question + .question { border-top: 1px solid var(--line); margin-top: 1.7rem; padding-top: 1.7rem; }
+    .question-help { margin: 0 0 .9rem; color: var(--muted); }
+    .choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(205px, 1fr)); gap: .75rem; }
+    .choice { position: relative; }
+    .choice input { position: absolute; opacity: 0; }
+    .choice label {
+      display: flex;
+      min-height: 100%;
+      align-items: center;
+      gap: .75rem;
+      padding: .85rem .95rem;
+      background: white;
+      border: 2px solid var(--line);
+      border-radius: .8rem;
+      font-weight: 720;
+      transition: .16s ease;
+      cursor: pointer;
+    }
+    .choice label::before {
+      content: "";
+      flex: 0 0 1.2rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      border: 2px solid #68777b;
+      border-radius: .28rem;
+    }
+    .choice input[type="radio"] + label::before { border-radius: 50%; }
+    .choice input:checked + label { border-color: var(--teal); background: var(--teal-soft); color: var(--teal-dark); }
+    .choice input:checked + label::before { background: var(--teal); border-color: var(--teal); box-shadow: inset 0 0 0 3px white; }
+    .choice input:focus-visible + label { outline: 3px solid var(--focus); outline-offset: 3px; }
+    .builder-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.7rem; }
+    .primary, .secondary {
+      min-height: 3rem;
+      padding: .72rem 1.15rem;
+      border-radius: .65rem;
+      border: 2px solid var(--teal-dark);
+      font-weight: 800;
+    }
+    .primary { color: white; background: var(--teal-dark); }
+    .primary:hover { background: #002f35; }
+    .secondary { color: var(--teal-dark); background: transparent; }
+    .secondary:hover { background: var(--teal-soft); }
+
+    #plan { margin-top: 3rem; scroll-margin-top: 1rem; }
+    .plan-head { display: grid; grid-template-columns: 1fr minmax(220px, 340px); gap: 1.5rem; align-items: end; }
+    .progress-box { padding: 1rem; background: white; border: 1px solid var(--line); border-radius: .8rem; }
+    .progress-row { display: flex; justify-content: space-between; gap: 1rem; font-weight: 800; }
+    progress { width: 100%; height: .85rem; accent-color: var(--success); }
+    .priority-note {
+      margin: 1.25rem 0;
+      padding: 1rem 1.15rem;
+      border-left: 5px solid var(--amber);
+      background: var(--amber-soft);
+      border-radius: 0 .75rem .75rem 0;
+    }
+    .plan-grid { display: grid; gap: 1rem; }
+    .task-card { overflow: hidden; }
+    .task-card[hidden] { display: none; }
+    .card-head { display: flex; gap: 1rem; align-items: flex-start; padding: 1.2rem 1.25rem .95rem; }
+    .number {
+      display: grid;
+      place-items: center;
+      flex: 0 0 2.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: .6rem;
+      color: white;
+      background: var(--teal);
+      font-weight: 900;
+    }
+    .card-head h3 { margin: .1rem 0 .2rem; font-size: 1.3rem; }
+    .card-head p { margin: 0; color: var(--muted); }
+    .tasks { list-style: none; margin: 0; padding: 0 1.25rem 1.1rem; }
+    .task { border-top: 1px solid var(--line); padding: .9rem 0; }
+    .task label { display: grid; grid-template-columns: 1.4rem 1fr; gap: .65rem; align-items: start; cursor: pointer; }
+    .task input { width: 1.2rem; height: 1.2rem; margin-top: .18rem; accent-color: var(--success); }
+    .task strong { display: block; margin-bottom: .14rem; }
+    .task span { color: var(--muted); }
+    .task input:checked + span { text-decoration: line-through; text-decoration-thickness: .08em; opacity: .65; }
+    .task-links { margin: .45rem 0 0 2.05rem; color: var(--muted); }
+    .resources { padding: 0 1.25rem 1.3rem 3.3rem; }
+    .resources strong { display: block; margin-bottom: .3rem; }
+    .resources ul { margin: .25rem 0 0; padding-left: 1.2rem; }
+    .external::after { content: " ↗"; font-weight: 800; text-decoration: none; display: inline-block; }
+    .human-review { margin: 0 1.25rem 1.25rem; padding: .8rem 1rem; background: #eef5f7; border-radius: .7rem; }
+    .human-review strong { color: var(--teal-dark); }
+    .notice { color: #6b3d00; }
+
+    .course-sweep { border-top: 6px solid var(--teal); }
+    .completion-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.2rem 0 0; }
+    .saved-note { min-height: 1.5rem; color: var(--success); font-weight: 700; }
+
+    .learn { margin-top: 4rem; scroll-margin-top: 1rem; }
+    .why-card { padding: clamp(1.2rem, 4vw, 2.2rem); }
+    details { border-top: 1px solid var(--line); }
+    details:first-of-type { border-top: 0; }
+    summary { padding: 1rem .25rem; font-weight: 820; font-size: 1.08rem; cursor: pointer; }
+    details > div { padding: 0 .25rem 1rem; max-width: 78ch; }
+    details p:first-child { margin-top: 0; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .85rem; margin: 1rem 0 1.5rem; }
+    .why-point { padding: 1rem; background: var(--teal-soft); border-radius: .8rem; }
+    .why-point strong { display: block; color: var(--teal-dark); font-size: 1.05rem; }
+    .myths { display: grid; gap: .65rem; }
+    .myths details { border: 1px solid var(--line); border-radius: .7rem; background: white; }
+    .myths summary { padding: .8rem 1rem; }
+    .myths details > div { padding: 0 1rem 1rem; }
+    .myth { color: var(--coral); font-weight: 800; }
+    .counter { margin-bottom: 0; }
+    .counter strong { color: var(--success); }
+
+    .resource-library { margin-top: 4rem; scroll-margin-top: 1rem; }
+    .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .85rem; }
+    .resource-card { padding: 1.05rem; }
+    .resource-card h3 { margin: 0 0 .35rem; font-size: 1.08rem; }
+    .resource-card p { margin: 0; color: var(--muted); }
+    .ai-help {
+      position: relative;
+      margin-top: 4rem;
+      padding: clamp(1.2rem, 4vw, 2.4rem);
+      overflow: hidden;
+      background-color: #f3fff0;
+      background-image:
+        linear-gradient(rgba(30, 112, 67, .08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 112, 67, .08) 1px, transparent 1px);
+      background-size: 20px 20px;
+      scroll-margin-top: 1rem;
+    }
+    .ai-help > * { position: relative; z-index: 1; }
+    .ai-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: .85rem; margin-top: 1.4rem; }
+    .ai-card {
+      display: grid;
+      grid-template-columns: 3.25rem 1fr;
+      gap: .9rem;
+      padding: 1rem;
+      background: rgba(255,255,255,.96);
+      border: 1px solid #a7b8ad;
+      border-radius: .85rem;
+      box-shadow: 0 5px 15px rgba(23, 49, 58, .07);
+    }
+    .ai-number {
+      display: grid;
+      place-items: center;
+      width: 3.25rem;
+      height: 3.25rem;
+      color: #163620;
+      background: #eaffbd;
+      border: 1px solid #8ca451;
+      border-radius: .45rem;
+      font-size: 1.25rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+    .ai-card h3 { margin: 0 0 .28rem; font-size: 1.08rem; }
+    .ai-card p { margin: 0; color: var(--muted); }
+    .ai-card p + p { margin-top: .55rem; }
+    .verify { padding-top: .5rem; border-top: 1px solid var(--line); font-size: .92rem; }
+    .verify strong { color: var(--success); }
+    .ai-guardrail {
+      margin: 1.2rem 0 0;
+      padding: 1rem 1.1rem;
+      background: #fff8df;
+      border: 2px solid #c98817;
+      border-radius: .8rem;
+    }
+    footer { padding: 2rem 0 3.5rem; color: var(--muted); border-top: 1px solid var(--line); }
+    .small { font-size: .9rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 720px) {
+      .plan-head { grid-template-columns: 1fr; }
+      .resources { padding-left: 1.25rem; }
+      .card-head { gap: .7rem; }
+      .jump-nav > span { flex-basis: 100%; }
+    }
+    @media print {
+      body { background: white; font-size: 10pt; }
+      header { color: black; background: white; border-bottom: 3px solid black; }
+      header::after, .builder, .completion-actions, .learn, .resource-library, .ai-help, footer, .skip-link { display: none !important; }
+      .hero { padding: .5rem 0 1rem; }
+      .eyebrow, .lede { color: black; }
+      #plan { margin-top: 1rem; }
+      .panel, .progress-box { box-shadow: none; break-inside: avoid; }
+      .task-card[hidden] { display: none !important; }
+      a { color: black; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the guide</a>
+
+  <header>
+    <div class="wrap hero">
+      <p class="eyebrow">Course Access Check</p>
+      <h1>Make your Canvas course work for everyone.</h1>
+      <p class="lede">Build a practical accessibility checklist in three questions. Start with what students need next, then improve the course as you go.</p>
+      <nav class="jump-nav" aria-label="On this page">
+        <span>Jump to:</span>
+        <a href="#checklist">Checklist</a>
+        <a href="#why-accessibility">Why accessibility</a>
+        <a href="#resource-library">Resource library</a>
+        <a href="#ai-help">Using AI</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="panel builder" id="checklist" aria-labelledby="builder-title">
+      <p class="step-marker">Build your plan</p>
+      <h2 id="builder-title">What are you working with?</h2>
+      <p class="section-intro">Select every format students use. The guide will show only the relevant checks, plus a course-wide Canvas sweep.</p>
+
+      <form id="plan-form">
+        <fieldset class="question">
+          <legend>1. Which types of content are in the course?</legend>
+          <p class="question-help">Choose all that apply.</p>
+          <div class="choices">
+            <div class="choice"><input id="type-canvas" type="checkbox" name="type" value="canvas" checked><label for="type-canvas">Canvas pages &amp; activities</label></div>
+            <div class="choice"><input id="type-images" type="checkbox" name="type" value="images"><label for="type-images">Images &amp; charts</label></div>
+            <div class="choice"><input id="type-word" type="checkbox" name="type" value="word"><label for="type-word">Word documents</label></div>
+            <div class="choice"><input id="type-ppt" type="checkbox" name="type" value="ppt"><label for="type-ppt">PowerPoint slides</label></div>
+            <div class="choice"><input id="type-pdf" type="checkbox" name="type" value="pdf"><label for="type-pdf">PDFs or scans</label></div>
+            <div class="choice"><input id="type-video" type="checkbox" name="type" value="video"><label for="type-video">Video or audio</label></div>
+            <div class="choice"><input id="type-links" type="checkbox" name="type" value="links"><label for="type-links">External links &amp; tools</label></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="question">
+          <legend>2. Where are you in the course cycle?</legend>
+          <p class="question-help">This changes the suggested order, not the requirements.</p>
+          <div class="choices">
+            <div class="choice"><input id="stage-building" type="radio" name="stage" value="building" checked><label for="stage-building">Building or revising</label></div>
+            <div class="choice"><input id="stage-live" type="radio" name="stage" value="live"><label for="stage-live">Course is live</label></div>
+            <div class="choice"><input id="stage-copy" type="radio" name="stage" value="copy"><label for="stage-copy">Preparing a course copy</label></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="question">
+          <legend>3. How much time do you have right now?</legend>
+          <p class="question-help">The short path focuses on the highest-impact barriers first.</p>
+          <div class="choices">
+            <div class="choice"><input id="pace-quick" type="radio" name="pace" value="quick"><label for="pace-quick">15-minute triage</label></div>
+            <div class="choice"><input id="pace-full" type="radio" name="pace" value="full" checked><label for="pace-full">Full review</label></div>
+          </div>
+        </fieldset>
+
+        <div class="builder-actions">
+          <button class="primary" type="submit">Build my checklist</button>
+          <button class="secondary" type="button" id="select-all">Select all formats</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="plan" aria-labelledby="plan-title" hidden tabindex="-1">
+      <div class="plan-head">
+        <div>
+          <p class="step-marker">Your action plan</p>
+          <h2 id="plan-title">Check. Fix. Verify with a person.</h2>
+          <p class="section-intro" id="plan-summary">Your tailored checklist is ready.</p>
+        </div>
+        <div class="progress-box" aria-labelledby="progress-label">
+          <div class="progress-row"><span id="progress-label">Checklist progress</span><span id="progress-text">0 of 0</span></div>
+          <progress id="progress" value="0" max="1">0%</progress>
+        </div>
+      </div>
+
+      <div class="priority-note" id="priority-note" role="note"></div>
+      <p class="saved-note" id="status" role="status" aria-live="polite"></p>
+
+      <div class="plan-grid" id="plan-grid">
+        <article class="panel task-card" data-topic="canvas">
+          <div class="card-head"><span class="number" aria-hidden="true">C</span><div><h3>Canvas pages &amp; activities</h3><p>Structure content so it can be scanned, heard, zoomed, and operated by keyboard.</p></div></div>
+          <ul class="tasks">
+            <li class="task"><label><input type="checkbox" data-task="canvas-checker"><span><strong>Run the Rich Content Editor Accessibility Checker</strong>Open each current page, assignment, discussion, quiz instruction, and syllabus section; apply every relevant fix.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-use-the-Accessibility-Checker-in-the-Rich-Content/ta-p/820">Use the Canvas Rich Content Editor Accessibility Checker<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="canvas-structure"><span><strong>Check structure and reading sequence</strong>Use real heading levels in order, short paragraphs, lists, and descriptive link text. Do not use bold text as a heading.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/use-heading-styles-in-canvas-accessibility-checker/">Heading styles and the Canvas Accessibility Checker<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task">
+              <label><input type="checkbox" data-task="canvas-text-quality"><span><strong>Make the text clear and readable</strong>Review instructional text for correctness, an appropriate reading level, concise sentences, familiar words, and clearly explained technical terms.</span></label>
+              <p class="task-links">Check <a class="external" target="_blank" rel="noopener" href="https://languagetool.org/">grammar<span class="sr-only"> (opens in a new tab)</span></a>, <a class="external" target="_blank" rel="noopener" href="https://www.makeuseof.com/tag/best-ways-to-spell-check-on-the-go-in-chrome/">spelling<span class="sr-only"> (opens in a new tab)</span></a>, <a class="external" target="_blank" rel="noopener" href="https://support.office.com/en-us/article/test-your-document-s-readability-85b4969e-e80a-4777-8dd3-f7fc3c8b3fd2">reading level<span class="sr-only"> (opens in a new tab)</span></a>, and <a class="external" target="_blank" rel="noopener" href="https://www.plainlanguage.gov/about/definitions/">plain-language guidance<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+            </li>
+            <li class="task">
+              <label><input type="checkbox" data-task="canvas-equations"><span><strong>Make equations and formulas accessible</strong>Create math with an equation editor that produces structured math rather than inserting a screenshot. Check that notation is correct and can be interpreted with assistive technology.</span></label>
+              <p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://docs.wiris.com/en_US/mathtype-for-canvas/get-started-with-mathtype-in-canvas">Get started with MathType in Canvas<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+            </li>
+            <li class="task"><label><input type="checkbox" data-task="canvas-tables"><span><strong>Simplify data tables</strong>Use tables only for data, identify a header row, avoid merged cells, and add a caption or nearby explanation.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://www.clemson.edu/accessibility/digital/guides/canvas/tables.html">Make a table accessible in Canvas<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/accessible-tables-in-canvas/">Creating accessible tables<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="canvas-color"><span><strong>Check color and contrast</strong>Keep text readable against its background and never use color as the only way to communicate meaning.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/designing-with-color-for-accessibility/">Designing with color for accessibility<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://webaim.org/resources/contrastchecker/">WebAIM Contrast Checker<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="canvas-keyboard"><span><strong>Try the page without a mouse</strong>Tab through links and controls. Focus should be visible, order should make sense, and every action should work from the keyboard.</span></label></li>
+          </ul>
+          <p class="human-review"><strong>Human review:</strong> An automated checker cannot tell whether the heading structure is meaningful or the instructions are understandable.</p>
+        </article>
+
+        <article class="panel task-card" data-topic="images">
+          <div class="card-head"><span class="number" aria-hidden="true">I</span><div><h3>Images, charts &amp; diagrams</h3><p>Ask first: does this image communicate information, or is it only decorative?</p></div></div>
+          <ul class="tasks">
+            <li class="task"><label><input type="checkbox" data-task="image-purpose"><span><strong>Classify each image</strong>If meaningful, write alt text for its purpose in context. If decorative, mark it decorative—do not describe visual filler.</span></label></li>
+            <li class="task"><label><input type="checkbox" data-task="image-alt"><span><strong>Add concise, contextual alt text</strong>State the information a student needs, not “image of.” Do not repeat an adjacent caption word for word.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://community.instructure.com/en/kb/articles/662921-how-do-i-manage-alt-text-and-display-options-for-images-embedded-in-the-rich-content-editor">Manage alt text in Canvas<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/creating-image-descriptions/">Creating image descriptions<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://www.perkins.org/resource/how-write-alt-text-and-image-descriptions-visually-impaired/">How to write alt text<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://teachonline.asu.edu/image-accessibility-generator/">ASU Image Accessibility Generator<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="image-complex"><span><strong>Give complex visuals a text equivalent</strong>For charts, maps, or process diagrams, add the key takeaway and a longer description or data table near the image.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://www.pcc.edu/instructional-support/wp-content/uploads/sites/17/2017/11/complex-images.pdf">Complex Images for All Learners (PDF)<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://accessibility.psu.edu/images/charts/">Make charts accessible<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="image-text"><span><strong>Replace images of text when possible</strong>Use live text. If essential text remains in an image, include it in the text alternative and verify contrast.</span></label></li>
+          </ul>
+          <p class="human-review"><strong>Human review:</strong> Treat generated alt text as a draft. Check facts, context, bias, privacy, and the learning goal before publishing.</p>
+        </article>
+
+        <article class="panel task-card" data-topic="word">
+          <div class="card-head"><span class="number" aria-hidden="true">W</span><div><h3>Word documents</h3><p>Build structure into the source document before exporting or uploading.</p></div></div>
+          <ul class="tasks">
+            <li class="task"><label><input type="checkbox" data-task="word-structure"><span><strong>Use built-in styles and document structure</strong>Use Title, Heading 1, Heading 2, real lists, meaningful links, and a logical reading order.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/accessibility/word/make-your-word-documents-accessible-to-everyone-with-accessibility-assistant">Make Word documents accessible<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="word-media"><span><strong>Fix images and tables</strong>Add alt text, mark decorative images, use simple tables with headers, and avoid text boxes for essential content.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://esail.tamu.edu/faculty-tutorials/accessibility/accessibility-series/create-accessible-tables-word/">Create accessible tables in Word<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/accessibility/office-accessibility/add-alternative-text-to-a-shape-picture-chart-smartart-graphic-or-other-object">Add alternative text to objects in Microsoft apps<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="word-checker"><span><strong>Run Microsoft Accessibility Checker</strong>Choose Review → Check Accessibility. Resolve errors, review warnings, then inspect anything the checker cannot judge.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/accessibility/office-accessibility/improve-accessibility-with-the-accessibility-checker">Use Microsoft Accessibility Checker<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+          </ul>
+          <p class="human-review"><strong>Human review:</strong> Confirm the heading outline makes sense and the document still works at 200% zoom.</p>
+        </article>
+
+        <article class="panel task-card" data-topic="ppt">
+          <div class="card-head"><span class="number" aria-hidden="true">P</span><div><h3>PowerPoint presentations</h3><p>A slide can look right while a screen reader encounters it in the wrong order.</p></div></div>
+          <ul class="tasks">
+            <li class="task"><label><input type="checkbox" data-task="ppt-layout"><span><strong>Use built-in slide layouts and unique titles</strong>Avoid blank layouts and manually positioned text boxes when a structured layout will work.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/accessibility/powerpoint/make-your-powerpoint-presentations-accessible-to-people-with-disabilities">Make PowerPoint presentations accessible<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/accessible-microsoft-powerpoint-cheat-sheet/">PowerPoint accessibility guide chapter<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="ppt-order"><span><strong>Inspect reading order on every slide</strong>Use the Reading Order pane. Hide decorative objects from assistive technology and put content in a logical sequence.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/powerpoint/make-slides-easier-to-read-by-using-the-reading-order-pane">Check and change reading order in PowerPoint<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="ppt-media"><span><strong>Check visuals, color, and motion</strong>Add alt text, do not use color alone to communicate, maintain contrast, and avoid flashing or distracting animation.</span></label></li>
+            <li class="task"><label><input type="checkbox" data-task="ppt-checker"><span><strong>Run Microsoft Accessibility Checker</strong>Fix errors and review warnings; then test the exported format if students receive a PDF.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/accessibility/office-accessibility/improve-accessibility-with-the-accessibility-checker">Use Microsoft Accessibility Checker<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+          </ul>
+          <p class="human-review"><strong>Human review:</strong> Start a slide show and check that the spoken presentation does not contain information missing from the file.</p>
+        </article>
+
+        <article class="panel task-card" data-topic="pdf">
+          <div class="card-head"><span class="number" aria-hidden="true">D</span><div><h3>PDFs &amp; scanned readings</h3><p>Best path: repair the original Word or PowerPoint file, then export a tagged PDF.</p></div></div>
+          <ul class="tasks">
+            <li class="task"><label><input type="checkbox" data-task="pdf-source"><span><strong>Find the editable source</strong>Fix headings, links, tables, alt text, language, and reading order in the source; export with document structure tags enabled.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/office/edit-a-pdf-b2d1d729-6b79-499a-bcdb-233379c2f63a">Convert or edit a PDF in Word<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="pdf-ocr"><span><strong>Recognize scanned text</strong>If text cannot be selected, run OCR. Then correct recognition errors—especially names, formulas, punctuation, columns, and footnotes.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/using-chatgpt-to-convert-scanned-pdfs-into-accessible-stem-content/">Convert scanned STEM content to accessible HTML/MathML<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="pdf-tags"><span><strong>Check tags and reading order</strong>Confirm the PDF has a title and language, real headings, tagged lists and tables, useful links, and correct reading order.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://pave-pdf.org/?lang=en">PAVE PDF remediation tool<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="pdf-alternative"><span><strong>Replace an unfixable PDF</strong>Provide the content as an accessible Canvas page, HTML, or Word file. Ask your library or accessibility team about licensed readings.</span></label></li>
+          </ul>
+          <p class="human-review"><strong>Human review:</strong> OCR and auto-tagging are only starting points. Read the result in order and never upload protected or sensitive material to an unapproved service.</p>
+        </article>
+
+        <article class="panel task-card" data-topic="video">
+          <div class="card-head"><span class="number" aria-hidden="true">V</span><div><h3>Video &amp; audio</h3><p>Automatic captions are a draft. Students need accurate, synchronized access to the same meaning.</p></div></div>
+          <ul class="tasks">
+            <li class="task"><label><input type="checkbox" data-task="video-captions"><span><strong>Add and edit captions</strong>Correct names, technical terms, punctuation, speaker changes, and important sounds. Keep captions synchronized and readable.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://community.instructure.com/en/kb/articles/660521-how-do-i-use-the-caption-editor-to-edit-a-caption-file">Edit captions in Canvas Studio<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/uploading-and-managing-media-in-canvas-studio-accessibility-captions-and-copyright/">Media and captions in Canvas Studio<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="video-transcript"><span><strong>Provide a transcript for audio-only content</strong>Use headings and speaker labels. A transcript is also helpful alongside video, but it does not replace required captions.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/generating-captions-for-mp3-files-in-canvas-studio/">Captions for MP3 files in Canvas Studio<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://thewh1teagle.github.io/vibe/">Vibe local transcription tool<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="video-description"><span><strong>Describe meaningful visual information</strong>If key actions, diagrams, or on-screen text are not conveyed in the narration, add integrated description or an audio-described version.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/audiodescription/">Audio description guide chapter<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://ydx.youdescribe.org/home">YouDescribe for YouTube<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="video-player"><span><strong>Test the player</strong>Confirm captions can be turned on, controls work by keyboard, focus is visible, and the media does not autoplay unexpectedly.</span></label></li>
+          </ul>
+          <p class="human-review"><strong>Human review:</strong> Watch with sound off to check captions, then listen without looking to find visual information that needs description.</p>
+        </article>
+
+        <article class="panel task-card" data-topic="links">
+          <div class="card-head"><span class="number" aria-hidden="true">L</span><div><h3>Links &amp; external tools</h3><p>A working URL is not enough: it must be understandable and usable in context.</p></div></div>
+          <ul class="tasks">
+            <li class="task"><label><input type="checkbox" data-task="links-validator"><span><strong>Run Canvas Link Validator</strong>Go to Settings → Validate Links in Content. Review every result, including links Canvas cannot automatically verify.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://community.instructure.com/en/kb/articles/661141-how-do-i-validate-links-in-a-course">Validate links in a Canvas course<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/using-the-canvas-link-checker-to-validate-links/">Using the Canvas Link Checker<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="links-text"><span><strong>Use meaningful link text</strong>Name the destination or action. Avoid repeated “click here,” pasted URLs, and links distinguished only by color.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/meaningful-link-text/">Meaningful link text guide chapter<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="links-tools"><span><strong>Test third-party tools as a student</strong>Check keyboard use, zoom, captions, contrast, mobile behavior, sign-in, and time limits. Provide an accessible route when a tool creates a barrier.</span></label></li>
+          </ul>
+          <p class="human-review"><strong>Human review:</strong> Link Validator may report false positives for authenticated pages and cannot confirm whether a destination is accessible.</p>
+        </article>
+
+        <article class="panel task-card course-sweep" data-topic="always">
+          <div class="card-head"><span class="number" aria-hidden="true">✓</span><div><h3>Finish with a course-wide sweep</h3><p>Automated checks find patterns. Student-view and human review find context.</p></div></div>
+          <ul class="tasks">
+            <li class="task"><label><input type="checkbox" data-task="sweep-enable-ally"><span><strong>Enable the Ally report if it is hidden</strong>In the course, go to Settings → Navigation. Enable “Ally Course Accessibility Report,” then select Save at the bottom of the page.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://help.anthology.com/ally-lms/en/instructors.html">Ally Instructor Guide<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="sweep-ally"><span><strong>Run the Ally Course Accessibility Report</strong>Open Ally from Course Navigation. Start with severe and easy-to-fix issues, open Instructor Feedback, repair the source, and recheck the score.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/chapter/blackboard-ally/">Blackboard Ally guide chapter<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="sweep-unused"><span><strong>Remove unused content before copying</strong>Delete obsolete files and pages. When possible, copy only the modules and content the new course actually needs.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://community.instructure.com/en/kb/articles/662847-how-do-i-delete-a-file-or-folder-in-files">Delete a file or folder in Canvas Files<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="sweep-student"><span><strong>Use Student View on desktop and mobile</strong>Follow the route a student takes through the first module, an assignment, a quiz, and major files. Check zoom and narrow-screen layout.</span></label><p class="task-links"><a class="external" target="_blank" rel="noopener" href="https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-view-a-course-as-a-test-student-using-Student-View/ta-p/1122">Use Canvas Student View<span class="sr-only"> (opens in a new tab)</span></a>.</p></li>
+            <li class="task"><label><input type="checkbox" data-task="sweep-human"><span><strong>Complete a human spot-check</strong>Check meaningful alt text, caption accuracy, heading logic, reading order, link purpose, keyboard operation, and third-party content.</span></label></li>
+          </ul>
+          <p class="human-review notice"><strong>Know the limits:</strong> Ally cannot determine whether alt text or captions are accurate. It does not check publisher sites or other external resources, and Ally and Link Validator do not check New Quizzes or associated Item Banks. Ally may also miss broken links, images, or files. “100%” is a signal, not proof that the course is barrier-free.</p>
+        </article>
+      </div>
+
+      <div class="completion-actions">
+        <button class="primary" type="button" id="print-plan">Print or save this checklist</button>
+        <button class="secondary" type="button" id="reset-progress">Reset completed items</button>
+        <button class="secondary" type="button" id="edit-plan">Change my answers</button>
+      </div>
+    </section>
+
+    <section class="learn" id="why-accessibility" aria-labelledby="why-title">
+      <div class="panel why-card">
+        <p class="step-marker">Optional context</p>
+        <h2 id="why-title">Why accessibility belongs in course design</h2>
+        <p class="section-intro">Use this section for conversation, department planning, or a quick response to common misconceptions.</p>
+
+        <details>
+          <summary>Why instructors need to make courses accessible</summary>
+          <div>
+            <div class="why-grid">
+              <div class="why-point"><strong>Equal participation</strong>Students should be able to get the same information and complete the same work at the same time, without avoidable barriers.</div>
+              <div class="why-point"><strong>Better learning design</strong>Clear headings, captions, meaningful links, and flexible formats improve comprehension and navigation for many learners.</div>
+              <div class="why-point"><strong>Proactive, not reactive</strong>Building access in from the start is faster and more respectful than emergency remediation after a student is blocked.</div>
+              <div class="why-point"><strong>Institutional responsibility</strong>Accessibility is part of educational equity and, depending on the institution, disability law and policy obligations.</div>
+            </div>
+            <p><strong>Current U.S. public-entity context:</strong> The Department of Justice’s Title II web rule uses WCAG 2.1 Level AA for covered state and local government web content and mobile apps, including public schools, community colleges, and public universities. A 2026 interim rule extended compliance dates to April 26, 2027 for entities serving 50,000 or more people and April 26, 2028 for smaller entities and special district governments.</p>
+            <p class="small">This is general information, not legal advice. Follow your institution’s accessibility office, counsel, policies, and accommodation procedures.</p>
+            <p><a class="external" target="_blank" rel="noopener" href="https://www.ada.gov/resources/2024-03-08-web-rule/">Read the DOJ Title II web accessibility rule fact sheet<span class="sr-only"> (opens in a new tab)</span></a> · <a class="external" target="_blank" rel="noopener" href="https://www.w3.org/TR/WCAG21/">Read WCAG 2.1<span class="sr-only"> (opens in a new tab)</span></a></p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Common misconceptions about accessibility</summary>
+          <div class="myths">
+            <details><summary>“Accessibility is too expensive.”</summary><div><p class="myth">The misconception</p><p>Access always requires costly software or outside remediation.</p><p class="counter"><strong>A more useful story:</strong> Many of the most important practices—headings, meaningful links, alt text, captions review, and accessible source files—use tools instructors already have. Early design avoids more expensive emergency fixes.</p></div></details>
+            <details><summary>“It takes too much time.”</summary><div><p class="myth">The misconception</p><p>Accessibility is a separate project that must be completed all at once.</p><p class="counter"><strong>A more useful story:</strong> Use accessible templates, fix the material students need next, and build the checks into ordinary authoring. Small habits compound; retrofitting at the last minute is what consumes time.</p></div></details>
+            <details><summary>“Only a few students benefit.”</summary><div><p class="myth">The misconception</p><p>Accessibility serves only students with a disclosed, permanent disability.</p><p class="counter"><strong>A more useful story:</strong> Captions, readable structure, keyboard access, and flexible formats help people with permanent, temporary, and situational disabilities—and support multilingual learners, mobile users, and students in noisy or quiet environments.</p></div></details>
+            <details><summary>“It is too technical for instructors.”</summary><div><p class="myth">The misconception</p><p>Only specialists can create accessible learning materials.</p><p class="counter"><strong>A more useful story:</strong> Instructors own the meaning and learning context; built-in Canvas, Microsoft, and Ally tools guide common fixes. Specialists are valuable for complex PDFs, media description, and unusual barriers.</p></div></details>
+            <details><summary>“Accessibility will limit creativity or rigor.”</summary><div><p class="myth">The misconception</p><p>Accessible courses must be plain, less visual, or academically easier.</p><p class="counter"><strong>A more useful story:</strong> Accessibility changes how information is conveyed, not the learning standard. Multiple representations, clear structure, and purposeful visuals can make creative work stronger and the intellectual challenge more visible.</p></div></details>
+            <details><summary>“Automatic captions or an Ally score finish the job.”</summary><div><p class="myth">The misconception</p><p>A machine-generated result proves that content is accessible.</p><p class="counter"><strong>A more useful story:</strong> Automation finds detectable patterns. Only a person can judge whether captions are accurate, alt text conveys the learning purpose, reading order makes sense, and a student can actually complete the activity.</p></div></details>
+            <details><summary>“We can wait until a student asks.”</summary><div><p class="myth">The misconception</p><p>Accessibility is an accommodation to add after disclosure.</p><p class="counter"><strong>A more useful story:</strong> A request-based approach makes students announce a disability and wait for equal access. Proactive design protects privacy, reduces delay, and lets accommodations focus on individual needs rather than preventable barriers.</p></div></details>
+            <details><summary>“Accessibility features give some students an unfair advantage.”</summary><div><p class="myth">The misconception</p><p>Captions, transcripts, or flexible formats weaken fairness.</p><p class="counter"><strong>A more useful story:</strong> Access features remove barriers to the same learning goals. Fairness is not identical obstacles; it is a genuine opportunity to perceive, engage with, and demonstrate the intended learning.</p></div></details>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="resource-library" id="resource-library" aria-labelledby="resources-title">
+      <p class="step-marker">Keep learning</p>
+      <h2 id="resources-title">Core resource library</h2>
+      <div class="resource-grid">
+        <article class="panel resource-card"><h3><a class="external" target="_blank" rel="noopener" href="https://pressbooks.hcfl.edu/digitalaccessibility/">Digital Accessibility for Teaching and Learning<span class="sr-only"> (opens in a new tab)</span></a></h3><p>A practical higher-education handbook from Hillsborough College.</p></article>
+        <article class="panel resource-card"><h3><a class="external" target="_blank" rel="noopener" href="https://binghamton.teamdynamix.com/TDClient/45/Portal/KB/Article/19348/STEM-Focused-Accessibility-Resources">STEM accessibility resources<span class="sr-only"> (opens in a new tab)</span></a></h3><p>Guidance for math, equations, scientific notation, and complex STEM materials.</p></article>
+        <article class="panel resource-card"><h3><a class="external" target="_blank" rel="noopener" href="https://webaim.org/resources/contrastchecker/">WebAIM Contrast Checker<span class="sr-only"> (opens in a new tab)</span></a></h3><p>Test text and background color combinations against WCAG contrast thresholds.</p></article>
+        <article class="panel resource-card"><h3><a class="external" target="_blank" rel="noopener" href="https://www.w3.org/WAI/test-evaluate/preliminary/">W3C Easy Checks<span class="sr-only"> (opens in a new tab)</span></a></h3><p>A human-centered first review of page title, headings, contrast, zoom, keyboard use, and alternatives.</p></article>
+      </div>
+    </section>
+
+    <section class="panel ai-help" id="ai-help" aria-labelledby="ai-help-title">
+      <p class="step-marker">AI as an assistant—not an approver</p>
+      <h2 id="ai-help-title">Top Accessibility Issues and How AI Can Help</h2>
+      <p class="section-intro">Generative AI can accelerate a first draft, identify patterns, and reformat content. It cannot determine whether the result gives students equivalent access. Use an institution-approved tool and complete the human check shown on every card.</p>
+
+      <div class="ai-grid">
+        <article class="ai-card">
+          <span class="ai-number" aria-hidden="true">01</span>
+          <div><h3>Missing or weak alt text</h3><p><strong>Ask AI to:</strong> Draft a concise description based on the image’s purpose, surrounding text, and learning goal.</p><p class="verify"><strong>Human check:</strong> Verify facts, context, bias, and whether the image is actually decorative. Never upload sensitive images to an unapproved service.</p></div>
+        </article>
+
+        <article class="ai-card">
+          <span class="ai-number" aria-hidden="true">02</span>
+          <div><h3>Missing or inaccurate captions</h3><p><strong>Ask AI to:</strong> Create a caption or transcript draft and identify speakers, punctuation, and meaningful sounds.</p><p class="verify"><strong>Human check:</strong> Correct names and technical terms, synchronize timing, and confirm important audio is represented.</p></div>
+        </article>
+
+        <article class="ai-card">
+          <span class="ai-number" aria-hidden="true">03</span>
+          <div><h3>Complex or unclear language</h3><p><strong>Ask AI to:</strong> Suggest a plain-language version with shorter sentences, familiar words, and definitions for necessary jargon.</p><p class="verify"><strong>Human check:</strong> Make sure disciplinary meaning, nuance, rigor, and learning objectives have not changed.</p></div>
+        </article>
+
+        <article class="ai-card">
+          <span class="ai-number" aria-hidden="true">04</span>
+          <div><h3>Poor heading structure</h3><p><strong>Ask AI to:</strong> Propose a logical outline and descriptive headings for existing content.</p><p class="verify"><strong>Human check:</strong> Apply real semantic heading styles in Canvas or the source document and verify that levels are not skipped.</p></div>
+        </article>
+
+        <article class="ai-card">
+          <span class="ai-number" aria-hidden="true">05</span>
+          <div><h3>Scanned or inaccessible PDFs</h3><p><strong>Ask AI to:</strong> Extract text with OCR or help reformat the source as structured HTML, Word, or MathML.</p><p class="verify"><strong>Human check:</strong> Verify reading order, formulas, tables, images, and OCR accuracy. Complex PDF remediation may require a specialist.</p></div>
+        </article>
+
+        <article class="ai-card">
+          <span class="ai-number" aria-hidden="true">06</span>
+          <div><h3>Missing overviews or summaries</h3><p><strong>Ask AI to:</strong> Draft a module overview, key takeaways, glossary, or study guide from the approved course content.</p><p class="verify"><strong>Human check:</strong> Confirm alignment with the lesson and clarify that a summary supplements rather than replaces required content.</p></div>
+        </article>
+
+        <article class="ai-card">
+          <span class="ai-number" aria-hidden="true">07</span>
+          <div><h3>Inaccessible table formatting</h3><p><strong>Ask AI to:</strong> Restructure data into a simple rectangular table with a caption and clear row or column headers.</p><p class="verify"><strong>Human check:</strong> Build the table with actual header cells, avoid merged cells, and test whether it reads meaningfully in sequence.</p></div>
+        </article>
+
+        <article class="ai-card">
+          <span class="ai-number" aria-hidden="true">08</span>
+          <div><h3>Vague link text</h3><p><strong>Ask AI to:</strong> Suggest link text that describes the destination or action within the sentence.</p><p class="verify"><strong>Human check:</strong> Open the destination, confirm the wording is accurate, and distinguish links that perform different actions.</p></div>
+        </article>
+
+        <article class="ai-card">
+          <span class="ai-number" aria-hidden="true">09</span>
+          <div><h3>Long or dense instructions</h3><p><strong>Ask AI to:</strong> Break directions into ordered steps, meaningful headings, and a concise checklist.</p><p class="verify"><strong>Human check:</strong> Preserve every requirement, deadline, exception, grading criterion, and safety instruction.</p></div>
+        </article>
+
+        <article class="ai-card">
+          <span class="ai-number" aria-hidden="true">10</span>
+          <div><h3>Reading level does not fit the audience</h3><p><strong>Ask AI to:</strong> Estimate complexity and draft a version at the intended reading level while retaining essential terminology.</p><p class="verify"><strong>Human check:</strong> Use a readability tool, review with a real reader when possible, and confirm that simplification did not reduce accuracy.</p></div>
+        </article>
+      </div>
+
+      <p class="ai-guardrail" role="note"><strong>Before using AI:</strong> Follow institutional policy. Do not submit student records, accommodation information, unpublished assessments, copyrighted readings, or other protected material to a tool that is not approved for that data. Treat every output as an editable draft and test the finished content with the same accessibility checks used elsewhere in this guide.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Remember:</strong> accessibility checkers assist judgment; they do not replace it.</p>
+      <p class="small">This standalone guide stores your answers and checklist progress only in this browser. It does not send course information anywhere.</p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+      const form = document.querySelector('#plan-form');
+      const plan = document.querySelector('#plan');
+      const cards = [...document.querySelectorAll('.task-card[data-topic]')];
+      const status = document.querySelector('#status');
+      const progress = document.querySelector('#progress');
+      const progressText = document.querySelector('#progress-text');
+      const summary = document.querySelector('#plan-summary');
+      const priority = document.querySelector('#priority-note');
+      const storageKey = 'canvas-accessibility-guide-v1';
+      const scrollBehavior = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+
+      const getState = () => {
+        try { return JSON.parse(localStorage.getItem(storageKey)) || {}; }
+        catch (_) { return {}; }
+      };
+
+      const saveState = () => {
+        const completed = [...document.querySelectorAll('[data-task]:checked')].map(item => item.dataset.task);
+        const selected = [...form.querySelectorAll('input[name="type"]:checked')].map(item => item.value);
+        const stage = form.elements.stage.value;
+        const pace = form.elements.pace.value;
+        try { localStorage.setItem(storageKey, JSON.stringify({ completed, selected, stage, pace })); }
+        catch (_) { /* File or private browsing storage may be unavailable. */ }
+      };
+
+      const visibleTasks = () => [...plan.querySelectorAll('.task-card:not([hidden]) [data-task]')];
+
+      const updateProgress = (announce = false) => {
+        const tasks = visibleTasks();
+        const done = tasks.filter(item => item.checked).length;
+        progress.max = Math.max(tasks.length, 1);
+        progress.value = done;
+        progress.textContent = `${Math.round((done / Math.max(tasks.length, 1)) * 100)}%`;
+        progressText.textContent = `${done} of ${tasks.length}`;
+        if (announce) status.textContent = done === tasks.length ? 'Checklist complete. Finish with a human review.' : `Progress saved: ${done} of ${tasks.length} items complete.`;
+      };
+
+      const buildPlan = (moveFocus = true) => {
+        const selected = [...form.querySelectorAll('input[name="type"]:checked')].map(item => item.value);
+        if (!selected.length) {
+          document.querySelector('#type-canvas').focus();
+          status.textContent = '';
+          window.alert('Choose at least one content type to build your checklist.');
+          return;
+        }
+        cards.forEach(card => { card.hidden = card.dataset.topic !== 'always' && !selected.includes(card.dataset.topic); });
+        const stage = form.elements.stage.value;
+        const pace = form.elements.pace.value;
+        const stageText = { building: 'building or revising', live: 'already teaching', copy: 'preparing a course copy' }[stage];
+        summary.textContent = `A ${pace === 'quick' ? 'high-impact triage' : 'full review'} for ${selected.length} selected content ${selected.length === 1 ? 'type' : 'types'}, while ${stageText}.`;
+        if (pace === 'quick') {
+          priority.innerHTML = '<strong>15-minute path:</strong> Start with content students need this week. Run Ally and Link Validator, fix missing or inaccurate text alternatives, correct captions, and remove any item that blocks access. Return for the remaining checks.';
+        } else if (stage === 'live') {
+          priority.innerHTML = '<strong>Live-course priority:</strong> Fix barriers in the current and next modules first. If a student is blocked, provide an accessible version immediately while completing the durable repair.';
+        } else if (stage === 'copy') {
+          priority.innerHTML = '<strong>Course-copy priority:</strong> Remove obsolete files and pages before copying. Import only the content you will use, then run Ally and Link Validator in the destination course.';
+        } else {
+          priority.innerHTML = '<strong>Build-in priority:</strong> Fix source files and use accessible templates now. Run automated checks again after the content is published in Canvas.';
+        }
+        plan.hidden = false;
+        saveState();
+        updateProgress();
+        if (moveFocus) {
+          plan.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
+          plan.focus({ preventScroll: true });
+        }
+      };
+
+      form.addEventListener('submit', event => { event.preventDefault(); buildPlan(); });
+      form.addEventListener('change', () => saveState());
+      document.querySelector('#select-all').addEventListener('click', () => {
+        form.querySelectorAll('input[name="type"]').forEach(item => { item.checked = true; });
+        saveState();
+      });
+      document.querySelector('#print-plan').addEventListener('click', () => window.print());
+      document.querySelector('#edit-plan').addEventListener('click', () => {
+        document.querySelector('#builder-title').scrollIntoView({ behavior: scrollBehavior() });
+        document.querySelector('#type-canvas').focus({ preventScroll: true });
+      });
+      document.querySelector('#reset-progress').addEventListener('click', () => {
+        if (!window.confirm('Clear every completed checklist item?')) return;
+        document.querySelectorAll('[data-task]').forEach(item => { item.checked = false; });
+        saveState();
+        updateProgress(true);
+      });
+      document.querySelectorAll('[data-task]').forEach(item => item.addEventListener('change', () => {
+        saveState();
+        updateProgress(true);
+      }));
+
+      const saved = getState();
+      if (Array.isArray(saved.completed)) {
+        document.querySelectorAll('[data-task]').forEach(item => { item.checked = saved.completed.includes(item.dataset.task); });
+      }
+      if (Array.isArray(saved.selected)) {
+        form.querySelectorAll('input[name="type"]').forEach(item => { item.checked = saved.selected.includes(item.value); });
+      }
+      if (saved.stage && form.elements.stage) form.elements.stage.value = saved.stage;
+      if (saved.pace && form.elements.pace) form.elements.pace.value = saved.pace;
+      if (saved.selected?.length) buildPlan(false);
+    })();
+  </script>
+</body>
+</html>
