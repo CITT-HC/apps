@@ -120,7 +120,7 @@
   .cards{
     list-style:none;margin:0;padding:0;
     display:flex;flex-wrap:wrap;gap:16px;justify-content:center;
-    align-items:flex-start;
+    align-items:stretch;
   }
   .card{
     flex:0 1 310px;min-width:0;
@@ -216,6 +216,13 @@
   }
   footer.site strong{color:var(--navy)}
   footer.site p{margin:0 0 6px}
+
+  /* One common floor so the boxes are the same height, including the lone card
+     in the AI section. Only when the cards sit in columns: on a phone the natural
+     height is used, and a fixed floor would just add empty space. */
+  @media (min-width:620px){
+    .card{min-height:28rem}
+  }
 
   @media (max-width:560px){
     .brand{gap:14px}
@@ -320,7 +327,7 @@
         </a>
         <div class="card-body">
           <h3>AI in Education Knowledge Base</h3>
-          <p>A research knowledge base on AI in education, with concept pages and study summaries. It is also available as a ready-made assistant: the <a href="https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing" target="_blank" rel="noopener noreferrer">AI in Education Advisor<span class="sr-only"> (opens in a new tab)</span></a>, a Gemini Gem that answers from it, or the <a href="https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share" target="_blank" rel="noopener noreferrer">NotebookLM notebook<span class="sr-only"> (opens in a new tab)</span></a>, (plus podcast and video).</p>
+          <p>A research knowledge base on AI in education, with concept pages and study summaries. Also available as the <a href="https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing" target="_blank" rel="noopener noreferrer">AI in Education Advisor<span class="sr-only"> (opens in a new tab)</span></a> Gem or a <a href="https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share" target="_blank" rel="noopener noreferrer">NotebookLM notebook<span class="sr-only"> (opens in a new tab)</span></a>.</p>
           <ul class="tags"><li>Research</li><li>Reference</li></ul>
 
           <div class="go">
