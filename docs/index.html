@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faculty Professional Development Services — Educational Apps and Resources</title>
+<meta name="description" content="Educational apps and resources from Faculty Professional Development Services (FPDS) at Hillsborough College: AI tools and accessibility guides for teaching and learning.">
+<style>
+  :root{
+    --navy:#1d2c5d;
+    --navy-soft:#2c3f7a;
+    --navy-tint:#f2f4fa;
+    --green:#11b36c;
+    --green-dark:#0d8f56;
+    --green-tint:#eefaf3;
+    --ink:#1b2233;
+    --muted:#55607a;
+    --line:#dde3ee;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:#fff;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+  /* Skip link — this page is about accessibility, so it should practice it. */
+  .skip-link{
+    position:absolute;left:-9999px;top:0;
+    background:var(--navy);color:#fff;padding:12px 18px;z-index:100;
+    border-radius:0 0 var(--radius) 0;text-decoration:none;font-weight:600;
+  }
+  .skip-link:focus{left:0}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:6px}
+
+  header.site{
+    border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  .brand{
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+    padding:26px 0 22px;
+  }
+  .brand img{
+    /* The logo is a very wide PNG; cap it so it never overflows a phone. */
+    width:min(100%,420px);height:auto;
+  }
+  .brand .unit{
+    border-left:3px solid var(--green);padding-left:16px;
+  }
+  .brand .unit p{margin:0;color:var(--muted);font-size:.95rem}
+  .brand .unit strong{color:var(--navy)}
+
+  .lede{padding:30px 0 8px}
+  .lede h1{
+    font-size:clamp(1.5rem,3.6vw,2.05rem);
+    line-height:1.25;margin:0 0 10px;color:var(--navy);
+  }
+  .lede p{margin:0;max-width:60ch;color:var(--muted);font-size:1.05rem}
+
+  main{padding:8px 0 40px}
+
+  section.theme{margin-top:38px}
+  section.theme > h2{
+    display:flex;align-items:center;gap:12px;
+    font-size:1.3rem;margin:0 0 6px;color:var(--navy);
+  }
+  section.theme > h2 .icon{
+    width:42px;height:42px;flex:0 0 42px;
+    border-radius:12px;display:grid;place-items:center;
+  }
+  section.theme > h2 .icon svg{width:22px;height:22px}
+  #ai > h2 .icon{background:var(--navy-tint);color:var(--navy)}
+  #accessibility > h2 .icon{background:var(--green-tint);color:var(--green-dark)}
+  section.theme > p.intro{margin:0 0 20px;color:var(--muted);max-width:62ch}
+
+  .cards{
+    list-style:none;margin:0;padding:0;
+    display:grid;gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(272px,1fr));
+  }
+  .card{
+    display:flex;flex-direction:column;
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 20px 18px;background:#fff;
+    transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+    border-top:4px solid var(--navy);
+  }
+  #accessibility .card{border-top-color:var(--green)}
+  .card:hover,.card:focus-within{
+    border-color:var(--navy-soft);
+    box-shadow:0 8px 22px rgba(29,44,93,.10);
+    transform:translateY(-2px);
+  }
+  #accessibility .card:hover,#accessibility .card:focus-within{border-color:var(--green-dark)}
+
+  .card h3{margin:0 0 8px;font-size:1.06rem;color:var(--navy);line-height:1.35}
+  .card p{margin:0 0 16px;color:var(--muted);font-size:.95rem}
+  .card .tags{
+    display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px;padding:0;list-style:none;
+  }
+  .card .tags li{
+    font-size:.74rem;letter-spacing:.02em;text-transform:uppercase;font-weight:700;
+    color:var(--navy);background:var(--navy-tint);
+    border-radius:999px;padding:4px 10px;
+  }
+  #accessibility .card .tags li{color:var(--green-dark);background:var(--green-tint)}
+
+  .card .go{margin-top:auto}
+  .card .go a{
+    display:inline-flex;align-items:center;gap:8px;
+    font-weight:700;text-decoration:none;
+    color:#fff;background:var(--navy);
+    padding:11px 16px;border-radius:10px;
+  }
+  #accessibility .card .go a{background:var(--green-dark)}
+  .card .go a:hover{background:var(--navy-soft)}
+  #accessibility .card .go a:hover{background:#0a7044}
+  .card .go a svg{width:15px;height:15px}
+  .card .go .ext{font-weight:600;color:var(--muted);font-size:.88rem;display:block;margin-top:8px}
+
+  footer.site{
+    border-top:1px solid var(--line);
+    background:var(--navy-tint);
+    padding:26px 0 34px;margin-top:14px;
+    color:var(--muted);font-size:.92rem;
+  }
+  footer.site strong{color:var(--navy)}
+  footer.site p{margin:0 0 6px}
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+    .card:hover,.card:focus-within{transform:none}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the resources</a>
+
+<header class="site">
+  <div class="wrap brand">
+    <img src="fpds-logo-horizontal-rgb.png"
+         alt="Faculty Professional Development Services">
+    <div class="unit">
+      <p><strong>Hillsborough College</strong><br>Educational apps and resources</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap lede">
+  <h1>Educational apps and resources for faculty</h1>
+  <p>Practical tools for teaching and learning with AI, and for making your courses work for every student.</p>
+</div>
+
+<main id="main" class="wrap">
+
+  <!-- ===================== AI ===================== -->
+  <section class="theme" id="ai" aria-labelledby="ai-heading">
+    <h2 id="ai-heading">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v3M12 18v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M3 12h3M18 12h3M4.9 19.1L7 17M17 7l2.1-2.1"/>
+          <circle cx="12" cy="12" r="3.2"/>
+        </svg>
+      </span>
+      AI
+    </h2>
+    <p class="intro">Tools and resources for using generative AI in your teaching, and for understanding what the research says about it.</p>
+
+    <ul class="cards">
+      <li class="card">
+        <h3>Redesign for Learning</h3>
+        <p>An interactive worksheet for redesigning assignments around academic integrity in the AI era. It walks through clarifying what students are learning, what they should do, what successful work looks like, where AI belongs, and what evidence makes learning visible &mdash; without turning the course into a surveillance system.</p>
+        <ul class="tags"><li>Workbook</li><li>Academic integrity</li></ul>
+        <div class="go">
+          <a href="assignment.html">Open the worksheet
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </li>
+
+      <li class="card">
+        <h3>AI Petting Zoo</h3>
+        <p>A guided, self-paced tour of AI tools and techniques for saving instructors time and enhancing student learning and engagement. Explore the tools, then try the example teaching tasks.</p>
+        <ul class="tags"><li>Interactive course</li><li>Tools tour</li></ul>
+        <div class="go">
+          <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/edtechdev/aipettingzoo/master/README.md#1" target="_blank" rel="noopener noreferrer">Start the tour
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="ext">Opens in a new tab</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <h3>AI in Education Knowledge Base</h3>
+        <p>A research knowledge base on AI in education. Concept pages gather what the evidence shows, article pages summarise individual studies, and connected lists trace how the ideas relate.</p>
+        <ul class="tags"><li>Research</li><li>Reference</li></ul>
+        <div class="go">
+          <a href="https://edtechdev.github.io/aied/" target="_blank" rel="noopener noreferrer">Browse the knowledge base
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="ext">Opens in a new tab</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <h3>Online Module Designer</h3>
+        <p>A custom Gemini Gem for designing online learning modules. Work through the design decisions for a module, from outcomes and activities to assessment.</p>
+        <ul class="tags"><li>AI assistant</li><li>Course design</li></ul>
+        <div class="go">
+          <a href="https://gemini.google.com/gem/1sPeVIqY5wtESVwGFn6kmgFNon0UXTV6S?usp=sharing" target="_blank" rel="noopener noreferrer">Open the Gem
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="ext">Opens in a new tab &middot; Google account required</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <h3>Gemini Notebook</h3>
+        <p>Google's source-grounded notebook assistant, until recently called NotebookLM. Upload the sources you choose, then ask questions and generate study aids, audio overviews, and other outputs grounded in those sources.</p>
+        <ul class="tags"><li>Study tool</li><li>Source-grounded</li></ul>
+        <div class="go">
+          <a href="https://notebook.google/" target="_blank" rel="noopener noreferrer">Open Gemini Notebook
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="ext">Opens in a new tab &middot; Google account required</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================== ACCESSIBILITY ================== -->
+  <section class="theme" id="accessibility" aria-labelledby="accessibility-heading">
+    <h2 id="accessibility-heading">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="4.5" r="1.8"/>
+          <path d="M4.5 8.5h15M12 8.5v6M12 14.5l-3.5 6M12 14.5l3.5 6"/>
+        </svg>
+      </span>
+      Accessibility
+    </h2>
+    <p class="intro">Resources for designing courses and materials that work for every student.</p>
+
+    <ul class="cards">
+      <li class="card">
+        <h3>Course Access Check</h3>
+        <p>A practical Canvas accessibility guide that builds a checklist in three questions. Start with what students need next, then improve the course as you go &mdash; including where AI can help.</p>
+        <ul class="tags"><li>Canvas</li><li>Checklist</li></ul>
+        <div class="go">
+          <a href="accessibility.html">Open the guide
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </li>
+
+      <li class="card">
+        <h3>Digital Accessibility for Teaching and Learning</h3>
+        <p>A practical guide for higher education, covering accessible course design, documents, media, and more. Published as an openly licensed book, so you can read it online in any order.</p>
+        <ul class="tags"><li>Open book</li><li>How-to</li></ul>
+        <div class="go">
+          <a href="https://pressbooks.hcfl.edu/digitalaccessibility/" target="_blank" rel="noopener noreferrer">Read the guide
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="ext">Opens in a new tab</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <h3>Alt Text Generator</h3>
+        <p>A custom Gemini Gem for writing alt text for images. Use it to describe images in slides, documents, and course pages so that students who cannot see them still get the information they carry.</p>
+        <ul class="tags"><li>AI assistant</li><li>Alt text</li></ul>
+        <div class="go">
+          <a href="https://gemini.google.com/gem/1qkiILxWUW1tGeVb9IOICQCREKmEIuhNS?usp=sharing" target="_blank" rel="noopener noreferrer">Open the Gem
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="ext">Opens in a new tab &middot; Google account required</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p><strong>Faculty Professional Development Services</strong> &middot; Hillsborough College</p>
+    <p>Links marked &ldquo;opens in a new tab&rdquo; leave this site. Gemini Gems require a Google account.</p>
+  </div>
+</footer>
+</body>
+</html>
