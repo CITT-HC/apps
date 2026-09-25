@@ -57,7 +57,7 @@
 
   /* ---------- coloured hero band ---------- */
   .hero{
-    position:relative;overflow:hidden;padding:38px 0 40px;color:#fff;
+    position:relative;overflow:hidden;padding:26px 0 28px;color:#fff;
     background:
       radial-gradient(900px 380px at 92% -20%, rgba(17,179,108,.50), transparent 62%),
       linear-gradient(135deg, var(--navy-deep), var(--navy) 55%, var(--navy-soft));
@@ -82,9 +82,9 @@
   .hero .jump:hover{background:rgba(255,255,255,.22)}
   .hero .jump svg{width:16px;height:16px}
 
-  main{padding:26px 0 40px}
+  main{padding:20px 0 30px}
 
-  section.theme{margin-top:38px}
+  section.theme{margin-top:28px}
   section.theme:first-of-type{margin-top:4px}
   section.theme > h2{
     display:flex;align-items:center;gap:12px;
@@ -108,17 +108,18 @@
   #ai > h2::after{background:linear-gradient(90deg,var(--navy),rgba(44,63,122,0))}
   #accessibility > h2::after{background:linear-gradient(90deg,var(--green),rgba(17,179,108,0))}
 
-  section.theme > p.intro{margin:14px 0 20px;color:var(--muted);max-width:62ch}
+  section.theme > p.intro{margin:11px 0 14px;color:var(--muted);max-width:62ch}
 
   /* Centered wrapping rather than a fixed column count: an odd number of cards
      then centres its last row instead of leaving a hole in the grid. */
   .cards{
     list-style:none;margin:0;padding:0;
-    display:flex;flex-wrap:wrap;gap:20px;justify-content:center;
+    display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
+    align-items:flex-start;
   }
   .card{
-    flex:0 1 318px;min-width:0;
-    display:flex;flex-direction:column;overflow:hidden;
+    flex:0 1 496px;min-width:0;
+    display:flex;flex-direction:row;align-items:center;overflow:hidden;
     border:1px solid var(--line);border-radius:var(--radius);background:#fff;
     box-shadow:0 2px 6px rgba(29,44,93,.05);
     transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
@@ -133,10 +134,17 @@
   #accessibility .card:hover,#accessibility .card:focus-within{border-color:var(--green-dark)}
 
   .thumb{
-    position:relative;aspect-ratio:16/9;overflow:hidden;
-    background:var(--navy-tint);border-bottom:1px solid var(--line);
+    position:relative;display:block;flex:0 0 132px;align-self:stretch;min-height:96px;overflow:hidden;
+    background:var(--navy-tint);border-right:1px solid var(--line);
+    text-decoration:none;color:inherit;
   }
-  .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .thumb img{
+    width:100%;height:100%;object-fit:cover;object-position:top left;display:block;
+    transition:transform .18s ease;
+  }
+  /* the whole panel is a link, so make that obvious on hover */
+  .thumb:hover img{transform:scale(1.04)}
+  .thumb.art:hover{filter:brightness(1.07)}
 
   /* for the two Gems, which cannot be screenshotted (they need a Google sign-in) */
   .thumb.art{display:grid;place-items:center;border-bottom:none}
@@ -146,17 +154,17 @@
   .thumb.art .badge svg{width:38px;height:38px}
   .thumb.art .badge span{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.95}
 
-  .card-body{display:flex;flex-direction:column;flex:1;padding:18px 20px 20px}
-  .card h3{margin:0 0 8px;font-size:1.06rem;color:var(--navy);line-height:1.35}
+  .card-body{display:flex;flex-direction:column;flex:1;min-width:0;padding:13px 15px}
+  .card h3{margin:0 0 4px;font-size:1rem;color:var(--navy);line-height:1.3}
   #accessibility .card h3{color:var(--green-deep)}
-  .card p{margin:0 0 16px;color:var(--muted);font-size:.95rem}
+  .card p{margin:0 0 9px;color:var(--muted);font-size:.9rem;line-height:1.5}
   .card .tags{
-    display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px;padding:0;list-style:none;
+    display:flex;gap:6px;flex-wrap:wrap;margin:0 0 9px;padding:0;list-style:none;
   }
   .card .tags li{
-    font-size:.74rem;letter-spacing:.02em;text-transform:uppercase;font-weight:700;
+    font-size:.68rem;letter-spacing:.02em;text-transform:uppercase;font-weight:700;
     color:var(--navy);background:var(--navy-tint);
-    border-radius:999px;padding:4px 10px;
+    border-radius:999px;padding:3px 8px;
   }
   #accessibility .card .tags li{color:var(--green-deep);background:var(--green-tint)}
 
@@ -165,28 +173,28 @@
     display:inline-flex;align-items:center;gap:8px;
     font-weight:700;text-decoration:none;
     color:#fff;background:var(--navy);
-    padding:11px 16px;border-radius:10px;
+    padding:8px 14px;border-radius:9px;font-size:.94rem;
   }
   #accessibility .card .go a{background:var(--green-deep)}
   .card .go a:hover{background:var(--navy-soft)}
   #accessibility .card .go a:hover{background:#08512f}
   .card .go a svg{width:15px;height:15px}
-  .card .go .ext{font-weight:600;color:var(--muted);font-size:.88rem;display:block;margin-top:8px}
+  .card .go .ext{font-weight:600;color:var(--muted);font-size:.8rem;display:block;margin-top:4px}
 
   /* extra links inside a card — the ready-made assistants for the knowledge base */
-  .more{margin:0 0 16px;padding:14px 0 0;border-top:1px dashed var(--line)}
+  .more{margin:0 0 9px;padding:8px 0 0;border-top:1px dashed var(--line)}
   .more h4{
-    margin:0 0 10px;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;
+    margin:0 0 5px;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
     color:var(--muted);font-weight:700;
   }
-  .more ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .more ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
   .more a{
     display:flex;align-items:flex-start;gap:9px;
-    text-decoration:none;color:var(--navy);font-weight:700;font-size:.93rem;
+    text-decoration:none;color:var(--navy);font-weight:700;font-size:.88rem;
   }
   .more a:hover{text-decoration:underline}
   .more a svg{width:15px;height:15px;flex:0 0 15px;margin-top:4px;opacity:.85}
-  .more a small{display:block;font-weight:600;color:var(--muted);font-size:.86rem;margin-top:2px}
+  .more a small{display:inline;font-weight:600;color:var(--muted);font-size:.8rem}
 
   footer.site{
     border-top:1px solid var(--line);
@@ -197,7 +205,13 @@
   footer.site strong{color:var(--navy)}
   footer.site p{margin:0 0 6px}
 
-  @media (max-width:520px){
+  @media (max-width:560px){
+    /* stack again, but with a short banner rather than a full 16:9 one */
+    .card{flex-direction:column;align-items:stretch}
+    .thumb{
+      flex:none;width:100%;min-height:0;aspect-ratio:21/9;
+      border-right:none;border-bottom:1px solid var(--line);
+    }
     .brand{gap:14px}
     .brand img{width:100%}
     .hero{padding:30px 0 32px}
@@ -235,7 +249,7 @@
     <p>Practical tools for teaching and learning with AI, and for making your courses work for every student.</p>
     <nav class="cta-row" aria-label="Sections on this page">
       <a class="jump" href="#ai">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M3 12h3M18 12h3M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18.5 15.5l.8 2.1 2.2.8-2.2.8-.8 2.1-.8-2.1-2.2-.8 2.2-.8z"/></svg>
         AI resources
       </a>
       <a class="jump" href="#accessibility">
@@ -253,8 +267,7 @@
     <h2 id="ai-heading">
       <span class="icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3v3M12 18v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M3 12h3M18 12h3M4.9 19.1L7 17M17 7l2.1-2.1"/>
-          <circle cx="12" cy="12" r="3.2"/>
+          <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18.5 15.5l.8 2.1 2.2.8-2.2.8-.8 2.1-.8-2.1-2.2-.8 2.2-.8z"/>
         </svg>
       </span>
       AI
@@ -263,14 +276,12 @@
 
     <ul class="cards">
       <li class="card">
-        <div class="thumb">
-          <img src="img/assignment.webp"
-               alt="Screenshot of the assignment redesign worksheet, showing its numbered steps and a redesign pattern."
-               loading="lazy" width="720" height="405">
-        </div>
+        <a class="thumb" href="assignment.html" aria-label="Open the assignment redesign worksheet">
+          <img src="img/assignment.webp" alt="" loading="lazy" width="720" height="405">
+        </a>
         <div class="card-body">
           <h3>Assignment Redesign for Academic Integrity in the AI Era</h3>
-          <p>An interactive worksheet for redesigning assignments around academic integrity. It walks through clarifying what students are learning, what they should do, what successful work looks like, where AI belongs, and what evidence makes learning visible &mdash; without turning the course into a surveillance system.</p>
+          <p>An interactive worksheet for redesigning assignments around academic integrity: what students are learning, what successful work looks like, and where AI belongs.</p>
           <ul class="tags"><li>Workbook</li><li>Academic integrity</li></ul>
           <div class="go">
             <a href="assignment.html">Open the worksheet
@@ -281,14 +292,12 @@
       </li>
 
       <li class="card">
-        <div class="thumb">
-          <img src="img/pettingzoo.webp"
-               alt="Screenshot of the AI Petting Zoo course, showing its menu and an illustration."
-               loading="lazy" width="720" height="405">
-        </div>
+        <a class="thumb" href="https://liascript.github.io/course/?https://raw.githubusercontent.com/edtechdev/aipettingzoo/master/README.md#1" target="_blank" rel="noopener noreferrer" aria-label="Start the AI Petting Zoo tour (opens in a new tab)">
+          <img src="img/pettingzoo.webp" alt="" loading="lazy" width="720" height="405">
+        </a>
         <div class="card-body">
           <h3>AI Petting Zoo</h3>
-          <p>A guided, self-paced tour of AI tools and techniques for saving instructors time and enhancing student learning and engagement. Explore the tools, then try the example teaching tasks.</p>
+          <p>A guided, self-paced tour of AI tools and techniques for saving instructors time and enhancing student learning, with example teaching tasks to try.</p>
           <ul class="tags"><li>Interactive course</li><li>Tools tour</li></ul>
           <div class="go">
             <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/edtechdev/aipettingzoo/master/README.md#1" target="_blank" rel="noopener noreferrer">Start the tour
@@ -300,14 +309,12 @@
       </li>
 
       <li class="card">
-        <div class="thumb">
-          <img src="img/aied.webp"
-               alt="Screenshot of the AI in Education Knowledge Base, showing its concept map."
-               loading="lazy" width="720" height="405">
-        </div>
+        <a class="thumb" href="https://edtechdev.github.io/aied/" target="_blank" rel="noopener noreferrer" aria-label="Browse the AI in Education Knowledge Base (opens in a new tab)">
+          <img src="img/aied.webp" alt="" loading="lazy" width="720" height="405">
+        </a>
         <div class="card-body">
           <h3>AI in Education Knowledge Base</h3>
-          <p>A research knowledge base on AI in education. Concept pages gather what the evidence shows, article pages summarise individual studies, and connected lists trace how the ideas relate.</p>
+          <p>A research knowledge base on AI in education: concept pages that gather what the evidence shows, and article pages that summarise individual studies.</p>
           <ul class="tags"><li>Research</li><li>Reference</li></ul>
 
           <div class="more">
@@ -316,13 +323,13 @@
               <li>
                 <a href="https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing" target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-                  <span>AI in Education Advisor<small>A Gemini Gem that answers from this knowledge base.</small></span>
+                  <span>AI in Education Advisor <small>(Gemini Gem)</small></span>
                 </a>
               </li>
               <li>
                 <a href="https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share" target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-                  <span>NotebookLM notebook<small>The same material in a notebook, with autogenerated reports, infographics, a podcast, slides, and a video.</small></span>
+                  <span>NotebookLM notebook <small>(the same sources, plus podcast and video)</small></span>
                 </a>
               </li>
             </ul>
@@ -332,24 +339,24 @@
             <a href="https://edtechdev.github.io/aied/" target="_blank" rel="noopener noreferrer">Browse the knowledge base
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
-            <span class="ext">Opens in a new tab &middot; the assistants need a Google account</span>
+            <span class="ext">Opens in a new tab &middot; Google account required</span>
           </div>
         </div>
       </li>
 
       <li class="card">
-        <div class="thumb art">
-          <div class="badge">
+        <a class="thumb art" href="https://gemini.google.com/gem/1sPeVIqY5wtESVwGFn6kmgFNon0UXTV6S?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Online Module Designer, Gemini Gem (opens in a new tab, Google account required)">
+          <div class="badge" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>
               <path d="M18.5 15.5l.8 2.1 2.2.8-2.2.8-.8 2.1-.8-2.1-2.2-.8 2.2-.8z"/>
             </svg>
             <span>Gemini Gem</span>
           </div>
-        </div>
+        </a>
         <div class="card-body">
           <h3>Online Module Designer</h3>
-          <p>A custom Gemini Gem for designing online learning modules. Work through the design decisions for a module, from outcomes and activities to assessment.</p>
+          <p>A custom Gemini Gem for designing online learning modules, from outcomes and activities to assessment.</p>
           <ul class="tags"><li>AI assistant</li><li>Course design</li></ul>
           <div class="go">
             <a href="https://gemini.google.com/gem/1sPeVIqY5wtESVwGFn6kmgFNon0UXTV6S?usp=sharing" target="_blank" rel="noopener noreferrer">Open the Gem
@@ -377,14 +384,12 @@
 
     <ul class="cards">
       <li class="card">
-        <div class="thumb">
-          <img src="img/accessibility.webp"
-               alt="Screenshot of the Canvas Accessibility Checklist, showing its heading and question prompts."
-               loading="lazy" width="720" height="405">
-        </div>
+        <a class="thumb" href="accessibility.html" aria-label="Open the Canvas Accessibility Checklist">
+          <img src="img/accessibility.webp" alt="" loading="lazy" width="720" height="405">
+        </a>
         <div class="card-body">
           <h3>Canvas Accessibility Checklist</h3>
-          <p>A practical Canvas accessibility guide that builds a checklist in three questions. Start with what students need next, then improve the course as you go &mdash; including where AI can help.</p>
+          <p>A practical Canvas accessibility checklist built from three questions: start with what students need next, then improve the course as you go.</p>
           <ul class="tags"><li>Canvas</li><li>Checklist</li></ul>
           <div class="go">
             <a href="accessibility.html">Open the checklist
@@ -395,14 +400,12 @@
       </li>
 
       <li class="card">
-        <div class="thumb">
-          <img src="img/pressbooks.webp"
-               alt="Screenshot of the Digital Accessibility for Teaching and Learning book, showing its title and cover."
-               loading="lazy" width="720" height="405">
-        </div>
+        <a class="thumb" href="https://pressbooks.hcfl.edu/digitalaccessibility/" target="_blank" rel="noopener noreferrer" aria-label="Read the Digital Accessibility guide (opens in a new tab)">
+          <img src="img/pressbooks.webp" alt="" loading="lazy" width="720" height="405">
+        </a>
         <div class="card-body">
           <h3>Digital Accessibility for Teaching and Learning</h3>
-          <p>A practical guide for higher education, covering accessible course design, documents, media, and more. Published as an openly licensed book, so you can read it online in any order.</p>
+          <p>An openly licensed book on accessible course design, documents, and media for higher education.</p>
           <ul class="tags"><li>Open book</li><li>How-to</li></ul>
           <div class="go">
             <a href="https://pressbooks.hcfl.edu/digitalaccessibility/" target="_blank" rel="noopener noreferrer">Read the guide
@@ -414,8 +417,8 @@
       </li>
 
       <li class="card">
-        <div class="thumb art">
-          <div class="badge">
+        <a class="thumb art" href="https://gemini.google.com/gem/1qkiILxWUW1tGeVb9IOICQCREKmEIuhNS?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Alt Text Generator, Gemini Gem (opens in a new tab, Google account required)">
+          <div class="badge" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="4.5" width="18" height="15" rx="2.5"/>
               <circle cx="8.6" cy="10" r="1.7"/>
@@ -423,10 +426,10 @@
             </svg>
             <span>Gemini Gem</span>
           </div>
-        </div>
+        </a>
         <div class="card-body">
           <h3>Alt Text Generator</h3>
-          <p>A custom Gemini Gem for writing alt text for images. Use it to describe images in slides, documents, and course pages so that students who cannot see them still get the information they carry.</p>
+          <p>A custom Gemini Gem for writing alt text, so students who cannot see an image still get the information it carries.</p>
           <ul class="tags"><li>AI assistant</li><li>Alt text</li></ul>
           <div class="go">
             <a href="https://gemini.google.com/gem/1qkiILxWUW1tGeVb9IOICQCREKmEIuhNS?usp=sharing" target="_blank" rel="noopener noreferrer">Open the Gem
