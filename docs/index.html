@@ -42,11 +42,6 @@
     border-radius:0 0 var(--radius) 0;text-decoration:none;font-weight:600;
   }
   .skip-link:focus{left:0}
-  /* for text that is needed by a screen reader but would be noise on screen */
-  .sr-only{
-    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-    overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
-  }
   a:focus-visible,button:focus-visible{outline:3px solid var(--green-deep);outline-offset:2px;border-radius:6px}
 
   header.site{background:#fff;border-bottom:1px solid var(--line)}
@@ -168,16 +163,6 @@
   .card p a{color:var(--navy);font-weight:700;text-decoration:underline;text-underline-offset:2px}
   .card p a:hover{text-decoration-thickness:2px}
   #accessibility .card p a{color:var(--green-deep)}
-  .card .tags{
-    display:flex;gap:6px;flex-wrap:wrap;margin:0 0 9px;padding:0;list-style:none;
-  }
-  .card .tags li{
-    font-size:.68rem;letter-spacing:.02em;text-transform:uppercase;font-weight:700;
-    color:var(--navy);background:var(--navy-tint);
-    border-radius:999px;padding:3px 8px;
-  }
-  #accessibility .card .tags li{color:var(--green-deep);background:var(--green-tint)}
-
   .card .go{
     margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px;
   }
@@ -191,7 +176,6 @@
   .card .go a:hover{background:var(--navy-soft)}
   #accessibility .card .go a:hover{background:#08512f}
   .card .go a svg{width:15px;height:15px}
-  .card .go .ext{display:block;font-weight:600;color:var(--muted);font-size:.78rem;margin:0 0 6px}
 
   /* retired: the assistants are linked inline in the description instead */
   .more{margin:0 0 9px;padding:8px 0 0;border-top:1px dashed var(--line)}
@@ -221,7 +205,7 @@
      in the AI section. Only when the cards sit in columns: on a phone the natural
      height is used, and a fixed floor would just add empty space. */
   @media (min-width:620px){
-    .card{min-height:466px}
+    .card{min-height:407px}
   }
 
   @media (max-width:560px){
@@ -295,8 +279,6 @@
         <div class="card-body">
           <h3>Assignment Redesign for Academic Integrity in the AI Era</h3>
           <p>An interactive worksheet for redesigning assignments around academic integrity: what students are learning, what successful work looks like, and where AI belongs.</p>
-          <ul class="tags"><li>Workbook</li><li>Academic integrity</li></ul>
-                      <span class="ext">Opens in a new tab</span>
             <div class="go">
               <a href="assignment.html">Open the worksheet
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -306,13 +288,12 @@
       </li>
 
       <li class="card">
-        <a class="thumb" href="https://liascript.github.io/course/?https://raw.githubusercontent.com/edtechdev/aipettingzoo/master/README.md#1" target="_blank" rel="noopener noreferrer" aria-label="Start the AI Petting Zoo tour (opens in a new tab)">
+        <a class="thumb" href="https://liascript.github.io/course/?https://raw.githubusercontent.com/edtechdev/aipettingzoo/master/README.md#1" target="_blank" rel="noopener noreferrer" aria-label="Start the AI Petting Zoo tour">
           <img src="img/pettingzoo.webp" alt="" loading="lazy" width="720" height="405">
         </a>
         <div class="card-body">
           <h3>AI Petting Zoo</h3>
           <p>A guided, self-paced tour of AI tools and techniques for saving instructors time and enhancing student learning, with example teaching tasks to try.</p>
-          <ul class="tags"><li>Interactive course</li><li>Tools tour</li></ul>
           <div class="go">
             <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/edtechdev/aipettingzoo/master/README.md#1" target="_blank" rel="noopener noreferrer">Start the tour
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -322,15 +303,12 @@
       </li>
 
       <li class="card">
-        <a class="thumb" href="https://edtechdev.github.io/aied/" target="_blank" rel="noopener noreferrer" aria-label="Browse the AI in Education Knowledge Base (opens in a new tab)">
+        <a class="thumb" href="https://edtechdev.github.io/aied/" target="_blank" rel="noopener noreferrer" aria-label="Browse the AI in Education Knowledge Base">
           <img src="img/aied.webp" alt="" loading="lazy" width="720" height="405">
         </a>
         <div class="card-body">
           <h3>AI in Education Knowledge Base</h3>
-          <p>A research knowledge base on AI in education, with concept pages and study summaries. Also available as the <a href="https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing" target="_blank" rel="noopener noreferrer">AI in Education Advisor<span class="sr-only"> (opens in a new tab)</span></a> Gem or a <a href="https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share" target="_blank" rel="noopener noreferrer">NotebookLM notebook<span class="sr-only"> (opens in a new tab)</span></a>.</p>
-          <ul class="tags"><li>Research</li><li>Reference</li></ul>
-
-                      <span class="ext">Opens in a new tab</span>
+          <p>A research knowledge base on AI in education, with concept pages and study summaries. Also available as the <a href="https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing" target="_blank" rel="noopener noreferrer">AI in Education Advisor</a> Gem or a <a href="https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share" target="_blank" rel="noopener noreferrer">NotebookLM notebook</a>.</p>
             <div class="go">
               <a href="https://edtechdev.github.io/aied/" target="_blank" rel="noopener noreferrer">Browse the knowledge base
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -340,7 +318,7 @@
       </li>
 
       <li class="card">
-        <a class="thumb art" href="https://gemini.google.com/gem/1sPeVIqY5wtESVwGFn6kmgFNon0UXTV6S?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Online Module Designer, Gemini Gem (opens in a new tab, Google account required)">
+        <a class="thumb art" href="https://gemini.google.com/gem/1sPeVIqY5wtESVwGFn6kmgFNon0UXTV6S?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Online Module Designer, Gemini Gem">
           <div class="badge" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>
@@ -352,8 +330,6 @@
         <div class="card-body">
           <h3>Online Module Designer</h3>
           <p>A custom Gemini Gem for designing online learning modules, from outcomes and activities to assessment.</p>
-          <ul class="tags"><li>AI assistant</li><li>Course design</li></ul>
-                      <span class="ext">Opens in a new tab &middot; Google account required</span>
             <div class="go">
               <a href="https://gemini.google.com/gem/1sPeVIqY5wtESVwGFn6kmgFNon0UXTV6S?usp=sharing" target="_blank" rel="noopener noreferrer">Open the Gem
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -385,8 +361,6 @@
         <div class="card-body">
           <h3>Canvas Accessibility Checklist</h3>
           <p>A practical Canvas accessibility checklist built from three questions: start with what students need next, then improve the course as you go.</p>
-          <ul class="tags"><li>Canvas</li><li>Checklist</li></ul>
-                      <span class="ext">Opens in a new tab</span>
             <div class="go">
               <a href="accessibility.html">Open the checklist
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -396,13 +370,12 @@
       </li>
 
       <li class="card">
-        <a class="thumb" href="https://pressbooks.hcfl.edu/digitalaccessibility/" target="_blank" rel="noopener noreferrer" aria-label="Read the Digital Accessibility guide (opens in a new tab)">
+        <a class="thumb" href="https://pressbooks.hcfl.edu/digitalaccessibility/" target="_blank" rel="noopener noreferrer" aria-label="Read the Digital Accessibility guide">
           <img src="img/pressbooks.webp" alt="" loading="lazy" width="720" height="405">
         </a>
         <div class="card-body">
           <h3>Digital Accessibility for Teaching and Learning</h3>
           <p>An openly licensed book on accessible course design, documents, and media for higher education.</p>
-          <ul class="tags"><li>Open book</li><li>How-to</li></ul>
           <div class="go">
             <a href="https://pressbooks.hcfl.edu/digitalaccessibility/" target="_blank" rel="noopener noreferrer">Read the guide
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -412,7 +385,7 @@
       </li>
 
       <li class="card">
-        <a class="thumb art" href="https://gemini.google.com/gem/1qkiILxWUW1tGeVb9IOICQCREKmEIuhNS?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Alt Text Generator, Gemini Gem (opens in a new tab, Google account required)">
+        <a class="thumb art" href="https://gemini.google.com/gem/1qkiILxWUW1tGeVb9IOICQCREKmEIuhNS?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Alt Text Generator, Gemini Gem">
           <div class="badge" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="4.5" width="18" height="15" rx="2.5"/>
@@ -425,8 +398,6 @@
         <div class="card-body">
           <h3>Alt Text Generator</h3>
           <p>A custom Gemini Gem for writing alt text, so students who cannot see an image still get the information it carries.</p>
-          <ul class="tags"><li>AI assistant</li><li>Alt text</li></ul>
-                      <span class="ext">Opens in a new tab &middot; Google account required</span>
             <div class="go">
               <a href="https://gemini.google.com/gem/1qkiILxWUW1tGeVb9IOICQCREKmEIuhNS?usp=sharing" target="_blank" rel="noopener noreferrer">Open the Gem
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -442,7 +413,6 @@
 <footer class="site">
   <div class="wrap">
     <p><strong>Faculty Professional Development Services</strong> &middot; Hillsborough College</p>
-    <p>Links to other sites open in a new tab. Gemini Gems and the NotebookLM notebook need a Google account.</p>
   </div>
 </footer>
 </body>
