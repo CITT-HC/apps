@@ -31,7 +31,6 @@
   --shadow: 0 5px 20px rgba(23, 52, 95, .08);
   --radius: 12px;
   --measure: 76rem;
-  --base-size: 17px;
 }
 
 * {
@@ -40,7 +39,6 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: var(--base-size);
 }
 
 body {
@@ -50,33 +48,8 @@ body {
   font-family:
     system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
   line-height: 1.55;
-}
-
-body.large-text {
-  --base-size: 19px;
-}
-
-body.high-contrast {
-  --navy: #000;
-  --navy-deep: #000;
-  --blue: #003ec8;
-  --blue-dark: #002d91;
-  --green: #005a33;
-  --green-dark: #003f23;
-  --mint: #fff;
-  --pale-blue: #fff;
-  --amber: #6b3b00;
-  --amber-bg: #fff4c4;
-  --ink: #000;
-  --muted: #262626;
-  --border: #444;
-  --border-dark: #000;
-  --surface: #fff;
-  --surface-2: #f4f4f4;
-  --page: #fff;
-  --focus: #ffbf00;
-  --shadow: none;
 }
 
 a {
@@ -175,7 +148,6 @@ h1 {
   display: flex;
   gap: .65rem;
   align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
   min-height: 4rem;
   padding: .55rem 0;
@@ -238,12 +210,6 @@ button.danger-secondary {
   color: var(--red);
   background: #fff;
   border-color: #c77777;
-}
-
-button[aria-pressed="true"] {
-  color: #000;
-  background: var(--focus);
-  border-color: #000;
 }
 
 .step-nav {
@@ -756,12 +722,6 @@ footer {
   .toolbar-inner {
     align-items: flex-start;
   }
-
-  .toolbar button,
-  .result-actions button,
-  .button-row button {
-    width: auto;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -834,8 +794,14 @@ footer {
 
 <header class="hero">
   <div class="wrap hero-inner">
-    <p class="eyebrow">Interactive faculty worksheet</p>
-    <h1>Redesign for Learning</h1>
+
+    <p class="eyebrow">
+      Interactive faculty worksheet
+    </p>
+
+    <h1>
+      Redesign for Learning
+    </h1>
 
     <p class="hero-lead">
       Redesign assignments for academic integrity in the AI era without turning
@@ -853,50 +819,38 @@ footer {
       This page has no analytics or server-side storage. Worksheet entries remain
       in this browser unless you explicitly save or download them.
     </p>
+
   </div>
 </header>
 
-<div class="toolbar" aria-label="Display and worksheet controls">
+<div class="toolbar" aria-label="Worksheet draft controls">
   <div class="wrap toolbar-inner">
-    <div class="toolbar-group">
-      <span class="toolbar-label">Display</span>
-
-      <button type="button"
-              class="secondary"
-              id="textSizeBtn"
-              aria-pressed="false">
-        Larger text
-      </button>
-
-      <button type="button"
-              class="secondary"
-              id="contrastBtn"
-              aria-pressed="false">
-        High contrast
-      </button>
-    </div>
 
     <div class="toolbar-group">
       <span class="toolbar-label">Draft</span>
 
-      <button type="button"
-              class="secondary"
-              id="saveDraftBtn">
+      <button
+        type="button"
+        class="secondary"
+        id="saveDraftBtn">
         Save in this browser
       </button>
 
-      <button type="button"
-              class="secondary"
-              id="loadDraftBtn">
+      <button
+        type="button"
+        class="secondary"
+        id="loadDraftBtn">
         Load saved draft
       </button>
 
-      <button type="button"
-              class="danger-secondary"
-              id="clearDraftBtn">
+      <button
+        type="button"
+        class="danger-secondary"
+        id="clearDraftBtn">
         Clear saved draft
       </button>
     </div>
+
   </div>
 </div>
 
@@ -921,7 +875,10 @@ footer {
 <div class="wrap">
 
 <section class="intro-card" aria-labelledby="intro-title">
-  <h2 id="intro-title">A useful redesign pattern</h2>
+
+  <h2 id="intro-title">
+    A useful redesign pattern
+  </h2>
 
   <p>
     Keep the important learning goal. Improve the clarity of the assignment and
@@ -938,19 +895,27 @@ footer {
 
   <div class="callout good">
     <p>
-      <strong>Design principle:</strong> collect enough evidence to make the
-      learning claim defensible, but not so much documentation that students
-      experience every assignment as surveillance.
+      <strong>Design principle:</strong>
+      collect enough evidence to make the learning claim defensible, but not so
+      much documentation that students experience every assignment as surveillance.
     </p>
   </div>
+
 </section>
 
 <form id="worksheet">
 
 <!-- STEP 1 -->
-<section class="panel" id="context" aria-labelledby="context-title">
+<section
+  class="panel"
+  id="context"
+  aria-labelledby="context-title">
+
   <span class="step-kicker">Step 1</span>
-  <h2 id="context-title">Describe the course and assignment</h2>
+
+  <h2 id="context-title">
+    Describe the course and assignment
+  </h2>
 
   <p class="section-lead">
     Course format changes what forms of process evidence and verification are
@@ -960,32 +925,91 @@ footer {
   <div class="grid-2">
 
     <div class="field">
-      <label for="courseFormat">Course format</label>
 
-      <select id="courseFormat" name="courseFormat">
-        <option value="async">Fully online — asynchronous</option>
-        <option value="sync">Fully online — synchronous</option>
-        <option value="hybrid">Hybrid / blended</option>
-        <option value="inperson">Primarily in person</option>
-        <option value="hyflex">HyFlex / flexible participation</option>
+      <label for="courseFormat">
+        Course format
+      </label>
+
+      <select
+        id="courseFormat"
+        name="courseFormat">
+
+        <option value="async">
+          Fully online — asynchronous
+        </option>
+
+        <option value="sync">
+          Fully online — synchronous
+        </option>
+
+        <option value="hybrid">
+          Hybrid / blended
+        </option>
+
+        <option value="inperson">
+          Primarily in person
+        </option>
+
+        <option value="hyflex">
+          HyFlex / flexible participation
+        </option>
+
       </select>
+
     </div>
 
     <div class="field">
-      <label for="assignmentType">Assignment or activity type</label>
 
-      <select id="assignmentType" name="assignmentType">
-        <option value="writing">Writing / research / composition</option>
-        <option value="discussion">Discussion board activity / online discussion</option>
-        <option value="quantitative">Math / quantitative problem solving</option>
-        <option value="lab">Lab report / laboratory activity</option>
-        <option value="quiz">Quiz / exam / knowledge check</option>
-        <option value="presentation">Presentation / oral communication</option>
-        <option value="coding">Coding / data / technical work</option>
-        <option value="project">Project / design / case analysis</option>
-        <option value="reflection">Reflection / portfolio</option>
-        <option value="group">Group / collaborative work</option>
+      <label for="assignmentType">
+        Assignment or activity type
+      </label>
+
+      <select
+        id="assignmentType"
+        name="assignmentType">
+
+        <option value="writing">
+          Writing / research / composition
+        </option>
+
+        <option value="discussion">
+          Discussion board activity / online discussion
+        </option>
+
+        <option value="quantitative">
+          Math / quantitative problem solving
+        </option>
+
+        <option value="lab">
+          Lab report / laboratory activity
+        </option>
+
+        <option value="quiz">
+          Quiz / exam / knowledge check
+        </option>
+
+        <option value="presentation">
+          Presentation / oral communication
+        </option>
+
+        <option value="coding">
+          Coding / data / technical work
+        </option>
+
+        <option value="project">
+          Project / design / case analysis
+        </option>
+
+        <option value="reflection">
+          Reflection / portfolio
+        </option>
+
+        <option value="group">
+          Group / collaborative work
+        </option>
+
       </select>
+
     </div>
 
   </div>
@@ -993,28 +1017,54 @@ footer {
   <div class="grid-2">
 
     <div class="field">
-      <label for="assignmentTitle">Assignment title</label>
+
+      <label for="assignmentTitle">
+        Assignment title
+      </label>
+
       <input
         id="assignmentTitle"
         name="assignmentTitle"
         type="text"
         placeholder="Example: Community Health Research Brief">
+
     </div>
 
     <div class="field">
-      <label for="stakes">How consequential is this assignment?</label>
 
-      <select id="stakes" name="stakes">
-        <option value="low">Low-stakes practice / formative</option>
-        <option value="moderate" selected>Moderate stakes</option>
-        <option value="high">High-stakes evidence of mastery</option>
+      <label for="stakes">
+        How consequential is this assignment?
+      </label>
+
+      <select
+        id="stakes"
+        name="stakes">
+
+        <option value="low">
+          Low-stakes practice / formative
+        </option>
+
+        <option
+          value="moderate"
+          selected>
+          Moderate stakes
+        </option>
+
+        <option value="high">
+          High-stakes evidence of mastery
+        </option>
+
       </select>
+
     </div>
 
   </div>
 
   <div class="field">
-    <label for="currentPrompt">What do students currently do?</label>
+
+    <label for="currentPrompt">
+      What do students currently do?
+    </label>
 
     <textarea
       id="currentPrompt"
@@ -1022,18 +1072,32 @@ footer {
       placeholder="Paste or summarize the current instructions. What is submitted now?"></textarea>
 
     <p class="hint">
-      A short description is enough. You will build the redesigned student-facing
-      version below.
+      A short description is enough. You will build the redesigned
+      student-facing version below.
     </p>
+
   </div>
 
-  <div class="format-note" id="formatNote" aria-live="polite"></div>
+  <div
+    class="format-note"
+    id="formatNote"
+    aria-live="polite">
+  </div>
+
 </section>
 
+
 <!-- STEP 2 -->
-<section class="panel" id="learning" aria-labelledby="learning-title">
+<section
+  class="panel"
+  id="learning"
+  aria-labelledby="learning-title">
+
   <span class="step-kicker">Step 2</span>
-  <h2 id="learning-title">Protect the learning claim</h2>
+
+  <h2 id="learning-title">
+    Protect the learning claim
+  </h2>
 
   <p class="section-lead">
     Before deciding whether AI is allowed, identify what the grade is supposed
@@ -1041,104 +1105,139 @@ footer {
   </p>
 
   <div class="callout">
+
     <p>
-      <strong>Ask:</strong> What should a successful student be able to do because
-      of this assignment—and which parts must students be able to perform without
-      AI doing that thinking for them?
+      <strong>Ask:</strong>
+      What should a successful student be able to do because of this assignment—
+      and which parts must students be able to perform without AI doing that
+      thinking for them?
     </p>
 
     <p class="small">
       Related research synthesis:
-      <a href="https://edtechdev.github.io/aied/concepts/assessment-validity/"
-         target="_blank"
-         rel="noopener">
+      <a
+        href="https://edtechdev.github.io/aied/concepts/assessment-validity/"
+        target="_blank"
+        rel="noopener">
         Assessment Validity in AI Education
       </a>.
     </p>
+
   </div>
 
   <fieldset>
-    <legend>Which capabilities does this assignment assess?</legend>
+
+    <legend>
+      Which capabilities does this assignment assess?
+    </legend>
 
     <div class="option-grid">
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="construct"
-                 value="recall and fluency">
-          <span>Recall, fluency, or foundational knowledge</span>
+          <input
+            type="checkbox"
+            name="construct"
+            value="recall and fluency">
+          <span>
+            Recall, fluency, or foundational knowledge
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="construct"
-                 value="reasoning and explanation">
-          <span>Reasoning and explanation</span>
+          <input
+            type="checkbox"
+            name="construct"
+            value="reasoning and explanation">
+          <span>
+            Reasoning and explanation
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="construct"
-                 value="application and judgment">
-          <span>Application and disciplinary judgment</span>
+          <input
+            type="checkbox"
+            name="construct"
+            value="application and judgment">
+          <span>
+            Application and disciplinary judgment
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="construct"
-                 value="source evaluation and synthesis">
-          <span>Source evaluation and synthesis</span>
+          <input
+            type="checkbox"
+            name="construct"
+            value="source evaluation and synthesis">
+          <span>
+            Source evaluation and synthesis
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="construct"
-                 value="calculation, coding, or technical execution">
-          <span>Calculation, coding, or technical execution</span>
+          <input
+            type="checkbox"
+            name="construct"
+            value="calculation, coding, or technical execution">
+          <span>
+            Calculation, coding, or technical execution
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="construct"
-                 value="creation and design">
-          <span>Creation, design, or problem framing</span>
+          <input
+            type="checkbox"
+            name="construct"
+            value="creation and design">
+          <span>
+            Creation, design, or problem framing
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="construct"
-                 value="communication">
-          <span>Communication</span>
+          <input
+            type="checkbox"
+            name="construct"
+            value="communication">
+          <span>
+            Communication
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="construct"
-                 value="collaboration">
-          <span>Collaboration</span>
+          <input
+            type="checkbox"
+            name="construct"
+            value="collaboration">
+          <span>
+            Collaboration
+          </span>
         </label>
       </div>
 
     </div>
+
   </fieldset>
 
   <div class="field">
-    <label for="learningOutcome">Student learning outcome</label>
+
+    <label for="learningOutcome">
+      Student learning outcome
+    </label>
 
     <textarea
       id="learningOutcome"
@@ -1146,20 +1245,25 @@ footer {
       placeholder="Example: Evaluate evidence from multiple sources and construct a defensible recommendation for a specified audience."></textarea>
 
     <div class="button-row">
-      <button type="button"
-              class="secondary"
-              id="suggestOutcomeBtn">
+
+      <button
+        type="button"
+        class="secondary"
+        id="suggestOutcomeBtn">
         Suggest an outcome for this assignment type
       </button>
+
     </div>
 
     <p class="hint">
       Prefer observable performances: analyze, calculate, create, defend,
       diagnose, evaluate, interpret, justify, revise, synthesize, or apply.
     </p>
+
   </div>
 
   <div class="field">
+
     <label for="independentCapability">
       What should students be able to demonstrate independently?
     </label>
@@ -1168,35 +1272,45 @@ footer {
       id="independentCapability"
       name="independentCapability"
       placeholder="Example: Students should be able to explain their evidence choices, defend the main claim, and identify limitations without having AI generate those judgments for them."></textarea>
+
   </div>
+
 </section>
 
+
 <!-- STEP 3 -->
-<section class="panel"
-         id="transparency"
-         aria-labelledby="transparency-title">
+<section
+  class="panel"
+  id="transparency"
+  aria-labelledby="transparency-title">
 
   <span class="step-kicker">Step 3</span>
-  <h2 id="transparency-title">Make the assignment transparent to students</h2>
+
+  <h2 id="transparency-title">
+    Make the assignment transparent to students
+  </h2>
 
   <p class="section-lead">
     Build the student-facing prompt around
-    <strong>Purpose, Tasks, and Criteria for Success</strong>. Put important
-    deadlines where students will see them, make the workflow visible, and
-    provide enough information for students to judge the quality of their own
-    work while they are doing it.
+    <strong>Purpose, Tasks, and Criteria for Success</strong>.
+    Put important deadlines where students will see them, make the workflow
+    visible, and provide enough information for students to judge the quality
+    of their own work while they are doing it.
   </p>
 
   <div class="callout good">
+
     <p>
       <strong>Transparency is not simply “more directions.”</strong>
-      Explain why the work matters, what actions students should take, what
-      resources they need, and what successful work looks like. Then ask
-      students to interpret those expectations before they begin.
+      Explain why the work matters, what actions students should take,
+      what resources they need, and what successful work looks like.
+      Then ask students to interpret those expectations before they begin.
     </p>
+
   </div>
 
   <div class="field">
+
     <label for="dueDates">
       Due date(s) to place at the top of the assignment
     </label>
@@ -1206,13 +1320,20 @@ footer {
       name="dueDates"
       type="text"
       placeholder="Example: Proposal Oct. 3; draft Oct. 10; final submission Oct. 17">
+
   </div>
 
   <fieldset>
-    <legend>PURPOSE — why students are doing this work</legend>
+
+    <legend>
+      PURPOSE — why students are doing this work
+    </legend>
 
     <div class="field">
-      <label for="purposeStatement">Student-facing purpose statement</label>
+
+      <label for="purposeStatement">
+        Student-facing purpose statement
+      </label>
 
       <textarea
         id="purposeStatement"
@@ -1224,11 +1345,13 @@ footer {
         practice, and—when appropriate—students' future academic, civic, or
         professional work.
       </p>
+
     </div>
 
     <div class="grid-2">
 
       <div class="field">
+
         <label for="skillsStatement">
           Skills students will practice
         </label>
@@ -1242,9 +1365,11 @@ footer {
           For introductory students, consider emphasizing only one or two
           genuinely new skills at a time.
         </p>
+
       </div>
 
       <div class="field">
+
         <label for="knowledgeStatement">
           Knowledge students will develop
         </label>
@@ -1253,15 +1378,21 @@ footer {
           id="knowledgeStatement"
           name="knowledgeStatement"
           placeholder="Name the important concepts, methods, tools, or disciplinary knowledge students should become more familiar with."></textarea>
+
       </div>
 
     </div>
+
   </fieldset>
 
   <fieldset>
-    <legend>TASKS — what students should do and in what sequence</legend>
+
+    <legend>
+      TASKS — what students should do and in what sequence
+    </legend>
 
     <div class="field">
+
       <label for="taskInstructions">
         Student-facing task instructions
       </label>
@@ -1276,11 +1407,13 @@ footer {
         and what resources are permitted. Do not assume students can infer
         the workflow from the final product alone.
       </p>
+
     </div>
 
     <div class="grid-2">
 
       <div class="field">
+
         <label for="mistakesToAvoid">
           Common mistakes or boundaries to avoid
         </label>
@@ -1289,9 +1422,11 @@ footer {
           id="mistakesToAvoid"
           name="mistakesToAvoid"
           placeholder="Example: do not summarize sources without analyzing them; do not use unverified AI-generated citations."></textarea>
+
       </div>
 
       <div class="field">
+
         <label for="resourcesNeeded">
           Resources students need and how they can access them
         </label>
@@ -1300,12 +1435,15 @@ footer {
           id="resourcesNeeded"
           name="resourcesNeeded"
           placeholder="Readings, datasets, software, equipment, examples, tutoring, library resources, accessibility supports, etc."></textarea>
+
       </div>
 
     </div>
 
     <div class="choice">
+
       <label>
+
         <input
           type="checkbox"
           id="productiveStruggle"
@@ -1317,10 +1455,13 @@ footer {
           productive struggle is part of the learning goal, and I will explain
           that purpose so uncertainty is not mistaken for hidden expectations.
         </span>
+
       </label>
+
     </div>
 
     <div class="field" style="margin-top:1rem;">
+
       <label for="struggleRationale">
         If checked, explain the purpose of the uncertainty to students
       </label>
@@ -1329,13 +1470,19 @@ footer {
         id="struggleRationale"
         name="struggleRationale"
         placeholder="Example: Part of this assignment is to invent and test your own approach; there is not one prescribed procedure."></textarea>
+
     </div>
+
   </fieldset>
 
   <fieldset>
-    <legend>CRITERIA FOR SUCCESS — what good work looks like</legend>
+
+    <legend>
+      CRITERIA FOR SUCCESS — what good work looks like
+    </legend>
 
     <div class="field">
+
       <label for="successCriteria">
         Characteristics of a successful finished product
       </label>
@@ -1344,11 +1491,13 @@ footer {
         id="successCriteria"
         name="successCriteria"
         placeholder="Describe observable characteristics students can use to judge the quality of their own work."></textarea>
+
     </div>
 
     <div class="grid-2">
 
       <div class="field">
+
         <label for="strongExemplar">
           Exemplar: what you ARE looking for
         </label>
@@ -1357,9 +1506,11 @@ footer {
           id="strongExemplar"
           name="strongExemplar"
           placeholder="Describe or link to a strong example. Identify the features students should notice—not merely that it earned a high grade."></textarea>
+
       </div>
 
       <div class="field">
+
         <label for="weakExemplar">
           Contrast example: what you are NOT looking for
         </label>
@@ -1368,11 +1519,13 @@ footer {
           id="weakExemplar"
           name="weakExemplar"
           placeholder="Describe or link to an adequate/weak example or common non-example. Explain what is missing, underdeveloped, or misleading."></textarea>
+
       </div>
 
     </div>
 
     <div class="field">
+
       <label for="exemplarPlan">
         How will students analyze the examples before they begin?
       </label>
@@ -1383,15 +1536,17 @@ footer {
         placeholder="Example: Students compare a strong, adequate, and weak example, identify the differences using the rubric, and compile a class checklist before beginning."></textarea>
 
       <p class="hint">
-        An exemplar should not simply be copied. Ask students to identify
-        the characteristics that make it effective and distinguish excellent,
+        An exemplar should not simply be copied. Ask students to identify the
+        characteristics that make it effective and distinguish excellent,
         adequate, and weak work.
       </p>
+
     </div>
 
     <div class="grid-2">
 
       <div class="field">
+
         <label for="gradingDetails">
           How the task is graded or counts toward the course grade
         </label>
@@ -1400,9 +1555,11 @@ footer {
           id="gradingDetails"
           name="gradingDetails"
           placeholder="Explain the rubric/checklist, points or percentage, and how process, product, and verification count."></textarea>
+
       </div>
 
       <div class="field">
+
         <label for="reflectionPlan">
           Post-feedback reflection plan
         </label>
@@ -1411,13 +1568,18 @@ footer {
           id="reflectionPlan"
           name="reflectionPlan"
           placeholder="Example: After grading, students identify one change to their learning strategy that could improve future work."></textarea>
+
       </div>
 
     </div>
+
   </fieldset>
 
   <fieldset>
-    <legend>Technical how-to guidance to include for students</legend>
+
+    <legend>
+      Technical how-to guidance to include for students
+    </legend>
 
     <p class="small">
       Select procedures students may need. The built assignment will include
@@ -1429,52 +1591,68 @@ footer {
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="techGuide"
-                 value="video">
-          <span>Record and share a short video</span>
+          <input
+            type="checkbox"
+            name="techGuide"
+            value="video">
+          <span>
+            Record and share a short video
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="techGuide"
-                 value="googleVersion">
-          <span>Use Google Docs version history</span>
+          <input
+            type="checkbox"
+            name="techGuide"
+            value="googleVersion">
+          <span>
+            Use Google Docs version history
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="techGuide"
-                 value="wordVersion">
-          <span>Use Word / OneDrive version history or Track Changes</span>
+          <input
+            type="checkbox"
+            name="techGuide"
+            value="wordVersion">
+          <span>
+            Use Word / OneDrive version history or Track Changes
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="techGuide"
-                 value="shareLink">
-          <span>Share a file or link with correct permissions</span>
+          <input
+            type="checkbox"
+            name="techGuide"
+            value="shareLink">
+          <span>
+            Share a file or link with correct permissions
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="techGuide"
-                 value="screencast">
-          <span>Record a screen or whiteboard walkthrough</span>
+          <input
+            type="checkbox"
+            name="techGuide"
+            value="screencast">
+          <span>
+            Record a screen or whiteboard walkthrough
+          </span>
         </label>
       </div>
 
     </div>
 
     <div class="field" style="margin-top:1rem;">
+
       <label for="customTechGuidance">
         Institution-specific technical directions or support links
       </label>
@@ -1483,100 +1661,133 @@ footer {
         id="customTechGuidance"
         name="customTechGuidance"
         placeholder="Example: Upload videos through Panopto in Canvas; use OneDrive sharing rather than a public YouTube link; campus help page: …"></textarea>
+
     </div>
+
   </fieldset>
 
   <fieldset>
-    <legend>Transparent-assignment self-check</legend>
+
+    <legend>
+      Transparent-assignment self-check
+    </legend>
 
     <div class="option-grid">
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="due">
-          <span>Due date(s) appear at the top.</span>
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="due">
+          <span>
+            Due date(s) appear at the top.
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="purpose">
-          <span>A labeled Purpose section explains learning benefits.</span>
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="purpose">
+          <span>
+            A labeled Purpose section explains learning benefits.
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="skills">
-          <span>Purpose names skills and disciplinary knowledge.</span>
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="skills">
+          <span>
+            Purpose names skills and disciplinary knowledge.
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="tasks">
-          <span>A labeled Tasks section defines actions and sequence.</span>
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="tasks">
+          <span>
+            A labeled Tasks section defines actions and sequence.
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="resources">
-          <span>Students can access the resources needed to complete the work.</span>
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="resources">
+          <span>
+            Students can access the resources needed to complete the work.
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="criteria">
-          <span>A Criteria for Success section describes successful work.</span>
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="criteria">
+          <span>
+            A Criteria for Success section describes successful work.
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="examples">
-          <span>Students examine examples of varied quality.</span>
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="examples">
+          <span>
+            Students examine examples of varied quality.
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="grading">
-          <span>Students know how the task is graded.</span>
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="grading">
+          <span>
+            Students know how the task is graded.
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="peer">
-          <span>A rubric/checklist can support self- or peer-feedback.</span>
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="peer">
+          <span>
+            A rubric/checklist can support self- or peer-feedback.
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="studentvoice">
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="studentvoice">
           <span>
             Students will explain the Purpose, Tasks, and Criteria in their
             own words before beginning.
@@ -1586,9 +1797,10 @@ footer {
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="transparencyCheck"
-                 value="reflection">
+          <input
+            type="checkbox"
+            name="transparencyCheck"
+            value="reflection">
           <span>
             Students reflect on completed work and identify a learning-strategy
             improvement when appropriate.
@@ -1598,12 +1810,16 @@ footer {
 
     </div>
 
-    <p class="checklist-progress"
-       id="transparencyProgress"
-       aria-live="polite"></p>
+    <p
+      class="checklist-progress"
+      id="transparencyProgress"
+      aria-live="polite">
+    </p>
+
   </fieldset>
 
   <div class="field">
+
     <label for="studentFeedbackPlan">
       How will you check students' interpretation before they start?
     </label>
@@ -1612,16 +1828,23 @@ footer {
       id="studentFeedbackPlan"
       name="studentFeedbackPlan"
       placeholder="Example: Ask students to paraphrase the purpose, first three task steps, and criteria for success in pairs; collect points of confusion and revise/repost the prompt."></textarea>
+
   </div>
+
 </section>
 
+
 <!-- STEP 4 -->
-<section class="panel"
-         id="ai-policy"
-         aria-labelledby="ai-policy-title">
+<section
+  class="panel"
+  id="ai-policy"
+  aria-labelledby="ai-policy-title">
 
   <span class="step-kicker">Step 4</span>
-  <h2 id="ai-policy-title">Set a task-specific AI-use boundary</h2>
+
+  <h2 id="ai-policy-title">
+    Set a task-specific AI-use boundary
+  </h2>
 
   <p class="section-lead">
     A useful policy tells students what is permitted on this task, why the
@@ -1630,272 +1853,378 @@ footer {
   </p>
 
   <fieldset>
-    <legend>Choose the AI-use level for this assignment</legend>
+
+    <legend>
+      Choose the AI-use level for this assignment
+    </legend>
 
     <div class="option-grid">
 
       <div class="option-card">
         <label>
-          <input type="radio"
-                 name="aiLevel"
-                 value="no"
-                 checked>
+
+          <input
+            type="radio"
+            name="aiLevel"
+            value="no"
+            checked>
 
           <span class="option-body">
-            <span class="option-title">No generative AI</span>
+
+            <span class="option-title">
+              No generative AI
+            </span>
+
             <span class="option-desc">
               Use when the task specifically demonstrates unaided recall,
               fluency, reasoning, or professional judgment.
             </span>
+
           </span>
+
         </label>
       </div>
 
       <div class="option-card">
         <label>
-          <input type="radio"
-                 name="aiLevel"
-                 value="limited">
+
+          <input
+            type="radio"
+            name="aiLevel"
+            value="limited">
 
           <span class="option-body">
-            <span class="option-title">Limited AI</span>
+
+            <span class="option-title">
+              Limited AI
+            </span>
+
             <span class="option-desc">
               AI is permitted only at selected stages such as brainstorming,
               feedback, editing, debugging, or practice.
             </span>
+
           </span>
+
         </label>
       </div>
 
       <div class="option-card">
         <label>
-          <input type="radio"
-                 name="aiLevel"
-                 value="disclosed">
+
+          <input
+            type="radio"
+            name="aiLevel"
+            value="disclosed">
 
           <span class="option-body">
+
             <span class="option-title">
               AI allowed with attribution &amp; disclosure
             </span>
+
             <span class="option-desc">
               Students may use AI within stated boundaries but document the
               role it played and remain responsible for the work.
             </span>
+
           </span>
+
         </label>
       </div>
 
       <div class="option-card">
         <label>
-          <input type="radio"
-                 name="aiLevel"
-                 value="integrated">
+
+          <input
+            type="radio"
+            name="aiLevel"
+            value="integrated">
 
           <span class="option-body">
-            <span class="option-title">AI-integrated</span>
+
+            <span class="option-title">
+              AI-integrated
+            </span>
+
             <span class="option-desc">
               Responsible AI use is itself part of the learning task.
             </span>
+
           </span>
+
         </label>
       </div>
 
     </div>
+
   </fieldset>
 
   <div id="aiStagesPanel">
 
     <fieldset>
-      <legend>If AI is permitted, what may it help with?</legend>
+
+      <legend>
+        If AI is permitted, what may it help with?
+      </legend>
 
       <div class="option-grid">
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="aiStage"
-                   value="brainstorming ideas">
-            <span>Brainstorming ideas or questions</span>
+            <input
+              type="checkbox"
+              name="aiStage"
+              value="brainstorming ideas">
+            <span>
+              Brainstorming ideas or questions
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="aiStage"
-                   value="creating an initial outline">
-            <span>Creating an initial outline</span>
+            <input
+              type="checkbox"
+              name="aiStage"
+              value="creating an initial outline">
+            <span>
+              Creating an initial outline
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="aiStage"
-                   value="giving feedback or critique">
-            <span>Giving feedback or critique</span>
+            <input
+              type="checkbox"
+              name="aiStage"
+              value="giving feedback or critique">
+            <span>
+              Giving feedback or critique
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="aiStage"
-                   value="language editing or proofreading">
-            <span>Language editing or proofreading</span>
+            <input
+              type="checkbox"
+              name="aiStage"
+              value="language editing or proofreading">
+            <span>
+              Language editing or proofreading
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="aiStage"
-                   value="suggesting sources that the student independently verifies">
-            <span>Suggesting sources that students independently verify</span>
+            <input
+              type="checkbox"
+              name="aiStage"
+              value="suggesting sources that the student independently verifies">
+            <span>
+              Suggesting sources that students independently verify
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="aiStage"
-                   value="coding or debugging assistance">
-            <span>Coding or debugging assistance</span>
+            <input
+              type="checkbox"
+              name="aiStage"
+              value="coding or debugging assistance">
+            <span>
+              Coding or debugging assistance
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="aiStage"
-                   value="data-analysis assistance">
-            <span>Data-analysis assistance</span>
+            <input
+              type="checkbox"
+              name="aiStage"
+              value="data-analysis assistance">
+            <span>
+              Data-analysis assistance
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="aiStage"
-                   value="generating examples for critique">
-            <span>Generating examples, alternatives, or simulations for critique</span>
+            <input
+              type="checkbox"
+              name="aiStage"
+              value="generating examples for critique">
+            <span>
+              Generating examples, alternatives, or simulations for critique
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="aiStage"
-                   value="translation or accessibility support">
-            <span>Translation or accessibility support, when appropriate</span>
+            <input
+              type="checkbox"
+              name="aiStage"
+              value="translation or accessibility support">
+            <span>
+              Translation or accessibility support, when appropriate
+            </span>
           </label>
         </div>
 
       </div>
+
     </fieldset>
 
     <fieldset>
-      <legend>What should students disclose?</legend>
+
+      <legend>
+        What should students disclose?
+      </legend>
 
       <div class="option-grid">
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="disclosure"
-                   value="the AI tool and the purpose for which it was used"
-                   checked>
-            <span>Tool used + purpose</span>
+            <input
+              type="checkbox"
+              name="disclosure"
+              value="the AI tool and the purpose for which it was used"
+              checked>
+            <span>
+              Tool used + purpose
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="disclosure"
-                   value="representative prompts or relevant excerpts">
-            <span>Representative prompts or relevant excerpts</span>
+            <input
+              type="checkbox"
+              name="disclosure"
+              value="representative prompts or relevant excerpts">
+            <span>
+              Representative prompts or relevant excerpts
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="disclosure"
-                   value="what AI suggestions were accepted, changed, or rejected"
-                   checked>
-            <span>What was accepted, changed, or rejected</span>
+            <input
+              type="checkbox"
+              name="disclosure"
+              value="what AI suggestions were accepted, changed, or rejected"
+              checked>
+            <span>
+              What was accepted, changed, or rejected
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="disclosure"
-                   value="how factual claims, calculations, code, or sources were verified"
-                   checked>
-            <span>How claims, calculations, code, or sources were verified</span>
+            <input
+              type="checkbox"
+              name="disclosure"
+              value="how factual claims, calculations, code, or sources were verified"
+              checked>
+            <span>
+              How claims, calculations, code, or sources were verified
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="disclosure"
-                   value="citations or links required by the instructor or discipline">
-            <span>Required citations / links</span>
+            <input
+              type="checkbox"
+              name="disclosure"
+              value="citations or links required by the instructor or discipline">
+            <span>
+              Required citations / links
+            </span>
           </label>
         </div>
 
         <div class="choice">
           <label>
-            <input type="checkbox"
-                   name="disclosure"
-                   value="a brief reflection on how AI affected the student's decisions">
-            <span>Brief reflection on AI's effect on decisions</span>
+            <input
+              type="checkbox"
+              name="disclosure"
+              value="a brief reflection on how AI affected the student's decisions">
+            <span>
+              Brief reflection on AI's effect on decisions
+            </span>
           </label>
         </div>
 
       </div>
+
     </fieldset>
+
   </div>
 
-  <div class="policy-preview" aria-live="polite">
-    <h3>Student-facing policy preview</h3>
+  <div
+    class="policy-preview"
+    aria-live="polite">
+
+    <h3>
+      Student-facing policy preview
+    </h3>
+
     <p id="policyPreview"></p>
+
   </div>
 
   <div class="callout good">
+
     <p>
-      <strong>Framing matters:</strong> explain the learning reason for the
-      boundary. “Do not use AI” is clearer when students also know what
-      capability they are practicing and why they need to build it themselves.
+      <strong>Framing matters:</strong>
+      explain the learning reason for the boundary. “Do not use AI” is clearer
+      when students also know what capability they are practicing and why they
+      need to build it themselves.
     </p>
 
     <p class="small">
       Related research:
-      <a href="https://edtechdev.github.io/aied/concepts/academic-integrity/"
-         target="_blank"
-         rel="noopener">
+      <a
+        href="https://edtechdev.github.io/aied/concepts/academic-integrity/"
+        target="_blank"
+        rel="noopener">
         Academic Integrity
       </a>
       and
-      <a href="https://edtechdev.github.io/aied/concepts/trust-calibration/"
-         target="_blank"
-         rel="noopener">
+      <a
+        href="https://edtechdev.github.io/aied/concepts/trust-calibration/"
+        target="_blank"
+        rel="noopener">
         Trust Calibration
       </a>.
     </p>
+
   </div>
+
 </section>
 
+
 <!-- STEP 5 -->
-<section class="panel"
-         id="strategies"
-         aria-labelledby="strategies-title">
+<section
+  class="panel"
+  id="strategies"
+  aria-labelledby="strategies-title">
 
   <span class="step-kicker">Step 5</span>
-  <h2 id="strategies-title">Choose redesign strategies</h2>
+
+  <h2 id="strategies-title">
+    Choose redesign strategies
+  </h2>
 
   <p class="section-lead">
     Recommended strategies change with the assignment type. Use only the
@@ -1903,30 +2232,41 @@ footer {
   </p>
 
   <div class="button-row">
-    <button type="button"
-            class="positive"
-            id="applyRecommendedBtn">
+
+    <button
+      type="button"
+      class="positive"
+      id="applyRecommendedBtn">
       Apply recommended strategies
     </button>
 
-    <button type="button"
-            class="secondary"
-            id="clearStrategiesBtn">
+    <button
+      type="button"
+      class="secondary"
+      id="clearStrategiesBtn">
       Clear strategy selections
     </button>
+
   </div>
 
-  <div class="option-grid"
-       id="strategyGrid"
-       style="margin-top:1rem;">
+  <div
+    class="option-grid"
+    id="strategyGrid"
+    style="margin-top:1rem;">
 
-    <div class="option-card" data-strategy-card="initial">
+    <div
+      class="option-card"
+      data-strategy-card="initial">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="initial">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="initial">
 
         <span class="option-body">
+
           <span class="option-title">
             Independent first attempt or prediction
             <span class="recommend-slot"></span>
@@ -1936,17 +2276,26 @@ footer {
             Students commit to an initial idea, prediction, solution approach,
             thesis, sketch, or plan before advanced assistance.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="process">
+    <div
+      class="option-card"
+      data-strategy-card="process">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="process">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="process">
 
         <span class="option-body">
+
           <span class="option-title">
             Make meaningful process evidence visible
             <span class="recommend-slot"></span>
@@ -1956,58 +2305,83 @@ footer {
             Use a proposal, source log, calculations, decision notes, draft,
             observations, version history, commits, or other authentic traces.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="context">
+    <div
+      class="option-card"
+      data-strategy-card="context">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="context">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="context">
 
         <span class="option-body">
+
           <span class="option-title">
             Add authentic or course-specific context
             <span class="recommend-slot"></span>
           </span>
 
           <span class="option-desc">
-            Connect the task to course-only materials, local cases, current
-            data, a particular audience, personal observation, or a meaningful
-            decision.
+            Connect the task to course-only materials, local cases, current data,
+            a particular audience, personal observation, or a meaningful decision.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="feedback">
+    <div
+      class="option-card"
+      data-strategy-card="feedback">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="feedback">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="feedback">
 
         <span class="option-body">
+
           <span class="option-title">
             Add feedback and revision
             <span class="recommend-slot"></span>
           </span>
 
           <span class="option-desc">
-            Students receive targeted feedback, revise, and explain what
-            changed.
+            Students receive targeted feedback, revise, and explain what changed.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="verify">
+    <div
+      class="option-card"
+      data-strategy-card="verify">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="verify">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="verify">
 
         <span class="option-body">
+
           <span class="option-title">
             Briefly verify learning
             <span class="recommend-slot"></span>
@@ -2017,17 +2391,26 @@ footer {
             Ask for a short explanation, parallel problem, mini-defense,
             annotated walkthrough, or demonstration.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="disclosure">
+    <div
+      class="option-card"
+      data-strategy-card="disclosure">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="disclosure">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="disclosure">
 
         <span class="option-body">
+
           <span class="option-title">
             Require AI-use disclosure and reflection
             <span class="recommend-slot"></span>
@@ -2037,17 +2420,26 @@ footer {
             Ask what AI contributed, what the student accepted or rejected,
             and how important output was checked.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="independent">
+    <div
+      class="option-card"
+      data-strategy-card="independent">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="independent">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="independent">
 
         <span class="option-body">
+
           <span class="option-title">
             Preserve some AI-free practice
             <span class="recommend-slot"></span>
@@ -2057,17 +2449,26 @@ footer {
             Include moments in which students can calibrate what they can
             retrieve, reason through, or perform independently.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="critique">
+    <div
+      class="option-card"
+      data-strategy-card="critique">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="critique">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="critique">
 
         <span class="option-body">
+
           <span class="option-title">
             Critique AI or alternative solutions
             <span class="recommend-slot"></span>
@@ -2077,17 +2478,26 @@ footer {
             Students compare alternatives, identify limitations, and defend
             why one response, method, design, or source is stronger.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="individualize">
+    <div
+      class="option-card"
+      data-strategy-card="individualize">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="individualize">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="individualize">
 
         <span class="option-body">
+
           <span class="option-title">
             Individualize evidence—not unnecessary barriers
             <span class="recommend-slot"></span>
@@ -2097,17 +2507,26 @@ footer {
             Use individualized parameters, local observations, student-selected
             cases, or course-specific evidence.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="transfer">
+    <div
+      class="option-card"
+      data-strategy-card="transfer">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="transfer">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="transfer">
 
         <span class="option-body">
+
           <span class="option-title">
             Add a parallel transfer check
             <span class="recommend-slot"></span>
@@ -2117,17 +2536,26 @@ footer {
             Give a new but structurally similar problem, scenario, source,
             dataset, or question.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="teach">
+    <div
+      class="option-card"
+      data-strategy-card="teach">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="teach">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="teach">
 
         <span class="option-body">
+
           <span class="option-title">
             Teach integrity and AI-literacy skills first
             <span class="recommend-slot"></span>
@@ -2137,17 +2565,26 @@ footer {
             Practice citation, collaboration boundaries, disclosure,
             verification, and appropriate AI use before high-stakes judgment.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
-    <div class="option-card" data-strategy-card="reminder">
+    <div
+      class="option-card"
+      data-strategy-card="reminder">
+
       <label>
-        <input type="checkbox"
-               name="strategy"
-               value="reminder">
+
+        <input
+          type="checkbox"
+          name="strategy"
+          value="reminder">
 
         <span class="option-body">
+
           <span class="option-title">
             Give a just-in-time integrity reminder
             <span class="recommend-slot"></span>
@@ -2157,54 +2594,80 @@ footer {
             Immediately before submission or a high-risk assessment, restate
             permitted resources, prohibited help, and where to ask questions.
           </span>
+
         </span>
+
       </label>
+
     </div>
 
   </div>
 
-  <div class="field" style="margin-top:1rem;">
-    <label for="redesignNotes">Your redesign notes</label>
+  <div
+    class="field"
+    style="margin-top:1rem;">
+
+    <label for="redesignNotes">
+      Your redesign notes
+    </label>
 
     <textarea
       id="redesignNotes"
       name="redesignNotes"
       placeholder="Add course-specific ideas, constraints, or adaptations here."></textarea>
+
   </div>
 
   <div class="callout caution">
+
     <p>
       <strong>More is not automatically better.</strong>
       A proposal, several logs, multiple recordings, screenshots, complete AI
       transcripts, an oral defense, and a final reflection may create burden
       without improving validity. Choose the smallest useful evidence set.
     </p>
+
   </div>
+
 </section>
 
+
 <!-- STEP 6 -->
-<section class="panel"
-         id="examples"
-         aria-labelledby="examples-title">
+<section
+  class="panel"
+  id="examples"
+  aria-labelledby="examples-title">
 
   <span class="step-kicker">Step 6</span>
-  <h2 id="examples-title">Browse redesign examples</h2>
+
+  <h2 id="examples-title">
+    Browse redesign examples
+  </h2>
 
   <p class="section-lead">
     Examples change with the assignment type. Use them as patterns rather than
     requirements.
   </p>
 
-  <div class="example-grid" id="exampleGrid"></div>
+  <div
+    class="example-grid"
+    id="exampleGrid">
+  </div>
+
 </section>
 
+
 <!-- STEP 7 -->
-<section class="panel"
-         id="evidence"
-         aria-labelledby="evidence-title">
+<section
+  class="panel"
+  id="evidence"
+  aria-labelledby="evidence-title">
 
   <span class="step-kicker">Step 7</span>
-  <h2 id="evidence-title">Choose process evidence and verification</h2>
+
+  <h2 id="evidence-title">
+    Choose process evidence and verification
+  </h2>
 
   <p class="section-lead">
     Verification should answer a learning question—not attempt to infer
@@ -2212,101 +2675,136 @@ footer {
   </p>
 
   <fieldset>
-    <legend>Useful process evidence</legend>
+
+    <legend>
+      Useful process evidence
+    </legend>
 
     <div class="option-grid">
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="processEvidence"
-                 value="an initial proposal, prediction, or plan">
-          <span>Proposal / prediction / plan</span>
+          <input
+            type="checkbox"
+            name="processEvidence"
+            value="an initial proposal, prediction, or plan">
+          <span>
+            Proposal / prediction / plan
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="processEvidence"
-                 value="an annotated source or research log">
-          <span>Annotated source / research log</span>
+          <input
+            type="checkbox"
+            name="processEvidence"
+            value="an annotated source or research log">
+          <span>
+            Annotated source / research log
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="processEvidence"
-                 value="one meaningful draft or checkpoint">
-          <span>Draft / checkpoint</span>
+          <input
+            type="checkbox"
+            name="processEvidence"
+            value="one meaningful draft or checkpoint">
+          <span>
+            Draft / checkpoint
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="processEvidence"
-                 value="calculations, scratch work, or a reasoning trace">
-          <span>Calculations / scratch work / reasoning</span>
+          <input
+            type="checkbox"
+            name="processEvidence"
+            value="calculations, scratch work, or a reasoning trace">
+          <span>
+            Calculations / scratch work / reasoning
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="processEvidence"
-                 value="a decision or design log">
-          <span>Decision / design log</span>
+          <input
+            type="checkbox"
+            name="processEvidence"
+            value="a decision or design log">
+          <span>
+            Decision / design log
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="processEvidence"
-                 value="raw observations, data, or field notes">
-          <span>Raw observations / data / field notes</span>
+          <input
+            type="checkbox"
+            name="processEvidence"
+            value="raw observations, data, or field notes">
+          <span>
+            Raw observations / data / field notes
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="processEvidence"
-                 value="version history, commits, or test cases">
-          <span>Version history / commits / test cases</span>
+          <input
+            type="checkbox"
+            name="processEvidence"
+            value="version history, commits, or test cases">
+          <span>
+            Version history / commits / test cases
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="processEvidence"
-                 value="a response-to-feedback or revision note">
-          <span>Response-to-feedback / revision note</span>
+          <input
+            type="checkbox"
+            name="processEvidence"
+            value="a response-to-feedback or revision note">
+          <span>
+            Response-to-feedback / revision note
+          </span>
         </label>
       </div>
 
       <div class="choice">
         <label>
-          <input type="checkbox"
-                 name="processEvidence"
-                 value="an AI-use disclosure">
-          <span>AI-use disclosure</span>
+          <input
+            type="checkbox"
+            name="processEvidence"
+            value="an AI-use disclosure">
+          <span>
+            AI-use disclosure
+          </span>
         </label>
       </div>
 
     </div>
+
   </fieldset>
 
   <div class="grid-2">
 
     <div class="field">
-      <label for="verificationMethod">Verification method</label>
 
-      <select id="verificationMethod"
-              name="verificationMethod">
+      <label for="verificationMethod">
+        Verification method
+      </label>
+
+      <select
+        id="verificationMethod"
+        name="verificationMethod">
 
         <option value="a 60–90 second explanation of one consequential choice">
           60–90 second explanation of one consequential choice
@@ -2345,9 +2843,11 @@ footer {
         </option>
 
       </select>
+
     </div>
 
     <div class="field">
+
       <label for="verificationAlternative">
         Equivalent accessible alternative
       </label>
@@ -2356,21 +2856,27 @@ footer {
         id="verificationAlternative"
         name="verificationAlternative"
         placeholder="Example: Students may provide the same explanation through video, audio, annotated screen capture, or a concise written walkthrough unless oral communication itself is the learning outcome."></textarea>
+
     </div>
 
   </div>
 
   <div class="callout good">
+
     <p>
       <strong>Video is a verification option, not a universal requirement.</strong>
       When speaking on camera is not part of the intended learning, a written,
       audio, annotated, asynchronous, or live equivalent may provide the same
       evidence with fewer barriers.
     </p>
+
   </div>
 
   <fieldset>
-    <legend>Suggested grading emphasis</legend>
+
+    <legend>
+      Suggested grading emphasis
+    </legend>
 
     <p class="small">
       Consider grading meaningful process and revision rather than only the
@@ -2380,50 +2886,75 @@ footer {
     <div class="weights">
 
       <div class="field">
-        <label for="productWeight">Final product (%)</label>
-        <input id="productWeight"
-               name="productWeight"
-               type="number"
-               min="0"
-               max="100"
-               value="50">
+
+        <label for="productWeight">
+          Final product (%)
+        </label>
+
+        <input
+          id="productWeight"
+          name="productWeight"
+          type="number"
+          min="0"
+          max="100"
+          value="50">
+
       </div>
 
       <div class="field">
-        <label for="processWeight">Process / revision (%)</label>
-        <input id="processWeight"
-               name="processWeight"
-               type="number"
-               min="0"
-               max="100"
-               value="30">
+
+        <label for="processWeight">
+          Process / revision (%)
+        </label>
+
+        <input
+          id="processWeight"
+          name="processWeight"
+          type="number"
+          min="0"
+          max="100"
+          value="30">
+
       </div>
 
       <div class="field">
-        <label for="verifyWeight">Verification / reflection (%)</label>
-        <input id="verifyWeight"
-               name="verifyWeight"
-               type="number"
-               min="0"
-               max="100"
-               value="20">
+
+        <label for="verifyWeight">
+          Verification / reflection (%)
+        </label>
+
+        <input
+          id="verifyWeight"
+          name="verifyWeight"
+          type="number"
+          min="0"
+          max="100"
+          value="20">
+
       </div>
 
     </div>
 
-    <p id="weightTotal"
-       class="weight-total"
-       role="status"
-       aria-live="polite"></p>
+    <p
+      id="weightTotal"
+      class="weight-total"
+      role="status"
+      aria-live="polite">
+    </p>
+
   </fieldset>
+
 </section>
 
+
 <!-- STEP 8 -->
-<section class="panel"
-         id="equity"
-         aria-labelledby="equity-title">
+<section
+  class="panel"
+  id="equity"
+  aria-labelledby="equity-title">
 
   <span class="step-kicker">Step 8</span>
+
   <h2 id="equity-title">
     Run an equity, accessibility, and proportionality check
   </h2>
@@ -2436,14 +2967,17 @@ footer {
   </p>
 
   <fieldset>
-    <legend>Check each item you have addressed</legend>
+
+    <legend>
+      Check each item you have addressed
+    </legend>
 
     <div class="choice">
       <label>
-        <input type="checkbox"
-               name="equityCheck"
-               value="shortest">
-
+        <input
+          type="checkbox"
+          name="equityCheck"
+          value="shortest">
         <span>
           Verification is the shortest method that provides useful evidence.
         </span>
@@ -2452,10 +2986,10 @@ footer {
 
     <div class="choice">
       <label>
-        <input type="checkbox"
-               name="equityCheck"
-               value="equivalent">
-
+        <input
+          type="checkbox"
+          name="equityCheck"
+          value="equivalent">
         <span>
           When video, speech, or synchronous presence is not itself the learning
           outcome, students have an equivalent way to demonstrate learning.
@@ -2465,10 +2999,10 @@ footer {
 
     <div class="choice">
       <label>
-        <input type="checkbox"
-               name="equityCheck"
-               value="accommodations">
-
+        <input
+          type="checkbox"
+          name="equityCheck"
+          value="accommodations">
         <span>
           Approved accommodations and ordinary accessibility supports remain
           available even when generative AI is restricted.
@@ -2478,10 +3012,10 @@ footer {
 
     <div class="choice">
       <label>
-        <input type="checkbox"
-               name="equityCheck"
-               value="technology">
-
+        <input
+          type="checkbox"
+          name="equityCheck"
+          value="technology">
         <span>
           The design accounts for bandwidth, device limitations, private-space
           requirements, and technology failure.
@@ -2491,10 +3025,10 @@ footer {
 
     <div class="choice">
       <label>
-        <input type="checkbox"
-               name="equityCheck"
-               value="language">
-
+        <input
+          type="checkbox"
+          name="equityCheck"
+          value="language">
         <span>
           Language fluency, camera comfort, or oral performance is not
           accidentally replacing the actual construct being assessed.
@@ -2504,10 +3038,10 @@ footer {
 
     <div class="choice">
       <label>
-        <input type="checkbox"
-               name="equityCheck"
-               value="aiaccess">
-
+        <input
+          type="checkbox"
+          name="equityCheck"
+          value="aiaccess">
         <span>
           If AI use is required, students have equitable access without
           unexpected personal cost or inappropriate data-sharing.
@@ -2517,10 +3051,10 @@ footer {
 
     <div class="choice">
       <label>
-        <input type="checkbox"
-               name="equityCheck"
-               value="detector">
-
+        <input
+          type="checkbox"
+          name="equityCheck"
+          value="detector">
         <span>
           An AI-detector score will not be treated as proof or as the sole
           basis for a misconduct finding.
@@ -2530,10 +3064,10 @@ footer {
 
     <div class="choice">
       <label>
-        <input type="checkbox"
-               name="equityCheck"
-               value="proctoring">
-
+        <input
+          type="checkbox"
+          name="equityCheck"
+          value="proctoring">
         <span>
           Proctoring is used only when secure individual performance is
           genuinely necessary to the learning claim.
@@ -2543,10 +3077,10 @@ footer {
 
     <div class="choice">
       <label>
-        <input type="checkbox"
-               name="equityCheck"
-               value="workload">
-
+        <input
+          type="checkbox"
+          name="equityCheck"
+          value="workload">
         <span>
           Process evidence is purposeful and proportionate rather than
           surveillance or documentation busywork.
@@ -2556,10 +3090,10 @@ footer {
 
     <div class="choice">
       <label>
-        <input type="checkbox"
-               name="equityCheck"
-               value="support">
-
+        <input
+          type="checkbox"
+          name="equityCheck"
+          value="support">
         <span>
           Students know where to obtain legitimate help before confusion or
           pressure becomes inappropriate assistance.
@@ -2567,19 +3101,28 @@ footer {
       </label>
     </div>
 
-    <p class="checklist-progress"
-       id="equityProgress"
-       aria-live="polite"></p>
+    <p
+      class="checklist-progress"
+      id="equityProgress"
+      aria-live="polite">
+    </p>
+
   </fieldset>
+
 </section>
 
+
 <!-- STEP 9 -->
-<section class="panel"
-         id="build"
-         aria-labelledby="build-title">
+<section
+  class="panel"
+  id="build"
+  aria-labelledby="build-title">
 
   <span class="step-kicker">Step 9</span>
-  <h2 id="build-title">Build the redesigned assignment</h2>
+
+  <h2 id="build-title">
+    Build the redesigned assignment
+  </h2>
 
   <p class="section-lead">
     The worksheet will combine your selections into a student-facing assignment
@@ -2590,31 +3133,40 @@ footer {
 
   <div class="button-row">
 
-    <button type="button"
-            class="positive"
-            id="buildBtn">
+    <button
+      type="button"
+      class="positive"
+      id="buildBtn">
       Build redesigned assignment
     </button>
 
-    <button type="reset"
-            class="secondary">
+    <button
+      type="reset"
+      class="secondary">
       Reset worksheet
     </button>
 
   </div>
 
-  <p id="status"
-     role="status"
-     aria-live="polite"></p>
+  <p
+    id="status"
+    role="status"
+    aria-live="polite">
+  </p>
+
 </section>
 
 </form>
 
-<section class="result-panel"
-         id="result"
-         aria-labelledby="result-title">
 
-  <h2 id="result-title">Your redesigned assignment</h2>
+<section
+  class="result-panel"
+  id="result"
+  aria-labelledby="result-title">
+
+  <h2 id="result-title">
+    Your redesigned assignment
+  </h2>
 
   <p>
     Review the generated assignment below. You can revise the worksheet and
@@ -2622,32 +3174,43 @@ footer {
   </p>
 
   <div class="result-actions">
-    <button type="button"
-            class="positive"
-            id="copyBtn">
+
+    <button
+      type="button"
+      class="positive"
+      id="copyBtn">
       Copy assignment
     </button>
 
-    <button type="button"
-            id="printBtn">
+    <button
+      type="button"
+      id="printBtn">
       Print assignment
     </button>
 
-    <button type="button"
-            id="downloadTxtBtn">
+    <button
+      type="button"
+      id="downloadTxtBtn">
       Download .txt
     </button>
 
-    <button type="button"
-            id="downloadHtmlBtn">
+    <button
+      type="button"
+      id="downloadHtmlBtn">
       Download student-facing HTML
     </button>
+
   </div>
 
-  <article id="generatedAssignment"
-           tabindex="-1"></article>
+  <article
+    id="generatedAssignment"
+    tabindex="-1">
+  </article>
 
-  <div class="callout" style="margin-top:1rem;">
+  <div
+    class="callout"
+    style="margin-top:1rem;">
+
     <p>
       <strong>Instructor implementation note:</strong>
       if a submission raises concern, begin with the assignment rule and
@@ -2656,12 +3219,16 @@ footer {
       institutional procedures when there is actual evidence; do not begin
       with a detector score and require the student to prove innocence.
     </p>
+
   </div>
+
 </section>
 
-<section class="evidence-panel"
-         id="research"
-         aria-labelledby="research-title">
+
+<section
+  class="evidence-panel"
+  id="research"
+  aria-labelledby="research-title">
 
   <h2 id="research-title">
     Why redesign this way?
@@ -2670,14 +3237,19 @@ footer {
   <p class="section-lead">
     Academic integrity in the AI era is not simply a contest between better
     generation and better detection. The stronger educational question is:
-    <strong>what evidence lets us make a defensible claim about what this
-    student knows, can do, and can explain?</strong>
+    <strong>
+      what evidence lets us make a defensible claim about what this student
+      knows, can do, and can explain?
+    </strong>
   </p>
 
   <div class="myth-grid">
 
     <article class="myth-card">
-      <h3>Misconception: “Any AI use is cheating.”</h3>
+
+      <h3>
+        Misconception: “Any AI use is cheating.”
+      </h3>
 
       <p>
         AI use is not one behavior. Brainstorming, proofreading, generating a
@@ -2692,22 +3264,28 @@ footer {
       </p>
 
       <p class="small">
-        <a href="https://edtechdev.github.io/aied/concepts/academic-integrity/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/academic-integrity/"
+          target="_blank"
+          rel="noopener">
           Academic Integrity
         </a>
         ·
-        <a href="https://edtechdev.github.io/aied/concepts/assessment-validity/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/assessment-validity/"
+          target="_blank"
+          rel="noopener">
           Assessment Validity
         </a>
       </p>
+
     </article>
 
     <article class="myth-card">
-      <h3>Misconception: “A finished product proves learning.”</h3>
+
+      <h3>
+        Misconception: “A finished product proves learning.”
+      </h3>
 
       <p>
         Assisted performance and independent capability are not the same.
@@ -2722,20 +3300,25 @@ footer {
       </p>
 
       <p class="small">
-        <a href="https://edtechdev.github.io/aied/concepts/cognitive-offloading/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/cognitive-offloading/"
+          target="_blank"
+          rel="noopener">
           Cognitive Offloading
         </a>
       </p>
+
     </article>
 
     <article class="myth-card">
-      <h3>Cognitive surrender and over-reliance</h3>
+
+      <h3>
+        Cognitive surrender and over-reliance
+      </h3>
 
       <p>
-        Cognitive offloading is not inherently bad. Notes, calculators,
-        search, and AI can free attention for more complex work.
+        Cognitive offloading is not inherently bad. Notes, calculators, search,
+        and AI can free attention for more complex work.
       </p>
 
       <p>
@@ -2746,20 +3329,27 @@ footer {
 
       <p>
         A useful pattern is:
-        <strong>think first → use AI second → reflect and verify afterward.</strong>
+        <strong>
+          think first → use AI second → reflect and verify afterward.
+        </strong>
       </p>
 
       <p class="small">
-        <a href="https://edtechdev.github.io/aied/concepts/cognitive-offloading/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/cognitive-offloading/"
+          target="_blank"
+          rel="noopener">
           Cognitive Offloading
         </a>
       </p>
+
     </article>
 
     <article class="myth-card">
-      <h3>Misconception: “Confident AI is probably right.”</h3>
+
+      <h3>
+        Misconception: “Confident AI is probably right.”
+      </h3>
 
       <p>
         Fluent language is not evidence. Productive AI literacy includes
@@ -2773,16 +3363,21 @@ footer {
       </p>
 
       <p class="small">
-        <a href="https://edtechdev.github.io/aied/concepts/trust-calibration/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/trust-calibration/"
+          target="_blank"
+          rel="noopener">
           Trust Calibration
         </a>
       </p>
+
     </article>
 
     <article class="myth-card">
-      <h3>Misconception: “AI detectors prove authorship.”</h3>
+
+      <h3>
+        Misconception: “AI detectors prove authorship.”
+      </h3>
 
       <p>
         Detector output does not directly establish how a submission was
@@ -2796,16 +3391,21 @@ footer {
       </p>
 
       <p class="small">
-        <a href="https://edtechdev.github.io/aied/concepts/academic-integrity/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/academic-integrity/"
+          target="_blank"
+          rel="noopener">
           Academic Integrity
         </a>
       </p>
+
     </article>
 
     <article class="myth-card">
-      <h3>Cheating is also a social and motivational problem</h3>
+
+      <h3>
+        Cheating is also a social and motivational problem
+      </h3>
 
       <p>
         Choices about academic integrity can be influenced by opportunity,
@@ -2818,10 +3418,14 @@ footer {
         responsible norms, and predictable fair follow-up address more of the
         environment than shame-heavy messaging alone.
       </p>
+
     </article>
 
     <article class="myth-card">
-      <h3>Proctoring is a narrow tool, not a complete integrity strategy</h3>
+
+      <h3>
+        Proctoring is a narrow tool, not a complete integrity strategy
+      </h3>
 
       <p>
         Secure supervision can be appropriate when the learning claim truly
@@ -2834,10 +3438,14 @@ footer {
         can measure the same capability with fewer privacy, accessibility, and
         technology burdens.
       </p>
+
     </article>
 
     <article class="myth-card">
-      <h3>Equity is part of validity</h3>
+
+      <h3>
+        Equity is part of validity
+      </h3>
 
       <p>
         An oral defense, webcam recording, timed assessment, or synchronous
@@ -2850,6 +3458,7 @@ footer {
         credible evidence of the intended learning through an accessible,
         proportionate method.
       </p>
+
     </article>
 
   </div>
@@ -2861,8 +3470,14 @@ footer {
   <div class="resource-grid">
 
     <article class="resource-card">
-      <span class="source-type">Knowledge-base concept synthesis</span>
-      <h3>Academic Integrity</h3>
+
+      <span class="source-type">
+        Knowledge-base concept synthesis
+      </span>
+
+      <h3>
+        Academic Integrity
+      </h3>
 
       <p>
         Integrity as visible, verifiable, worthwhile learning rather than
@@ -2870,17 +3485,25 @@ footer {
       </p>
 
       <p>
-        <a href="https://edtechdev.github.io/aied/concepts/academic-integrity/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/academic-integrity/"
+          target="_blank"
+          rel="noopener">
           Open Academic Integrity
         </a>
       </p>
+
     </article>
 
     <article class="resource-card">
-      <span class="source-type">Knowledge-base concept synthesis</span>
-      <h3>Assessment Validity</h3>
+
+      <span class="source-type">
+        Knowledge-base concept synthesis
+      </span>
+
+      <h3>
+        Assessment Validity
+      </h3>
 
       <p>
         Use the intended learning construct to decide which kinds of assistance
@@ -2888,34 +3511,50 @@ footer {
       </p>
 
       <p>
-        <a href="https://edtechdev.github.io/aied/concepts/assessment-validity/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/assessment-validity/"
+          target="_blank"
+          rel="noopener">
           Open Assessment Validity
         </a>
       </p>
+
     </article>
 
     <article class="resource-card">
-      <span class="source-type">Knowledge-base concept synthesis</span>
-      <h3>Authentic Assessment</h3>
+
+      <span class="source-type">
+        Knowledge-base concept synthesis
+      </span>
+
+      <h3>
+        Authentic Assessment
+      </h3>
 
       <p>
         Realistic, contextual, judgment-rich, and process-aware assessment.
       </p>
 
       <p>
-        <a href="https://edtechdev.github.io/aied/concepts/authentic-assessment/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/authentic-assessment/"
+          target="_blank"
+          rel="noopener">
           Open Authentic Assessment
         </a>
       </p>
+
     </article>
 
     <article class="resource-card">
-      <span class="source-type">Knowledge-base concept synthesis</span>
-      <h3>Cognitive Offloading</h3>
+
+      <span class="source-type">
+        Knowledge-base concept synthesis
+      </span>
+
+      <h3>
+        Cognitive Offloading
+      </h3>
 
       <p>
         Why AI can either scaffold higher-level work or displace cognitive
@@ -2923,17 +3562,25 @@ footer {
       </p>
 
       <p>
-        <a href="https://edtechdev.github.io/aied/concepts/cognitive-offloading/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/cognitive-offloading/"
+          target="_blank"
+          rel="noopener">
           Open Cognitive Offloading
         </a>
       </p>
+
     </article>
 
     <article class="resource-card">
-      <span class="source-type">Knowledge-base concept synthesis</span>
-      <h3>Trust Calibration</h3>
+
+      <span class="source-type">
+        Knowledge-base concept synthesis
+      </span>
+
+      <h3>
+        Trust Calibration
+      </h3>
 
       <p>
         Teaching students when to trust, question, verify, or avoid relying on
@@ -2941,17 +3588,25 @@ footer {
       </p>
 
       <p>
-        <a href="https://edtechdev.github.io/aied/concepts/trust-calibration/"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://edtechdev.github.io/aied/concepts/trust-calibration/"
+          target="_blank"
+          rel="noopener">
           Open Trust Calibration
         </a>
       </p>
+
     </article>
 
     <article class="resource-card">
-      <span class="source-type">Assignment-design reference</span>
-      <h3>Transparent Assignment Design — TILT Higher Ed</h3>
+
+      <span class="source-type">
+        Assignment-design reference
+      </span>
+
+      <h3>
+        Transparent Assignment Design — TILT Higher Ed
+      </h3>
 
       <p>
         Structure assignments around Purpose, Tasks, and Criteria for Success;
@@ -2960,17 +3615,25 @@ footer {
       </p>
 
       <p>
-        <a href="https://www.tilthighered.com/resources"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://www.tilthighered.com/resources"
+          target="_blank"
+          rel="noopener">
           Open TILT Higher Ed resources
         </a>
       </p>
+
     </article>
 
     <article class="resource-card">
-      <span class="source-type">Design reference</span>
-      <h3>Accessibility Checklist</h3>
+
+      <span class="source-type">
+        Design reference
+      </span>
+
+      <h3>
+        Accessibility Checklist
+      </h3>
 
       <p>
         Use the accessibility checklist alongside institutional guidance when
@@ -2978,17 +3641,22 @@ footer {
       </p>
 
       <p>
-        <a href="https://citt-hc.github.io/apps/accessibility.html"
-           target="_blank"
-           rel="noopener">
+        <a
+          href="https://citt-hc.github.io/apps/accessibility.html"
+          target="_blank"
+          rel="noopener">
           Open the accessibility checklist
         </a>
       </p>
+
     </article>
 
   </div>
 
-  <div class="callout caution" style="margin-top:1.4rem;">
+  <div
+    class="callout caution"
+    style="margin-top:1.4rem;">
+
     <p>
       <strong>Evidence caution:</strong>
       not every attractive assessment redesign has direct experimental
@@ -2997,43 +3665,61 @@ footer {
       learning science, reduced opportunity for substitution, and better
       calibration—not a promise that one technique makes cheating impossible.
     </p>
+
   </div>
 
   <details>
-    <summary>Quick response when a submission raises concern</summary>
+
+    <summary>
+      Quick response when a submission raises concern
+    </summary>
 
     <div>
+
       <ol>
+
         <li>
           Re-read the exact assignment-level AI and collaboration rule.
         </li>
+
         <li>
           Review evidence already required of all students: sources, drafts,
           calculations, logs, data, or versions.
         </li>
+
         <li>
           Check substantive issues such as nonexistent sources, unexplained
           method changes, or unsupported reasoning.
         </li>
+
         <li>
           Give the student an opportunity to explain consequential decisions
           or reproduce a small amount of target reasoning under fair conditions.
         </li>
+
         <li>
           Treat technical signals, if used at all, as corroborating information
           rather than proof.
         </li>
+
         <li>
           Follow institutional procedures and due-process requirements.
         </li>
+
       </ol>
+
     </div>
+
   </details>
 
   <details>
-    <summary>Useful AI-policy boundary questions to answer for students</summary>
+
+    <summary>
+      Useful AI-policy boundary questions to answer for students
+    </summary>
 
     <div>
+
       <ul>
         <li>May I ask AI to brainstorm ideas?</li>
         <li>May I ask it to create an outline?</li>
@@ -3048,7 +3734,9 @@ footer {
           What must I still be able to explain or demonstrate independently?
         </li>
       </ul>
+
     </div>
+
   </details>
 
 </section>
@@ -3057,12 +3745,21 @@ footer {
 </main>
 
 <footer>
+
   <div class="wrap">
-    <strong>Redesign for Learning</strong><br>
+
+    <strong>
+      Redesign for Learning
+    </strong>
+    <br>
+
     A standalone worksheet for clearer, more valid, more equitable assessment
     in an AI-capable learning environment.
+
   </div>
+
 </footer>
+
 
 <script>
 (function () {
@@ -3079,14 +3776,18 @@ footer {
   const result = $("#result");
   const generatedAssignment = $("#generatedAssignment");
 
+
   const profiles = {
 
     writing: {
       label: "Writing / research / composition",
+
       outcome:
         "Evaluate and synthesize relevant evidence to construct and revise a defensible written argument for a specified audience.",
+
       independent:
         "Students should be able to explain the main claim, justify source choices, identify limitations, and describe a consequential revision in their own reasoning.",
+
       recommended: [
         "initial",
         "process",
@@ -3095,6 +3796,7 @@ footer {
         "verify",
         "disclosure"
       ],
+
       evidence: [
         "an initial proposal, prediction, or plan",
         "an annotated source or research log",
@@ -3102,49 +3804,72 @@ footer {
         "a response-to-feedback or revision note",
         "an AI-use disclosure"
       ],
+
       examples: [
         {
-          title: "Research paper → staged research argument",
+          title:
+            "Research paper → staged research argument",
+
           typical:
             "One polished paper submitted only at the end.",
+
           redesign:
             "Require a topic/question proposal, annotated research log, meaningful draft checkpoint, and revision memo. Anchor at least one claim in a course-specific, local, or current source.",
+
           verify:
             "Ask for a brief walkthrough explaining one major revision, one source decision, and one claim the student independently verified.",
+
           ai:
             "If AI is allowed, permit it only for named stages and require students to describe what they accepted, rejected, and verified."
         },
+
         {
-          title: "Argument essay → think, critique, revise",
+          title:
+            "Argument essay → think, critique, revise",
+
           typical:
             "Students produce a final persuasive essay from a generic prompt.",
+
           redesign:
             "Students first write a thesis and evidence plan without AI, then obtain critique and submit a before/after excerpt explaining why the revision improved the argument.",
+
           verify:
             "Ask students to defend one counterargument or evidence choice.",
+
           ai:
             "Use AI as a critic rather than as the final author."
         },
+
         {
-          title: "Textual analysis → course-specific evidence",
+          title:
+            "Textual analysis → course-specific evidence",
+
           typical:
             "Students answer a broad interpretive prompt that can be answered generically.",
+
           redesign:
             "Require close analysis of a specific passage, course discussion, instructor-created resource, or local cultural artifact.",
+
           verify:
             "Give students a new short passage and ask for a concise transfer analysis.",
+
           ai:
             "AI may help generate alternative interpretations, but students must evaluate them against the text."
         }
       ]
     },
 
+
     discussion: {
-      label: "Discussion board activity / online discussion",
+      label:
+        "Discussion board activity / online discussion",
+
       outcome:
         "Interpret course evidence, apply it to a specific context, and respond constructively to alternative interpretations.",
+
       independent:
         "Students should be able to explain how a course source supports their claim and how peer evidence changed, refined, or challenged their thinking.",
+
       recommended: [
         "context",
         "process",
@@ -3152,54 +3877,78 @@ footer {
         "individualize",
         "disclosure"
       ],
+
       evidence: [
         "an initial proposal, prediction, or plan",
         "a response-to-feedback or revision note",
         "an AI-use disclosure"
       ],
+
       examples: [
         {
-          title: "Discussion board → evidence-centered dialogue",
+          title:
+            "Discussion board → evidence-centered dialogue",
+
           typical:
             "One generic initial post and two brief replies.",
+
           redesign:
             "Anchor the initial post in a course-only reading/video plus a local, current, or personal application. Require one quotation, data point, or artifact that the student interprets.",
+
           verify:
             "One reply extends or challenges a peer's reasoning; the student ends with a short synthesis of what changed in their thinking.",
+
           ai:
             "If AI supports brainstorming, the submitted post must still make the student's own evidence-to-claim connection visible."
         },
+
         {
-          title: "Current issue forum → compare frameworks",
+          title:
+            "Current issue forum → compare frameworks",
+
           typical:
             "Students summarize opinions about a current topic.",
+
           redesign:
             "Students apply two course frameworks to one case and identify where the frameworks lead to different judgments.",
+
           verify:
             "Add one new fact and ask how the conclusion changes.",
+
           ai:
             "AI can generate a counter-position for critique, but evaluation must be grounded in course evidence."
         },
+
         {
-          title: "Peer response → substantive challenge",
+          title:
+            "Peer response → substantive challenge",
+
           typical:
             "Replies mostly say 'I agree' or repeat the original post.",
+
           redesign:
             "Require each reply to identify one assumption, add one relevant piece of evidence, and pose one question that could change the conclusion.",
+
           verify:
             "The original poster explains which reply most changed the analysis and why.",
+
           ai:
             "Grade the quality of the evidence-based exchange rather than policing prose style."
         }
       ]
     },
 
+
     quantitative: {
-      label: "Math / quantitative problem solving",
+      label:
+        "Math / quantitative problem solving",
+
       outcome:
         "Select, execute, and justify an appropriate quantitative method, diagnose errors, and transfer the reasoning to a structurally similar problem.",
+
       independent:
         "Students should be able to choose the method, explain key steps, identify an error or assumption, and solve a parallel problem without outsourcing the target reasoning.",
+
       recommended: [
         "initial",
         "process",
@@ -3207,55 +3956,79 @@ footer {
         "transfer",
         "independent"
       ],
+
       evidence: [
         "an initial proposal, prediction, or plan",
         "calculations, scratch work, or a reasoning trace",
         "a response-to-feedback or revision note",
         "an AI-use disclosure"
       ],
+
       examples: [
         {
-          title: "Problem set → attempt, support, error analysis",
+          title:
+            "Problem set → attempt, support, error analysis",
+
           typical:
             "Students submit only polished final solutions.",
+
           redesign:
             "Require an independent first attempt on selected problems. After that attempt, allow approved hints, tutoring, AI, or worked examples for revision.",
+
           verify:
             "Use a short walkthrough or parallel follow-up problem.",
+
           ai:
             "Position AI as a source of hints or critique rather than a replacement for the first attempt."
         },
+
         {
-          title: "Statistics exercise → current dataset judgment",
+          title:
+            "Statistics exercise → current dataset judgment",
+
           typical:
             "Students run a standard procedure on a clean textbook dataset.",
+
           redesign:
             "Use a current or local dataset with ambiguity, missing values, anomalies, or a meaningful choice of representation.",
+
           verify:
             "Change one variable or assumption and ask how the analysis should change.",
+
           ai:
             "AI may support syntax if methodological judgment remains the student's responsibility."
         },
+
         {
-          title: "Spreadsheet model → assumption audit",
+          title:
+            "Spreadsheet model → assumption audit",
+
           typical:
             "Students submit a completed spreadsheet.",
+
           redesign:
             "Require an assumptions table, formula checks, and a decision note explaining consequential modeling choices.",
+
           verify:
             "Change one parameter and ask the student to predict and explain the effect before recalculating.",
+
           ai:
             "AI may suggest formulas, but students must test and explain them."
         }
       ]
     },
 
+
     lab: {
-      label: "Lab report / laboratory activity",
+      label:
+        "Lab report / laboratory activity",
+
       outcome:
         "Use observations or data to analyze a scientific question, evaluate uncertainty, and justify a conclusion appropriately bounded by the evidence.",
+
       independent:
         "Students should be able to explain a result, connect it to actual observations or data, identify uncertainty or anomalies, and distinguish what the evidence does and does not support.",
+
       recommended: [
         "initial",
         "process",
@@ -3263,6 +4036,7 @@ footer {
         "verify",
         "individualize"
       ],
+
       evidence: [
         "an initial proposal, prediction, or plan",
         "calculations, scratch work, or a reasoning trace",
@@ -3270,49 +4044,72 @@ footer {
         "a decision or design log",
         "an AI-use disclosure"
       ],
+
       examples: [
         {
-          title: "Lab report → evidence trail",
+          title:
+            "Lab report → evidence trail",
+
           typical:
             "One polished lab report based on a provided procedure and dataset.",
+
           redesign:
             "Collect a pre-lab prediction, raw observations/data, calculation work, concise methods note, and results tied directly to the student's data. Require anomalies and uncertainty to be addressed.",
+
           verify:
             "Ask for a short explanation of one graph/result, one unexpected finding, and how the evidence supports—or does not support—the conclusion.",
+
           ai:
             "AI can support specified stages, but students remain responsible for their own observations, analysis, verification, and interpretation."
         },
+
         {
-          title: "Virtual lab → prediction and parameter change",
+          title:
+            "Virtual lab → prediction and parameter change",
+
           typical:
             "Students complete a simulation and report the expected result.",
+
           redesign:
             "Students predict a relationship before running the simulation, document one parameter choice, and test a second condition that challenges the initial interpretation.",
+
           verify:
             "Give a new parameter value and ask the student to predict the result before rerunning.",
+
           ai:
             "AI may help explain a method after the student's prediction, not replace the prediction."
         },
+
         {
-          title: "Field observation → local evidence",
+          title:
+            "Field observation → local evidence",
+
           typical:
             "Students summarize a general phenomenon.",
+
           redesign:
             "Require privacy-safe local observations, structured field notes, and comparison with a course concept or published reference.",
+
           verify:
             "Students explain which observation most influenced their conclusion and which uncertainty remains.",
+
           ai:
             "AI may help categorize patterns only after students have recorded their own observations."
         }
       ]
     },
 
+
     quiz: {
-      label: "Quiz / exam / knowledge check",
+      label:
+        "Quiz / exam / knowledge check",
+
       outcome:
         "Demonstrate accurate retrieval, reasoning, application, or professional judgment under resource conditions appropriate to the intended competency.",
+
       independent:
         "Students should be able to perform the specific knowledge, reasoning, or judgment being certified without unauthorized substitution.",
+
       recommended: [
         "independent",
         "transfer",
@@ -3320,58 +4117,83 @@ footer {
         "reminder",
         "teach"
       ],
+
       evidence: [
         "calculations, scratch work, or a reasoning trace"
       ],
+
       examples: [
         {
-          title: "Open-resource exam → reasoning under evidence",
+          title:
+            "Open-resource exam → reasoning under evidence",
+
           typical:
             "Closed-book recall questions are used even when recall is not the primary outcome.",
+
           redesign:
             "When appropriate, allow specified resources and ask students to interpret a case, select evidence, justify an answer, or explain why an attractive alternative is wrong.",
+
           verify:
             "Use a new short case or parallel item targeting the same reasoning.",
+
           ai:
             "If independent judgment is the construct, explicitly prohibit generative assistance during the assessment."
         },
+
         {
-          title: "Low-stakes retrieval check → calibration",
+          title:
+            "Low-stakes retrieval check → calibration",
+
           typical:
             "Every practice activity allows unlimited assistance.",
+
           redesign:
             "Use a short AI-free retrieval check so students can see what they actually know without assistance.",
+
           verify:
             "Provide immediate feedback and a second opportunity after study.",
+
           ai:
             "AI can be used after the first attempt for explanation or practice."
         },
+
         {
-          title: "High-stakes competency check → least intrusive security",
+          title:
+            "High-stakes competency check → least intrusive security",
+
           typical:
             "Heavy surveillance is added automatically.",
+
           redesign:
             "Determine which competency genuinely requires secure individual performance. Restrict only resources that would invalidate that claim.",
+
           verify:
             "Use a brief parallel or follow-up check only where needed.",
+
           ai:
             "State boundaries immediately before the assessment, not only in the syllabus."
         }
       ]
     },
 
+
     presentation: {
-      label: "Presentation / oral communication",
+      label:
+        "Presentation / oral communication",
+
       outcome:
         "Organize evidence for a defined audience, communicate a defensible message, and respond to questions about consequential choices.",
+
       independent:
         "Students should be able to explain the argument structure, evidence, design choices, and limitations without relying on an AI-generated script as a substitute for understanding.",
+
       recommended: [
         "process",
         "context",
         "verify",
         "disclosure"
       ],
+
       evidence: [
         "an initial proposal, prediction, or plan",
         "an annotated source or research log",
@@ -3379,49 +4201,72 @@ footer {
         "a decision or design log",
         "an AI-use disclosure"
       ],
+
       examples: [
         {
-          title: "Presentation → evidence notes + Q&A",
+          title:
+            "Presentation → evidence notes + Q&A",
+
           typical:
             "Students submit polished slides and deliver a rehearsed talk.",
+
           redesign:
             "Collect a one-page argument map or evidence note before the slides. Grade audience adaptation and evidence choice rather than decorative polish alone.",
+
           verify:
             "Ask one or two questions about evidence, limitations, or a design decision.",
+
           ai:
             "AI may help brainstorm structure if students disclose its role and remain responsible for evidence."
         },
+
         {
-          title: "Async presentation → multimodal equivalent",
+          title:
+            "Async presentation → multimodal equivalent",
+
           typical:
             "Every student must record a webcam presentation.",
+
           redesign:
             "Allow narrated slides, audio with visuals, annotated screencast, or another accessible format when camera presence is not the learning outcome.",
+
           verify:
             "Use a brief written or audio follow-up question.",
+
           ai:
             "Clarify whether AI may help draft speaker notes and what must remain the student's own explanation."
         },
+
         {
-          title: "Professional pitch → decision defense",
+          title:
+            "Professional pitch → decision defense",
+
           typical:
             "Students make a generic recommendation.",
+
           redesign:
             "Give a defined stakeholder, constraints, evidence base, and trade-off. Require one rejected alternative.",
+
           verify:
             "Ask how the recommendation changes if one constraint changes.",
+
           ai:
             "AI can generate competing options; students are assessed on judgment and defense."
         }
       ]
     },
 
+
     coding: {
-      label: "Coding / data / technical work",
+      label:
+        "Coding / data / technical work",
+
       outcome:
         "Design, implement, test, and explain a technical solution while diagnosing errors and justifying consequential implementation choices.",
+
       independent:
         "Students should be able to explain the architecture or algorithm, trace important logic, interpret test failures, and modify the solution for a new requirement.",
+
       recommended: [
         "initial",
         "process",
@@ -3430,6 +4275,7 @@ footer {
         "transfer",
         "disclosure"
       ],
+
       evidence: [
         "an initial proposal, prediction, or plan",
         "a decision or design log",
@@ -3437,49 +4283,72 @@ footer {
         "a response-to-feedback or revision note",
         "an AI-use disclosure"
       ],
+
       examples: [
         {
-          title: "Programming assignment → design, commits, review",
+          title:
+            "Programming assignment → design, commits, review",
+
           typical:
             "Students submit only a final codebase.",
+
           redesign:
             "Require a design/pseudocode plan, meaningful commits, student-authored tests, and a short note on one design trade-off.",
+
           verify:
             "Select one function or component and ask the student to explain, change, or diagnose it.",
+
           ai:
             "If code generation is allowed, disclosure and explanation become part of the task."
         },
+
         {
-          title: "AI-assisted debugging → critique the helper",
+          title:
+            "AI-assisted debugging → critique the helper",
+
           typical:
             "Students silently paste errors into AI and submit repaired code.",
+
           redesign:
             "Students record an initial diagnosis, obtain permitted AI suggestions, test them, and document one useful and one incorrect or incomplete suggestion.",
+
           verify:
             "Give a similar bug and ask for an unaided diagnosis or test plan.",
+
           ai:
             "AI use is integrated because evaluating debugging advice is itself assessed."
         },
+
         {
-          title: "Data notebook → new-data transfer",
+          title:
+            "Data notebook → new-data transfer",
+
           typical:
             "Students reproduce a known analysis.",
+
           redesign:
             "Require data-cleaning decisions, assumptions, validation checks, and a narrative connecting output to the research question.",
+
           verify:
             "Apply the workflow to a new slice of data.",
+
           ai:
             "AI may support syntax while interpretation and methodological judgment remain visible."
         }
       ]
     },
 
+
     project: {
-      label: "Project / design / case analysis",
+      label:
+        "Project / design / case analysis",
+
       outcome:
         "Frame a problem, evaluate alternatives under constraints, create or recommend a solution, and defend trade-offs using appropriate evidence.",
+
       independent:
         "Students should be able to explain how the problem was framed, why key alternatives were accepted or rejected, and how evidence supports the final decision.",
+
       recommended: [
         "process",
         "context",
@@ -3488,6 +4357,7 @@ footer {
         "critique",
         "disclosure"
       ],
+
       evidence: [
         "an initial proposal, prediction, or plan",
         "a decision or design log",
@@ -3495,49 +4365,72 @@ footer {
         "a response-to-feedback or revision note",
         "an AI-use disclosure"
       ],
+
       examples: [
         {
-          title: "Design project → decisions, prototypes, iteration",
+          title:
+            "Design project → decisions, prototypes, iteration",
+
           typical:
             "Only the polished final product is graded.",
+
           redesign:
             "Collect a problem definition, criteria, alternatives, a prototype/draft checkpoint, and a change log showing how evidence or feedback changed the design.",
+
           verify:
             "Ask the student to defend one trade-off and describe what they would test next.",
+
           ai:
             "AI may generate alternatives, but evaluation and final judgment remain student responsibilities."
         },
+
         {
-          title: "Case analysis → constrained recommendation",
+          title:
+            "Case analysis → constrained recommendation",
+
           typical:
             "Students write a generic recommendation memo.",
+
           redesign:
             "Use a specific audience, limited resources, incomplete evidence, and competing stakeholder priorities. Require one assumption and one rejected option.",
+
           verify:
             "Add one new fact and ask how the recommendation changes.",
+
           ai:
             "AI can generate a competing recommendation for the student to critique."
         },
+
         {
-          title: "Community-facing project → authentic audience",
+          title:
+            "Community-facing project → authentic audience",
+
           typical:
             "The instructor is the only audience.",
+
           redesign:
             "Create a product for a defined campus, community, professional, or public audience and require evidence of audience needs or constraints.",
+
           verify:
             "Students explain how one design decision responds to that audience.",
+
           ai:
             "If AI supports production, grade human decisions and evidence rather than polish alone."
         }
       ]
     },
 
+
     reflection: {
-      label: "Reflection / portfolio",
+      label:
+        "Reflection / portfolio",
+
       outcome:
         "Use specific evidence from one's own work to evaluate growth, explain changes in understanding, and identify a justified next step.",
+
       independent:
         "Students should be able to connect claims about growth to concrete artifacts and describe how their thinking changed rather than submitting generic reflective prose.",
+
       recommended: [
         "process",
         "context",
@@ -3545,53 +4438,77 @@ footer {
         "individualize",
         "disclosure"
       ],
+
       evidence: [
         "a response-to-feedback or revision note",
         "an AI-use disclosure"
       ],
+
       examples: [
         {
-          title: "Portfolio reflection → artifact-grounded growth",
+          title:
+            "Portfolio reflection → artifact-grounded growth",
+
           typical:
             "Students write a broad reflection about what they learned.",
+
           redesign:
             "Require specific artifacts, a before/after change, and evidence for that change.",
+
           verify:
             "Ask the student to annotate one artifact or discuss one turning point.",
+
           ai:
             "AI may help organize ideas, but personal evidence and interpretation must come from the student."
         },
+
         {
-          title: "Learning journal → changed-mind entries",
+          title:
+            "Learning journal → changed-mind entries",
+
           typical:
             "Weekly entries become summaries of course content.",
+
           redesign:
             "Ask for an initial claim, new evidence, what changed or remained unresolved, and one next question.",
+
           verify:
             "Students synthesize two entries and identify a recurring reasoning pattern.",
+
           ai:
             "AI can provide feedback on clarity if disclosed."
         },
+
         {
-          title: "Practicum reflection → privacy-safe decision analysis",
+          title:
+            "Practicum reflection → privacy-safe decision analysis",
+
           typical:
             "Students narrate an experience in unnecessary detail.",
+
           redesign:
             "Use de-identified scenarios and focus on professional judgment, alternatives, and next steps.",
+
           verify:
             "Ask one follow-up question about an alternative action.",
+
           ai:
             "Do not require students to paste private or regulated information into AI systems."
         }
       ]
     },
 
+
     group: {
-      label: "Group / collaborative work",
+      label:
+        "Group / collaborative work",
+
       outcome:
         "Collaborate to produce a defensible shared product while documenting consequential team decisions and demonstrating each member's understanding.",
+
       independent:
         "Each student should be able to explain the team's core reasoning, their contribution, and at least one consequential group decision.",
+
       recommended: [
         "process",
         "verify",
@@ -3599,6 +4516,7 @@ footer {
         "individualize",
         "disclosure"
       ],
+
       evidence: [
         "an initial proposal, prediction, or plan",
         "a decision or design log",
@@ -3606,37 +4524,55 @@ footer {
         "a response-to-feedback or revision note",
         "an AI-use disclosure"
       ],
+
       examples: [
         {
-          title: "Team report → decision log + individual reflection",
+          title:
+            "Team report → decision log + individual reflection",
+
           typical:
             "Only one final group product is submitted.",
+
           redesign:
             "Require a brief team decision log, defined contributions, one milestone, and an individual reflection identifying one team choice the student influenced.",
+
           verify:
             "Each member explains one shared decision or completes a short individualized follow-up.",
+
           ai:
             "The team documents shared AI use and distinguishes AI contributions from human decisions."
         },
+
         {
-          title: "Collaborative case → distributed expertise",
+          title:
+            "Collaborative case → distributed expertise",
+
           typical:
             "Students divide sections and combine them at the end.",
+
           redesign:
             "Assign interdependent roles that require synthesis and add a midpoint where members challenge assumptions across roles.",
+
           verify:
             "Ask each student how another role's evidence changed the final recommendation.",
+
           ai:
             "AI may support a role only within stated boundaries."
         },
+
         {
-          title: "Team design → prototype + individual transfer",
+          title:
+            "Team design → prototype + individual transfer",
+
           typical:
             "A polished shared artifact obscures who understands the work.",
+
           redesign:
             "Collect team criteria, prototype iterations, and a change log. After submission, each student addresses a small new constraint.",
+
           verify:
             "Use a short written, oral, or demonstration-based transfer task.",
+
           ai:
             "AI can support ideation if alternatives are evaluated transparently."
         }
@@ -3645,76 +4581,127 @@ footer {
 
   };
 
+
   const formatGuidance = {
 
     async: {
-      label: "Fully online — asynchronous",
+      label:
+        "Fully online — asynchronous",
+
       note:
         "Favor asynchronous evidence: staged submissions, annotated work, brief audio/video/written walkthroughs, version history, or short follow-up quizzes. Avoid requiring live meetings unless synchronous performance is part of the learning outcome.",
+
       access:
         "Offer equivalent asynchronous verification when real-time attendance, camera use, or private-space access is not part of the construct."
     },
 
     sync: {
-      label: "Fully online — synchronous",
+      label:
+        "Fully online — synchronous",
+
       note:
         "A short live explanation, breakout activity, or demonstration can provide direct evidence, but keep verification brief and provide an equivalent alternative when live performance is not the learning outcome.",
+
       access:
         "Plan for connectivity failures, approved accommodations, and non-camera alternatives when visual presence is unnecessary."
     },
 
     hybrid: {
-      label: "Hybrid / blended",
+      label:
+        "Hybrid / blended",
+
       note:
         "Use the online space for staged process evidence and the in-person portion for brief transfer, explanation, or demonstration.",
+
       access:
         "Ensure online and in-person evidence routes are equivalent in what they measure."
     },
 
     inperson: {
-      label: "Primarily in person",
+      label:
+        "Primarily in person",
+
       note:
         "Use short in-class baseline attempts, peer critique, demonstrations, or transfer tasks to complement take-home work.",
+
       access:
         "Avoid turning every activity into a timed performance when timing is not part of the construct."
     },
 
     hyflex: {
-      label: "HyFlex / flexible participation",
+      label:
+        "HyFlex / flexible participation",
+
       note:
         "Design equivalent evidence pathways across participation modes so modality does not change the construct or grading standard.",
+
       access:
         "State the evidence required, then allow more than one accessible method when modality is not itself the learning outcome."
     }
 
   };
 
+
   const strategyNames = {
-    initial: "independent first attempt or prediction",
-    process: "visible process evidence",
-    context: "authentic or course-specific context",
-    feedback: "feedback and revision",
-    verify: "brief learning verification",
-    disclosure: "AI-use disclosure and reflection",
-    independent: "AI-free independent practice",
-    critique: "critique of AI or alternative solutions",
-    individualize: "individualized or local evidence",
-    transfer: "parallel transfer check",
-    teach: "integrity and AI-literacy practice",
-    reminder: "just-in-time integrity reminder"
+    initial:
+      "independent first attempt or prediction",
+
+    process:
+      "visible process evidence",
+
+    context:
+      "authentic or course-specific context",
+
+    feedback:
+      "feedback and revision",
+
+    verify:
+      "brief learning verification",
+
+    disclosure:
+      "AI-use disclosure and reflection",
+
+    independent:
+      "AI-free independent practice",
+
+    critique:
+      "critique of AI or alternative solutions",
+
+    individualize:
+      "individualized or local evidence",
+
+    transfer:
+      "parallel transfer check",
+
+    teach:
+      "integrity and AI-literacy practice",
+
+    reminder:
+      "just-in-time integrity reminder"
   };
 
+
   const aiLevelLabels = {
-    no: "No generative AI",
-    limited: "Limited AI",
-    disclosed: "AI allowed with attribution and disclosure",
-    integrated: "AI-integrated"
+    no:
+      "No generative AI",
+
+    limited:
+      "Limited AI",
+
+    disclosed:
+      "AI allowed with attribution and disclosure",
+
+    integrated:
+      "AI-integrated"
   };
+
 
   const technicalGuides = {
 
     video: {
-      title: "Record and share a short video",
+      title:
+        "Record and share a short video",
+
       steps: [
         "Use the institution-approved video tool, LMS recorder, Zoom/Teams/Panopto workflow, or device camera specified by your instructor.",
         "Keep the recording to the requested length and focus on the specific reasoning, decision, result, or revision you were asked to explain.",
@@ -3725,7 +4712,9 @@ footer {
     },
 
     googleVersion: {
-      title: "Preserve version history in Google Docs",
+      title:
+        "Preserve version history in Google Docs",
+
       steps: [
         "Do your work in the same Google Doc rather than repeatedly copying the text into new documents.",
         "At meaningful checkpoints, choose File → Version history → Name current version.",
@@ -3737,7 +4726,9 @@ footer {
     },
 
     wordVersion: {
-      title: "Preserve revisions in Microsoft Word",
+      title:
+        "Preserve revisions in Microsoft Word",
+
       steps: [
         "If possible, save the document in OneDrive or SharePoint and keep AutoSave on so Word can preserve cloud versions.",
         "To review cloud versions, use File → Info → Version History or the Version History option near the document title, depending on your version of Word.",
@@ -3749,7 +4740,9 @@ footer {
     },
 
     shareLink: {
-      title: "Share a file or link with the correct permissions",
+      title:
+        "Share a file or link with the correct permissions",
+
       steps: [
         "Use the institution-approved storage location whenever one is provided.",
         "Set access to the narrowest permission that still allows the instructor to view the work—usually a specific person, course group, or institutional account rather than a public link.",
@@ -3760,7 +4753,9 @@ footer {
     },
 
     screencast: {
-      title: "Record a screen or whiteboard walkthrough",
+      title:
+        "Record a screen or whiteboard walkthrough",
+
       steps: [
         "Open only the materials needed for the explanation and close unrelated tabs, notifications, private messages, and sensitive information.",
         "Record the requested portion of your screen, whiteboard, code, calculation, data display, or revision while explaining the reasoning behind it.",
@@ -3772,185 +4767,297 @@ footer {
 
   };
 
+
   function esc(value) {
-    return String(value ?? "").replace(/[&<>"']/g, char => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      "\"": "&quot;",
-      "'": "&#039;"
-    })[char]);
+    return String(value ?? "").replace(
+      /[&<>"']/g,
+      char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#039;"
+      })[char]
+    );
   }
+
 
   function checkedValues(name) {
     return $$(`input[name="${name}"]:checked`)
       .map(el => el.value);
   }
 
+
   function selectedValue(name) {
-    const el = $(`input[name="${name}"]:checked`);
-    return el ? el.value : "";
+    const el =
+      $(`input[name="${name}"]:checked`);
+
+    return el
+      ? el.value
+      : "";
   }
+
 
   function joinHuman(items) {
-    const clean = items.filter(Boolean);
+    const clean =
+      items.filter(Boolean);
 
-    if (clean.length === 0) return "";
-    if (clean.length === 1) return clean[0];
-    if (clean.length === 2) return `${clean[0]} and ${clean[1]}`;
+    if (clean.length === 0) {
+      return "";
+    }
 
-    return `${clean.slice(0, -1).join(", ")}, and ${clean[clean.length - 1]}`;
+    if (clean.length === 1) {
+      return clean[0];
+    }
+
+    if (clean.length === 2) {
+      return `${clean[0]} and ${clean[1]}`;
+    }
+
+    return (
+      `${clean.slice(0, -1).join(", ")}, and ` +
+      clean[clean.length - 1]
+    );
   }
+
 
   function typeProfile() {
-    return profiles[$("#assignmentType").value] || profiles.writing;
+    return (
+      profiles[$("#assignmentType").value] ||
+      profiles.writing
+    );
   }
+
 
   function formatProfile() {
-    return formatGuidance[$("#courseFormat").value] || formatGuidance.async;
+    return (
+      formatGuidance[$("#courseFormat").value] ||
+      formatGuidance.async
+    );
   }
+
 
   function announce(message) {
-    status.textContent = message;
+    status.textContent =
+      message;
   }
 
+
   function updateFormatNote() {
-    const format = formatProfile();
+    const format =
+      formatProfile();
 
     $("#formatNote").innerHTML = `
       <h3>${esc(format.label)}: design implication</h3>
-      <p>${esc(format.note)}</p>
+
+      <p>
+        ${esc(format.note)}
+      </p>
+
       <p class="small">
-        <strong>Accessibility:</strong> ${esc(format.access)}
+        <strong>Accessibility:</strong>
+        ${esc(format.access)}
       </p>
     `;
   }
 
+
   function renderExamples() {
-    const profile = typeProfile();
-    const grid = $("#exampleGrid");
+    const profile =
+      typeProfile();
 
-    grid.innerHTML = profile.examples.map((example, index) => `
-      <article class="example-card">
-        <h3>${esc(example.title)}</h3>
+    const grid =
+      $("#exampleGrid");
 
-        <p>
-          <strong>Typical version:</strong>
-          ${esc(example.typical)}
-        </p>
+    grid.innerHTML =
+      profile.examples.map((example, index) => `
+        <article class="example-card">
 
-        <p>
-          <strong>Redesign:</strong>
-          ${esc(example.redesign)}
-        </p>
+          <h3>
+            ${esc(example.title)}
+          </h3>
 
-        <p>
-          <strong>Verification:</strong>
-          ${esc(example.verify)}
-        </p>
+          <p>
+            <strong>Typical version:</strong>
+            ${esc(example.typical)}
+          </p>
 
-        <p>
-          <strong>AI boundary:</strong>
-          ${esc(example.ai)}
-        </p>
+          <p>
+            <strong>Redesign:</strong>
+            ${esc(example.redesign)}
+          </p>
 
-        <div class="button-row">
-          <button
-            type="button"
-            class="secondary apply-example"
-            data-example-index="${index}">
-            Add this pattern to my notes
-          </button>
-        </div>
-      </article>
-    `).join("");
+          <p>
+            <strong>Verification:</strong>
+            ${esc(example.verify)}
+          </p>
 
-    $$(".apply-example", grid).forEach(button => {
-      button.addEventListener("click", () => {
-        const example =
-          profile.examples[Number(button.dataset.exampleIndex)];
+          <p>
+            <strong>AI boundary:</strong>
+            ${esc(example.ai)}
+          </p>
 
-        const notes = $("#redesignNotes");
+          <div class="button-row">
 
-        const addition =
-          `${example.title}\n` +
-          `Redesign: ${example.redesign}\n` +
-          `Verification: ${example.verify}\n` +
-          `AI boundary: ${example.ai}`;
+            <button
+              type="button"
+              class="secondary apply-example"
+              data-example-index="${index}">
+              Add this pattern to my notes
+            </button>
 
-        notes.value = notes.value.trim()
-          ? `${notes.value.trim()}\n\n${addition}`
-          : addition;
+          </div>
 
-        notes.focus();
-        announce("Example added to your redesign notes.");
+        </article>
+      `).join("");
+
+    $$(".apply-example", grid)
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const example =
+              profile.examples[
+                Number(button.dataset.exampleIndex)
+              ];
+
+            const notes =
+              $("#redesignNotes");
+
+            const addition =
+              `${example.title}\n` +
+              `Redesign: ${example.redesign}\n` +
+              `Verification: ${example.verify}\n` +
+              `AI boundary: ${example.ai}`;
+
+            notes.value =
+              notes.value.trim()
+                ? `${notes.value.trim()}\n\n${addition}`
+                : addition;
+
+            notes.focus();
+
+            announce(
+              "Example added to your redesign notes."
+            );
+          }
+        );
+
       });
-    });
   }
+
 
   function markRecommendations() {
     const recommended =
-      new Set(typeProfile().recommended);
+      new Set(
+        typeProfile().recommended
+      );
 
-    $$("[data-strategy-card]").forEach(card => {
-      const key = card.dataset.strategyCard;
-      const slot = $(".recommend-slot", card);
-      const isRecommended = recommended.has(key);
+    $$("[data-strategy-card]")
+      .forEach(card => {
 
-      card.classList.toggle("recommended", isRecommended);
+        const key =
+          card.dataset.strategyCard;
 
-      slot.innerHTML = isRecommended
-        ? `<span class="badge recommended">Recommended</span>`
-        : "";
-    });
+        const slot =
+          $(".recommend-slot", card);
+
+        const isRecommended =
+          recommended.has(key);
+
+        card.classList.toggle(
+          "recommended",
+          isRecommended
+        );
+
+        slot.innerHTML =
+          isRecommended
+            ? `<span class="badge recommended">Recommended</span>`
+            : "";
+
+      });
   }
 
+
   function applyRecommendedStrategies() {
-    const profile = typeProfile();
+    const profile =
+      typeProfile();
 
-    profile.recommended.forEach(key => {
-      const checkbox =
-        $(`input[name="strategy"][value="${key}"]`);
+    profile.recommended
+      .forEach(key => {
 
-      if (checkbox) checkbox.checked = true;
-    });
+        const checkbox =
+          $(
+            `input[name="strategy"][value="${key}"]`
+          );
+
+        if (checkbox) {
+          checkbox.checked = true;
+        }
+
+      });
 
     recommendEvidence();
     updateStrategyCards();
 
-    announce("Recommended strategies and process evidence applied.");
+    announce(
+      "Recommended strategies and process evidence applied."
+    );
   }
+
 
   function recommendEvidence() {
     const desired =
-      new Set(typeProfile().evidence);
+      new Set(
+        typeProfile().evidence
+      );
 
-    $$('input[name="processEvidence"]').forEach(input => {
-      if (desired.has(input.value)) {
-        input.checked = true;
-      }
-    });
+    $$('input[name="processEvidence"]')
+      .forEach(input => {
+
+        if (
+          desired.has(input.value)
+        ) {
+          input.checked = true;
+        }
+
+      });
   }
+
 
   function updateStrategyCards() {
-    $$("[data-strategy-card]").forEach(card => {
-      const input =
-        $('input[name="strategy"]', card);
+    $$("[data-strategy-card]")
+      .forEach(card => {
 
-      card.classList.toggle(
-        "selected",
-        input && input.checked
-      );
-    });
+        const input =
+          $(
+            'input[name="strategy"]',
+            card
+          );
+
+        card.classList.toggle(
+          "selected",
+          input && input.checked
+        );
+
+      });
   }
 
+
   function suggestOutcome() {
-    const profile = typeProfile();
+    const profile =
+      typeProfile();
 
     $("#learningOutcome").value =
       profile.outcome;
 
-    if (!$("#independentCapability").value.trim()) {
+    if (
+      !$("#independentCapability")
+        .value
+        .trim()
+    ) {
       $("#independentCapability").value =
         profile.independent;
     }
@@ -3962,9 +5069,11 @@ footer {
     updateAiVisibilityAndPolicy();
   }
 
+
   function updateAiVisibilityAndPolicy() {
     const level =
-      selectedValue("aiLevel") || "no";
+      selectedValue("aiLevel") ||
+      "no";
 
     $("#aiStagesPanel").hidden =
       level === "no";
@@ -3973,9 +5082,11 @@ footer {
       makePolicyText();
   }
 
+
   function makePolicyText() {
     const level =
-      selectedValue("aiLevel") || "no";
+      selectedValue("aiLevel") ||
+      "no";
 
     const stages =
       checkedValues("aiStage");
@@ -3984,11 +5095,20 @@ footer {
       checkedValues("disclosure");
 
     const independent =
-      $("#independentCapability").value.trim();
+      $("#independentCapability")
+        .value
+        .trim();
 
-    const why = independent
-      ? ` The purpose of this boundary is to ensure that you can independently demonstrate ${independent.charAt(0).toLowerCase()}${independent.slice(1)}`
-      : " The purpose of this boundary is to protect the learning this assignment is intended to measure.";
+    const why =
+      independent
+        ? (
+            " The purpose of this boundary is to ensure that you can independently demonstrate " +
+            independent.charAt(0).toLowerCase() +
+            independent.slice(1)
+          )
+        : (
+            " The purpose of this boundary is to protect the learning this assignment is intended to measure."
+          );
 
     if (level === "no") {
       return (
@@ -4006,8 +5126,12 @@ footer {
 
     const disclosureText =
       disclosures.length
-        ? `Your disclosure should identify ${joinHuman(disclosures)}.`
-        : "Provide a brief, honest description of any permitted AI assistance.";
+        ? (
+            `Your disclosure should identify ${joinHuman(disclosures)}.`
+          )
+        : (
+            "Provide a brief, honest description of any permitted AI assistance."
+          );
 
     if (level === "limited") {
       return (
@@ -4031,18 +5155,30 @@ footer {
     );
   }
 
+
   function updateWeightTotal() {
     const product =
-      Number($("#productWeight").value || 0);
+      Number(
+        $("#productWeight").value ||
+        0
+      );
 
     const process =
-      Number($("#processWeight").value || 0);
+      Number(
+        $("#processWeight").value ||
+        0
+      );
 
     const verify =
-      Number($("#verifyWeight").value || 0);
+      Number(
+        $("#verifyWeight").value ||
+        0
+      );
 
     const total =
-      product + process + verify;
+      product +
+      process +
+      verify;
 
     const el =
       $("#weightTotal");
@@ -4068,68 +5204,95 @@ footer {
     return total;
   }
 
+
   function updateTransparencyProgress() {
     const all =
-      $$('input[name="transparencyCheck"]');
+      $$(
+        'input[name="transparencyCheck"]'
+      );
 
     const checked =
-      all.filter(el => el.checked).length;
+      all.filter(
+        el => el.checked
+      ).length;
 
     $("#transparencyProgress").textContent =
       `${checked} of ${all.length} transparency checks addressed.`;
   }
 
+
   function updateEquityProgress() {
     const all =
-      $$('input[name="equityCheck"]');
+      $$(
+        'input[name="equityCheck"]'
+      );
 
     const checked =
-      all.filter(el => el.checked).length;
+      all.filter(
+        el => el.checked
+      ).length;
 
     $("#equityProgress").textContent =
       `${checked} of ${all.length} equity/accessibility checks addressed.`;
   }
 
+
   function strategySequence() {
     const strategies =
-      new Set(checkedValues("strategy"));
+      new Set(
+        checkedValues("strategy")
+      );
 
-    const steps = [];
+    const steps =
+      [];
 
     const aiLevel =
-      selectedValue("aiLevel") || "no";
+      selectedValue("aiLevel") ||
+      "no";
 
-    if (strategies.has("initial")) {
+    if (
+      strategies.has("initial")
+    ) {
       steps.push(
         "Before receiving AI or other advanced assistance, complete the required initial attempt, prediction, thesis, plan, sketch, or solution approach."
       );
     }
 
-    if (strategies.has("context")) {
+    if (
+      strategies.has("context")
+    ) {
       steps.push(
         "Ground the work in the specific course, local, current, personal, disciplinary, or audience context named in the assignment rather than relying on a generic response."
       );
     }
 
-    if (strategies.has("process")) {
+    if (
+      strategies.has("process")
+    ) {
       steps.push(
         "Submit the required process evidence at the designated checkpoint so that important reasoning and decisions are visible before the final product."
       );
     }
 
-    if (aiLevel !== "no") {
+    if (
+      aiLevel !== "no"
+    ) {
       steps.push(
         "Use only the AI assistance authorized in the AI-use policy below. Treat AI output as provisional: evaluate it, check consequential claims, and retain responsibility for the submitted work."
       );
     }
 
-    if (strategies.has("feedback")) {
+    if (
+      strategies.has("feedback")
+    ) {
       steps.push(
         "Use feedback as directed, revise the work, and identify at least one meaningful change."
       );
     }
 
-    if (strategies.has("critique")) {
+    if (
+      strategies.has("critique")
+    ) {
       steps.push(
         "Compare or critique an AI-generated or alternative response, method, design, explanation, or recommendation using the disciplinary criteria for this course."
       );
@@ -4148,7 +5311,9 @@ footer {
       );
     }
 
-    if (strategies.has("independent")) {
+    if (
+      strategies.has("independent")
+    ) {
       steps.push(
         "Complete the designated AI-free practice or verification portion so you can calibrate what you can do independently."
       );
@@ -4157,9 +5322,12 @@ footer {
     return steps;
   }
 
+
   function processEvidenceList() {
     const selected =
-      checkedValues("processEvidence");
+      checkedValues(
+        "processEvidence"
+      );
 
     return selected.length
       ? selected
@@ -4168,14 +5336,22 @@ footer {
         ];
   }
 
+
   function makeTechnicalGuidanceHtml() {
     const keys =
-      checkedValues("techGuide");
+      checkedValues(
+        "techGuide"
+      );
 
     const custom =
-      $("#customTechGuidance").value.trim();
+      $("#customTechGuidance")
+        .value
+        .trim();
 
-    if (!keys.length && !custom) {
+    if (
+      !keys.length &&
+      !custom
+    ) {
       return "";
     }
 
@@ -4183,25 +5359,36 @@ footer {
       `<h3>TECHNICAL HOW-TO</h3>`;
 
     keys.forEach(key => {
+
       const guide =
         technicalGuides[key];
 
-      if (!guide) return;
+      if (!guide) {
+        return;
+      }
 
       html += `
         <h4>${esc(guide.title)}</h4>
+
         <ol>
           ${guide.steps
-            .map(step => `<li>${esc(step)}</li>`)
+            .map(
+              step =>
+                `<li>${esc(step)}</li>`
+            )
             .join("")}
         </ol>
       `;
+
     });
 
     if (custom) {
       html += `
         <p>
-          <strong>Course/institution-specific directions:</strong><br>
+          <strong>
+            Course/institution-specific directions:
+          </strong>
+          <br>
           ${esc(custom).replace(/\n/g, "<br>")}
         </p>
       `;
@@ -4210,13 +5397,20 @@ footer {
     return html;
   }
 
+
   function buildAssignment() {
-    if (updateWeightTotal() !== 100) {
+
+    if (
+      updateWeightTotal() !==
+      100
+    ) {
       announce(
         "Please adjust the grading weights so they total 100%."
       );
 
-      $("#productWeight").focus();
+      $("#productWeight")
+        .focus();
+
       return;
     }
 
@@ -4227,89 +5421,138 @@ footer {
       formatProfile();
 
     const title =
-      $("#assignmentTitle").value.trim() ||
+      $("#assignmentTitle")
+        .value
+        .trim() ||
       "Redesigned Assignment";
 
     const dueDates =
-      $("#dueDates").value.trim();
+      $("#dueDates")
+        .value
+        .trim();
 
     const currentPrompt =
-      $("#currentPrompt").value.trim();
+      $("#currentPrompt")
+        .value
+        .trim();
 
     const outcome =
-      $("#learningOutcome").value.trim() ||
+      $("#learningOutcome")
+        .value
+        .trim() ||
       profile.outcome;
 
     const independent =
-      $("#independentCapability").value.trim() ||
+      $("#independentCapability")
+        .value
+        .trim() ||
       profile.independent;
 
     const purposeStatement =
-      $("#purposeStatement").value.trim();
+      $("#purposeStatement")
+        .value
+        .trim();
 
     const skillsStatement =
-      $("#skillsStatement").value.trim();
+      $("#skillsStatement")
+        .value
+        .trim();
 
     const knowledgeStatement =
-      $("#knowledgeStatement").value.trim();
+      $("#knowledgeStatement")
+        .value
+        .trim();
 
     const taskInstructions =
-      $("#taskInstructions").value.trim();
+      $("#taskInstructions")
+        .value
+        .trim();
 
     const mistakesToAvoid =
-      $("#mistakesToAvoid").value.trim();
+      $("#mistakesToAvoid")
+        .value
+        .trim();
 
     const resourcesNeeded =
-      $("#resourcesNeeded").value.trim();
+      $("#resourcesNeeded")
+        .value
+        .trim();
 
     const productiveStruggle =
-      $("#productiveStruggle").checked;
+      $("#productiveStruggle")
+        .checked;
 
     const struggleRationale =
-      $("#struggleRationale").value.trim();
+      $("#struggleRationale")
+        .value
+        .trim();
 
     const successCriteria =
-      $("#successCriteria").value.trim();
+      $("#successCriteria")
+        .value
+        .trim();
 
     const strongExemplar =
-      $("#strongExemplar").value.trim();
+      $("#strongExemplar")
+        .value
+        .trim();
 
     const weakExemplar =
-      $("#weakExemplar").value.trim();
+      $("#weakExemplar")
+        .value
+        .trim();
 
     const exemplarPlan =
-      $("#exemplarPlan").value.trim();
+      $("#exemplarPlan")
+        .value
+        .trim();
 
     const gradingDetails =
-      $("#gradingDetails").value.trim();
+      $("#gradingDetails")
+        .value
+        .trim();
 
     const reflectionPlan =
-      $("#reflectionPlan").value.trim();
+      $("#reflectionPlan")
+        .value
+        .trim();
 
     const studentFeedbackPlan =
-      $("#studentFeedbackPlan").value.trim();
+      $("#studentFeedbackPlan")
+        .value
+        .trim();
 
     const constructs =
-      checkedValues("construct");
+      checkedValues(
+        "construct"
+      );
 
     const strategies =
-      checkedValues("strategy");
+      checkedValues(
+        "strategy"
+      );
 
     const evidence =
       processEvidenceList();
 
     const verification =
-      $("#verificationMethod").value;
+      $("#verificationMethod")
+        .value;
 
     const alternative =
-      $("#verificationAlternative").value.trim() ||
+      $("#verificationAlternative")
+        .value
+        .trim() ||
       format.access;
 
     const notes =
-      $("#redesignNotes").value.trim();
+      $("#redesignNotes")
+        .value
+        .trim();
 
     const level =
-      selectedValue("aiLevel") || "no";
+      selectedValue("aiLevel") ||
+      "no";
 
     const policy =
       makePolicyText();
@@ -4317,20 +5560,31 @@ footer {
     const disclosure =
       level === "no"
         ? []
-        : checkedValues("disclosure");
+        : checkedValues(
+            "disclosure"
+          );
 
     const productWeight =
-      Number($("#productWeight").value);
+      Number(
+        $("#productWeight").value
+      );
 
     const processWeight =
-      Number($("#processWeight").value);
+      Number(
+        $("#processWeight").value
+      );
 
     const verifyWeight =
-      Number($("#verifyWeight").value);
+      Number(
+        $("#verifyWeight").value
+      );
 
     const strategyLabels =
       strategies
-        .map(key => strategyNames[key])
+        .map(
+          key =>
+            strategyNames[key]
+        )
         .filter(Boolean);
 
     const sequence =
@@ -4353,55 +5607,90 @@ footer {
       "This assignment is designed to make your learning and decision-making visible, not to trap you or infer authorship from writing style. " +
       "Use the permitted resources honestly, ask when a boundary is unclear, and be prepared to explain consequential choices in your work.";
 
-    if (level !== "no") {
+    if (
+      level !== "no"
+    ) {
       integrityFrame +=
         " Honest disclosure of permitted AI use is expected and is preferable to concealing assistance.";
     }
 
     generatedAssignment.innerHTML = `
 
-      <h2>${esc(title)}</h2>
+      <h2>
+        ${esc(title)}
+      </h2>
 
-      ${dueDates
-        ? `<p><strong>Due date(s):</strong> ${esc(dueDates)}</p>`
-        : ""}
+      ${
+        dueDates
+          ? `
+            <p>
+              <strong>
+                Due date(s):
+              </strong>
+              ${esc(dueDates)}
+            </p>
+          `
+          : ""
+      }
 
       <p class="assignment-meta">
-        ${esc(profile.label)} ·
-        ${esc(format.label)} ·
-        AI-use level: ${esc(aiLevelLabels[level])}
+        ${esc(profile.label)}
+        ·
+        ${esc(format.label)}
+        ·
+        AI-use level:
+        ${esc(aiLevelLabels[level])}
       </p>
 
-      <h3>PURPOSE</h3>
 
-      <p>${esc(purposeText)}</p>
+      <h3>
+        PURPOSE
+      </h3>
 
       <p>
-        <strong>Learning outcome:</strong>
+        ${esc(purposeText)}
+      </p>
+
+      <p>
+        <strong>
+          Learning outcome:
+        </strong>
         ${esc(outcome)}
       </p>
 
-      ${skillsStatement
-        ? `
-          <p>
-            <strong>Skills you will practice:</strong><br>
-            ${esc(skillsStatement).replace(/\n/g, "<br>")}
-          </p>
-        `
-        : ""}
+      ${
+        skillsStatement
+          ? `
+            <p>
+              <strong>
+                Skills you will practice:
+              </strong>
+              <br>
+              ${esc(skillsStatement).replace(/\n/g, "<br>")}
+            </p>
+          `
+          : ""
+      }
 
-      ${knowledgeStatement
-        ? `
-          <p>
-            <strong>Knowledge you will develop:</strong><br>
-            ${esc(knowledgeStatement).replace(/\n/g, "<br>")}
-          </p>
-        `
-        : ""}
+      ${
+        knowledgeStatement
+          ? `
+            <p>
+              <strong>
+                Knowledge you will develop:
+              </strong>
+              <br>
+              ${esc(knowledgeStatement).replace(/\n/g, "<br>")}
+            </p>
+          `
+          : ""
+      }
 
       <p>
         This assignment provides evidence of
-        <strong>${esc(constructText)}</strong>.
+        <strong>
+          ${esc(constructText)}
+        </strong>.
       </p>
 
       <p>
@@ -4411,227 +5700,350 @@ footer {
         ${esc(independent)}
       </p>
 
-      <h3>TASKS</h3>
 
-      ${taskInstructions
-        ? `
-          <p>
-            ${esc(taskInstructions).replace(/\n/g, "<br>")}
-          </p>
-        `
-        : currentPrompt
+      <h3>
+        TASKS
+      </h3>
+
+      ${
+        taskInstructions
           ? `
             <p>
-              ${esc(currentPrompt).replace(/\n/g, "<br>")}
+              ${esc(taskInstructions).replace(/\n/g, "<br>")}
             </p>
           `
-          : ""}
+          : currentPrompt
+            ? `
+              <p>
+                ${esc(currentPrompt).replace(/\n/g, "<br>")}
+              </p>
+            `
+            : ""
+      }
 
       <p>
-        <strong>Recommended workflow:</strong>
+        <strong>
+          Recommended workflow:
+        </strong>
       </p>
 
       <ol>
         ${sequence
-          .map(step => `<li>${esc(step)}</li>`)
+          .map(
+            step =>
+              `<li>${esc(step)}</li>`
+          )
           .join("")}
       </ol>
 
-      ${resourcesNeeded
-        ? `
-          <p>
-            <strong>Resources available/needed:</strong><br>
-            ${esc(resourcesNeeded).replace(/\n/g, "<br>")}
-          </p>
-        `
-        : ""}
-
-      ${mistakesToAvoid
-        ? `
-          <p>
-            <strong>
-              Important mistakes or boundaries to avoid:
-            </strong><br>
-            ${esc(mistakesToAvoid).replace(/\n/g, "<br>")}
-          </p>
-        `
-        : ""}
-
-      ${productiveStruggle
-        ? `
-          <div class="student-policy">
+      ${
+        resourcesNeeded
+          ? `
             <p>
-              <strong>Why some uncertainty is intentional:</strong>
+              <strong>
+                Resources available/needed:
+              </strong>
+              <br>
+              ${esc(resourcesNeeded).replace(/\n/g, "<br>")}
             </p>
+          `
+          : ""
+      }
 
+      ${
+        mistakesToAvoid
+          ? `
             <p>
-              ${esc(
-                struggleRationale ||
-                "Part of this assignment is to invent, test, and refine your own approach rather than follow a fully prescribed procedure. Productive struggle is part of the learning goal."
-              )}
+              <strong>
+                Important mistakes or boundaries to avoid:
+              </strong>
+              <br>
+              ${esc(mistakesToAvoid).replace(/\n/g, "<br>")}
             </p>
-          </div>
-        `
-        : ""}
+          `
+          : ""
+      }
 
-      <h3>AI-USE POLICY</h3>
+      ${
+        productiveStruggle
+          ? `
+            <div class="student-policy">
+
+              <p>
+                <strong>
+                  Why some uncertainty is intentional:
+                </strong>
+              </p>
+
+              <p>
+                ${esc(
+                  struggleRationale ||
+                  "Part of this assignment is to invent, test, and refine your own approach rather than follow a fully prescribed procedure. Productive struggle is part of the learning goal."
+                )}
+              </p>
+
+            </div>
+          `
+          : ""
+      }
+
+
+      <h3>
+        AI-USE POLICY
+      </h3>
 
       <div class="student-policy">
+
         <p>
-          <strong>${esc(aiLevelLabels[level])}</strong>
+          <strong>
+            ${esc(aiLevelLabels[level])}
+          </strong>
         </p>
 
-        <p>${esc(policy)}</p>
+        <p>
+          ${esc(policy)}
+        </p>
+
       </div>
 
-      ${disclosure.length
-        ? `
-          <h3>AI-USE DISCLOSURE</h3>
+      ${
+        disclosure.length
+          ? `
+            <h3>
+              AI-USE DISCLOSURE
+            </h3>
 
-          <p>
-            Your disclosure should address:
-          </p>
+            <p>
+              Your disclosure should address:
+            </p>
 
-          <ul>
-            ${disclosure
-              .map(item => `<li>${esc(item)}</li>`)
-              .join("")}
-          </ul>
-        `
-        : ""}
+            <ul>
+              ${disclosure
+                .map(
+                  item =>
+                    `<li>${esc(item)}</li>`
+                )
+                .join("")}
+            </ul>
+          `
+          : ""
+      }
 
-      <h3>CRITERIA FOR SUCCESS</h3>
+
+      <h3>
+        CRITERIA FOR SUCCESS
+      </h3>
 
       <p>
         ${esc(criteriaText).replace(/\n/g, "<br>")}
       </p>
 
-      ${strongExemplar || weakExemplar || exemplarPlan
-        ? `
-          <h4>Examples of quality</h4>
+      ${
+        strongExemplar ||
+        weakExemplar ||
+        exemplarPlan
+          ? `
+            <h4>
+              Examples of quality
+            </h4>
 
-          ${strongExemplar
-            ? `
-              <p>
-                <strong>What strong work looks like:</strong><br>
-                ${esc(strongExemplar).replace(/\n/g, "<br>")}
-              </p>
-            `
-            : ""}
+            ${
+              strongExemplar
+                ? `
+                  <p>
+                    <strong>
+                      What strong work looks like:
+                    </strong>
+                    <br>
+                    ${esc(strongExemplar).replace(/\n/g, "<br>")}
+                  </p>
+                `
+                : ""
+            }
 
-          ${weakExemplar
-            ? `
-              <p>
-                <strong>
-                  What to avoid / what less successful work looks like:
-                </strong><br>
-                ${esc(weakExemplar).replace(/\n/g, "<br>")}
-              </p>
-            `
-            : ""}
+            ${
+              weakExemplar
+                ? `
+                  <p>
+                    <strong>
+                      What to avoid / what less successful work looks like:
+                    </strong>
+                    <br>
+                    ${esc(weakExemplar).replace(/\n/g, "<br>")}
+                  </p>
+                `
+                : ""
+            }
 
-          ${exemplarPlan
-            ? `
-              <p>
-                <strong>How to use the examples:</strong><br>
-                ${esc(exemplarPlan).replace(/\n/g, "<br>")}
-              </p>
-            `
-            : ""}
-        `
-        : ""}
+            ${
+              exemplarPlan
+                ? `
+                  <p>
+                    <strong>
+                      How to use the examples:
+                    </strong>
+                    <br>
+                    ${esc(exemplarPlan).replace(/\n/g, "<br>")}
+                  </p>
+                `
+                : ""
+            }
+          `
+          : ""
+      }
 
       <p>
-        <strong>Evidence to submit:</strong>
+        <strong>
+          Evidence to submit:
+        </strong>
       </p>
 
       <ul>
         ${evidence
-          .map(item => `<li>${esc(item)}</li>`)
+          .map(
+            item =>
+              `<li>${esc(item)}</li>`
+          )
           .join("")}
       </ul>
 
       <p>
-        <strong>Learning verification:</strong>
+        <strong>
+          Learning verification:
+        </strong>
+
         You will complete
-        <strong>${esc(verification)}</strong>.
+        <strong>
+          ${esc(verification)}
+        </strong>.
+
         The purpose is to verify the learning represented by your submission,
         not to judge authorship from writing style.
       </p>
 
       <p>
-        <strong>Accessible/equivalent option:</strong>
+        <strong>
+          Accessible/equivalent option:
+        </strong>
+
         ${esc(alternative)}
       </p>
 
       <p>
-        <strong>How the work is weighted:</strong>
+        <strong>
+          How the work is weighted:
+        </strong>
       </p>
 
       <ul>
-        <li>Final product: ${productWeight}%</li>
-        <li>Process / revision evidence: ${processWeight}%</li>
-        <li>Verification / reflection: ${verifyWeight}%</li>
+        <li>
+          Final product:
+          ${productWeight}%
+        </li>
+
+        <li>
+          Process / revision evidence:
+          ${processWeight}%
+        </li>
+
+        <li>
+          Verification / reflection:
+          ${verifyWeight}%
+        </li>
       </ul>
 
-      ${gradingDetails
-        ? `
-          <p>
-            <strong>Additional grading information:</strong><br>
-            ${esc(gradingDetails).replace(/\n/g, "<br>")}
-          </p>
-        `
-        : ""}
+      ${
+        gradingDetails
+          ? `
+            <p>
+              <strong>
+                Additional grading information:
+              </strong>
+              <br>
+              ${esc(gradingDetails).replace(/\n/g, "<br>")}
+            </p>
+          `
+          : ""
+      }
+
 
       ${makeTechnicalGuidanceHtml()}
 
-      ${strategyLabels.length
-        ? `
-          <h3>WHY THE ASSIGNMENT IS STRUCTURED THIS WAY</h3>
 
-          <p>
-            This assignment uses
-            ${esc(joinHuman(strategyLabels))}
-            so that the grade reflects meaningful evidence of learning rather
-            than only a polished final product.
-          </p>
-        `
-        : ""}
+      ${
+        strategyLabels.length
+          ? `
+            <h3>
+              WHY THE ASSIGNMENT IS STRUCTURED THIS WAY
+            </h3>
 
-      ${studentFeedbackPlan
-        ? `
-          <h3>BEFORE YOU BEGIN</h3>
+            <p>
+              This assignment uses
+              ${esc(joinHuman(strategyLabels))}
+              so that the grade reflects meaningful evidence of learning rather
+              than only a polished final product.
+            </p>
+          `
+          : ""
+      }
 
-          <p>
-            <strong>Checking our shared understanding:</strong><br>
-            ${esc(studentFeedbackPlan).replace(/\n/g, "<br>")}
-          </p>
-        `
-        : ""}
 
-      ${notes
-        ? `
-          <h3>ADDITIONAL INSTRUCTIONS</h3>
+      ${
+        studentFeedbackPlan
+          ? `
+            <h3>
+              BEFORE YOU BEGIN
+            </h3>
 
-          <p>
-            ${esc(notes).replace(/\n/g, "<br>")}
-          </p>
-        `
-        : ""}
+            <p>
+              <strong>
+                Checking our shared understanding:
+              </strong>
+              <br>
+              ${esc(studentFeedbackPlan).replace(/\n/g, "<br>")}
+            </p>
+          `
+          : ""
+      }
 
-      ${reflectionPlan
-        ? `
-          <h3>AFTER FEEDBACK</h3>
 
-          <p>
-            ${esc(reflectionPlan).replace(/\n/g, "<br>")}
-          </p>
-        `
-        : ""}
+      ${
+        notes
+          ? `
+            <h3>
+              ADDITIONAL INSTRUCTIONS
+            </h3>
 
-      <h3>ACADEMIC INTEGRITY AND SUPPORT</h3>
+            <p>
+              ${esc(notes).replace(/\n/g, "<br>")}
+            </p>
+          `
+          : ""
+      }
 
-      <p>${esc(integrityFrame)}</p>
+
+      ${
+        reflectionPlan
+          ? `
+            <h3>
+              AFTER FEEDBACK
+            </h3>
+
+            <p>
+              ${esc(reflectionPlan).replace(/\n/g, "<br>")}
+            </p>
+          `
+          : ""
+      }
+
+
+      <h3>
+        ACADEMIC INTEGRITY AND SUPPORT
+      </h3>
+
+      <p>
+        ${esc(integrityFrame)}
+      </p>
 
       <p>
         Approved accommodations and accessibility supports remain available
@@ -4641,9 +6053,13 @@ footer {
         way to provide the required evidence.
       </p>
 
-      <h3>BEFORE YOU SUBMIT</h3>
+
+      <h3>
+        BEFORE YOU SUBMIT
+      </h3>
 
       <ul>
+
         <li>
           I understand the purpose of the assignment and can explain what I am
           practicing.
@@ -4664,65 +6080,100 @@ footer {
           code, or design choices in my submission.
         </li>
 
-        ${level !== "no"
-          ? `
-            <li>
-              I disclosed permitted AI assistance as required and checked
-              consequential output rather than assuming it was correct.
-            </li>
-          `
-          : ""}
+        ${
+          level !== "no"
+            ? `
+              <li>
+                I disclosed permitted AI assistance as required and checked
+                consequential output rather than assuming it was correct.
+              </li>
+            `
+            : ""
+        }
 
         <li>
           I know where to ask questions if I am uncertain about an integrity or
           collaboration boundary.
         </li>
+
       </ul>
     `;
 
-    result.classList.add("ready");
+    result.classList.add(
+      "ready"
+    );
 
     result.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+      behavior:
+        "smooth",
+      block:
+        "start"
     });
 
-    setTimeout(() => {
-      generatedAssignment.focus();
-    }, 250);
+    setTimeout(
+      () => {
+        generatedAssignment.focus();
+      },
+      250
+    );
 
-    const missing = [];
+    const missing =
+      [];
 
     if (!dueDates) {
-      missing.push("due date(s)");
+      missing.push(
+        "due date(s)"
+      );
     }
 
     if (!purposeStatement) {
-      missing.push("a student-facing purpose statement");
+      missing.push(
+        "a student-facing purpose statement"
+      );
     }
 
-    if (!taskInstructions && !currentPrompt) {
-      missing.push("task instructions");
+    if (
+      !taskInstructions &&
+      !currentPrompt
+    ) {
+      missing.push(
+        "task instructions"
+      );
     }
 
     if (!successCriteria) {
-      missing.push("specific criteria for success");
+      missing.push(
+        "specific criteria for success"
+      );
     }
 
-    if (!strongExemplar && !weakExemplar) {
-      missing.push("at least one exemplar or contrast example");
+    if (
+      !strongExemplar &&
+      !weakExemplar
+    ) {
+      missing.push(
+        "at least one exemplar or contrast example"
+      );
     }
 
     announce(
       missing.length
-        ? `Assignment built. For stronger transparency, consider adding ${joinHuman(missing)}.`
-        : "Redesigned assignment built with Purpose, Tasks, Criteria for Success, exemplars, and selected technical guidance."
+        ? (
+            `Assignment built. For stronger transparency, consider adding ${joinHuman(missing)}.`
+          )
+        : (
+            "Redesigned assignment built with Purpose, Tasks, Criteria for Success, exemplars, and selected technical guidance."
+          )
     );
   }
 
+
   function getGeneratedText() {
-    return generatedAssignment.innerText.trim();
+    return generatedAssignment
+      .innerText
+      .trim();
   }
+
 
   async function copyAssignment() {
     const text =
@@ -4736,14 +6187,20 @@ footer {
     }
 
     try {
-      await navigator.clipboard.writeText(text);
+
+      await navigator.clipboard
+        .writeText(text);
 
       announce(
         "Assignment copied to the clipboard."
       );
+
     } catch (error) {
+
       const area =
-        document.createElement("textarea");
+        document.createElement(
+          "textarea"
+        );
 
       area.value =
         text;
@@ -4759,44 +6216,67 @@ footer {
       area.style.opacity =
         "0";
 
-      document.body.appendChild(area);
+      document.body
+        .appendChild(area);
 
       area.select();
 
       try {
-        document.execCommand("copy");
+
+        document.execCommand(
+          "copy"
+        );
 
         announce(
           "Assignment copied to the clipboard."
         );
+
       } catch (fallbackError) {
+
         announce(
           "Copy was blocked by the browser. Select the generated assignment and copy it manually."
         );
+
       }
 
       area.remove();
     }
   }
 
+
   function safeFilename() {
     const raw =
-      $("#assignmentTitle").value.trim() ||
+      $("#assignmentTitle")
+        .value
+        .trim() ||
       "redesigned-assignment";
 
-    return raw
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "")
-      .slice(0, 60) ||
-      "redesigned-assignment";
+    return (
+      raw
+        .toLowerCase()
+        .replace(
+          /[^a-z0-9]+/g,
+          "-"
+        )
+        .replace(
+          /^-+|-+$/g,
+          ""
+        )
+        .slice(
+          0,
+          60
+        ) ||
+      "redesigned-assignment"
+    );
   }
+
 
   function downloadBlob(
     content,
     filename,
     type
   ) {
+
     const blob =
       new Blob(
         [content],
@@ -4804,10 +6284,14 @@ footer {
       );
 
     const url =
-      URL.createObjectURL(blob);
+      URL.createObjectURL(
+        blob
+      );
 
     const link =
-      document.createElement("a");
+      document.createElement(
+        "a"
+      );
 
     link.href =
       url;
@@ -4815,16 +6299,23 @@ footer {
     link.download =
       filename;
 
-    document.body.appendChild(link);
+    document.body
+      .appendChild(link);
 
     link.click();
 
     link.remove();
 
-    setTimeout(() => {
-      URL.revokeObjectURL(url);
-    }, 1000);
+    setTimeout(
+      () => {
+        URL.revokeObjectURL(
+          url
+        );
+      },
+      1000
+    );
   }
+
 
   function downloadText() {
     const text =
@@ -4848,8 +6339,12 @@ footer {
     );
   }
 
+
   function downloadStudentHtml() {
-    if (!getGeneratedText()) {
+
+    if (
+      !getGeneratedText()
+    ) {
       announce(
         "Build the assignment before downloading it."
       );
@@ -4858,12 +6353,15 @@ footer {
 
     const title =
       esc(
-        $("#assignmentTitle").value.trim() ||
+        $("#assignmentTitle")
+          .value
+          .trim() ||
         "Redesigned Assignment"
       );
 
     const content =
-      generatedAssignment.innerHTML;
+      generatedAssignment
+        .innerHTML;
 
     const html = `<!doctype html>
 <html lang="en">
@@ -4871,6 +6369,7 @@ footer {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title>
+
 <style>
 body {
   max-width: 54rem;
@@ -4880,44 +6379,59 @@ body {
   background: #fff;
   font: 17px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-h1,h2,h3,h4 {
-  color:#102746;
-  line-height:1.2;
+
+h1,
+h2,
+h3,
+h4 {
+  color: #102746;
+  line-height: 1.2;
 }
+
 h2 {
-  font-size:2rem;
+  font-size: 2rem;
 }
+
 h3 {
-  margin-top:1.5rem;
+  margin-top: 1.5rem;
 }
+
 .assignment-meta {
-  color:#536273;
+  color: #536273;
 }
+
 .student-policy {
-  padding:1rem;
-  border-left:5px solid #157a55;
-  background:#f0faf5;
+  padding: 1rem;
+  border-left: 5px solid #157a55;
+  background: #f0faf5;
 }
+
 li {
-  margin:.3rem 0;
+  margin: .3rem 0;
 }
+
 :focus-visible {
-  outline:4px solid #ffbf47;
-  outline-offset:3px;
+  outline: 4px solid #ffbf47;
+  outline-offset: 3px;
 }
+
 @media print {
   body {
-    max-width:none;
-    padding:0;
-    font-size:11pt;
+    max-width: none;
+    padding: 0;
+    font-size: 11pt;
   }
 }
 </style>
+
 </head>
+
 <body>
+
 <main>
 ${content}
 </main>
+
 </body>
 </html>`;
 
@@ -4932,57 +6446,91 @@ ${content}
     );
   }
 
+
   function printAssignment() {
-    if (!getGeneratedText()) {
+
+    if (
+      !getGeneratedText()
+    ) {
       announce(
         "Build the assignment before printing it."
       );
       return;
     }
 
-    document.body.classList.add(
-      "print-result"
-    );
+    document.body
+      .classList
+      .add(
+        "print-result"
+      );
 
     window.print();
   }
 
+
   window.addEventListener(
     "afterprint",
     () => {
-      document.body.classList.remove(
-        "print-result"
-      );
+
+      document.body
+        .classList
+        .remove(
+          "print-result"
+        );
+
     }
   );
 
-  function serializeForm() {
-    const data = {};
 
-    $$("[name]", form).forEach(el => {
+  function serializeForm() {
+    const data =
+      {};
+
+    $$(
+      "[name]",
+      form
+    ).forEach(el => {
 
       if (
-        el.type === "checkbox" ||
-        el.type === "radio"
+        el.type ===
+          "checkbox" ||
+        el.type ===
+          "radio"
       ) {
-        if (!data[el.name]) {
-          data[el.name] = [];
+
+        if (
+          !data[el.name]
+        ) {
+          data[el.name] =
+            [];
         }
 
-        if (el.checked) {
-          data[el.name].push(el.value);
+        if (
+          el.checked
+        ) {
+          data[el.name]
+            .push(
+              el.value
+            );
         }
 
       } else {
-        data[el.name] = el.value;
+
+        data[el.name] =
+          el.value;
+
       }
+
     });
 
     return data;
   }
 
+
   function saveDraft() {
+
     try {
+
       localStorage.setItem(
         "academicIntegrityRedesignDraft-v2",
         JSON.stringify(
@@ -4995,25 +6543,32 @@ ${content}
       );
 
     } catch (error) {
+
       announce(
         "This browser did not allow local draft storage."
       );
+
     }
+
   }
+
 
   function loadDraft() {
     let data;
 
     try {
+
       const raw =
         localStorage.getItem(
           "academicIntegrityRedesignDraft-v2"
         );
 
       if (!raw) {
+
         announce(
           "No saved draft was found in this browser."
         );
+
         return;
       }
 
@@ -5021,30 +6576,48 @@ ${content}
         JSON.parse(raw);
 
     } catch (error) {
+
       announce(
         "The saved draft could not be read."
       );
+
       return;
     }
 
-    $$("[name]", form).forEach(el => {
+    $$(
+      "[name]",
+      form
+    ).forEach(el => {
 
-      if (!(el.name in data)) {
+      if (
+        !(el.name in data)
+      ) {
         return;
       }
 
       if (
-        el.type === "checkbox" ||
-        el.type === "radio"
+        el.type ===
+          "checkbox" ||
+        el.type ===
+          "radio"
       ) {
+
         el.checked =
-          Array.isArray(data[el.name]) &&
-          data[el.name].includes(el.value);
+          Array.isArray(
+            data[el.name]
+          ) &&
+          data[el.name]
+            .includes(
+              el.value
+            );
 
       } else {
+
         el.value =
           data[el.name];
+
       }
+
     });
 
     refreshAll();
@@ -5054,8 +6627,11 @@ ${content}
     );
   }
 
+
   function clearDraft() {
+
     try {
+
       localStorage.removeItem(
         "academicIntegrityRedesignDraft-v2"
       );
@@ -5065,11 +6641,15 @@ ${content}
       );
 
     } catch (error) {
+
       announce(
         "The browser draft could not be cleared."
       );
+
     }
+
   }
+
 
   function refreshAll() {
     updateFormatNote();
@@ -5082,6 +6662,7 @@ ${content}
     updateStrategyCards();
   }
 
+
   $("#assignmentType")
     .addEventListener(
       "change",
@@ -5092,11 +6673,13 @@ ${content}
       }
     );
 
+
   $("#courseFormat")
     .addEventListener(
       "change",
       updateFormatNote
     );
+
 
   $("#suggestOutcomeBtn")
     .addEventListener(
@@ -5104,52 +6687,71 @@ ${content}
       suggestOutcome
     );
 
+
   $("#applyRecommendedBtn")
     .addEventListener(
       "click",
       applyRecommendedStrategies
     );
 
+
   $("#clearStrategiesBtn")
     .addEventListener(
       "click",
       () => {
-        $$('input[name="strategy"]')
-          .forEach(el => {
-            el.checked = false;
-          });
+
+        $$(
+          'input[name="strategy"]'
+        ).forEach(el => {
+          el.checked =
+            false;
+        });
 
         updateStrategyCards();
 
         announce(
           "Strategy selections cleared."
         );
+
       }
     );
 
-  $$('input[name="strategy"]')
-    .forEach(el => {
-      el.addEventListener(
-        "change",
-        updateStrategyCards
-      );
-    });
 
-  $$('input[name="aiLevel"]')
-    .forEach(el => {
-      el.addEventListener(
-        "change",
-        updateAiVisibilityAndPolicy
-      );
-    });
+  $$(
+    'input[name="strategy"]'
+  ).forEach(el => {
 
-  $$('input[name="aiStage"], input[name="disclosure"]')
-    .forEach(el => {
-      el.addEventListener(
-        "change",
-        updateAiVisibilityAndPolicy
-      );
-    });
+    el.addEventListener(
+      "change",
+      updateStrategyCards
+    );
+
+  });
+
+
+  $$(
+    'input[name="aiLevel"]'
+  ).forEach(el => {
+
+    el.addEventListener(
+      "change",
+      updateAiVisibilityAndPolicy
+    );
+
+  });
+
+
+  $$(
+    'input[name="aiStage"], input[name="disclosure"]'
+  ).forEach(el => {
+
+    el.addEventListener(
+      "change",
+      updateAiVisibilityAndPolicy
+    );
+
+  });
+
 
   $("#independentCapability")
     .addEventListener(
@@ -5157,33 +6759,45 @@ ${content}
       updateAiVisibilityAndPolicy
     );
 
+
   [
     "#productWeight",
     "#processWeight",
     "#verifyWeight"
   ].forEach(selector => {
+
     $(selector)
       .addEventListener(
         "input",
         updateWeightTotal
       );
+
   });
 
-  $$('input[name="transparencyCheck"]')
-    .forEach(el => {
-      el.addEventListener(
-        "change",
-        updateTransparencyProgress
-      );
-    });
 
-  $$('input[name="equityCheck"]')
-    .forEach(el => {
-      el.addEventListener(
-        "change",
-        updateEquityProgress
-      );
-    });
+  $$(
+    'input[name="transparencyCheck"]'
+  ).forEach(el => {
+
+    el.addEventListener(
+      "change",
+      updateTransparencyProgress
+    );
+
+  });
+
+
+  $$(
+    'input[name="equityCheck"]'
+  ).forEach(el => {
+
+    el.addEventListener(
+      "change",
+      updateEquityProgress
+    );
+
+  });
+
 
   $("#buildBtn")
     .addEventListener(
@@ -5191,11 +6805,13 @@ ${content}
       buildAssignment
     );
 
+
   $("#copyBtn")
     .addEventListener(
       "click",
       copyAssignment
     );
+
 
   $("#printBtn")
     .addEventListener(
@@ -5203,11 +6819,13 @@ ${content}
       printAssignment
     );
 
+
   $("#downloadTxtBtn")
     .addEventListener(
       "click",
       downloadText
     );
+
 
   $("#downloadHtmlBtn")
     .addEventListener(
@@ -5215,11 +6833,13 @@ ${content}
       downloadStudentHtml
     );
 
+
   $("#saveDraftBtn")
     .addEventListener(
       "click",
       saveDraft
     );
+
 
   $("#loadDraftBtn")
     .addEventListener(
@@ -5227,73 +6847,43 @@ ${content}
       loadDraft
     );
 
+
   $("#clearDraftBtn")
     .addEventListener(
       "click",
       clearDraft
     );
 
-  $("#textSizeBtn")
-    .addEventListener(
-      "click",
-      event => {
-        const active =
-          document.body.classList.toggle(
-            "large-text"
-          );
-
-        event.currentTarget.setAttribute(
-          "aria-pressed",
-          String(active)
-        );
-
-        event.currentTarget.textContent =
-          active
-            ? "Default text size"
-            : "Larger text";
-      }
-    );
-
-  $("#contrastBtn")
-    .addEventListener(
-      "click",
-      event => {
-        const active =
-          document.body.classList.toggle(
-            "high-contrast"
-          );
-
-        event.currentTarget.setAttribute(
-          "aria-pressed",
-          String(active)
-        );
-
-        event.currentTarget.textContent =
-          active
-            ? "Default contrast"
-            : "High contrast";
-      }
-    );
 
   form.addEventListener(
     "reset",
     () => {
-      setTimeout(() => {
-        result.classList.remove(
-          "ready"
-        );
 
-        generatedAssignment.innerHTML =
-          "";
+      setTimeout(
+        () => {
 
-        refreshAll();
+          result.classList
+            .remove(
+              "ready"
+            );
 
-        announce(
-          "Worksheet reset."
-        );
-      }, 0);
+          generatedAssignment
+            .innerHTML =
+            "";
+
+          refreshAll();
+
+          announce(
+            "Worksheet reset."
+          );
+
+        },
+        0
+      );
+
     }
   );
+
 
   refreshAll();
 
