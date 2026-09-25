@@ -119,12 +119,12 @@
      then centres its last row instead of leaving a hole in the grid. */
   .cards{
     list-style:none;margin:0;padding:0;
-    display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
+    display:flex;flex-wrap:wrap;gap:16px;justify-content:center;
     align-items:flex-start;
   }
   .card{
-    flex:0 1 496px;min-width:0;
-    display:flex;flex-direction:row;align-items:center;overflow:hidden;
+    flex:0 1 310px;min-width:0;
+    display:flex;flex-direction:column;overflow:hidden;
     border:1px solid var(--line);border-radius:var(--radius);background:#fff;
     box-shadow:0 2px 6px rgba(29,44,93,.05);
     transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
@@ -139,8 +139,8 @@
   #accessibility .card:hover,#accessibility .card:focus-within{border-color:var(--green-dark)}
 
   .thumb{
-    position:relative;display:block;flex:0 0 176px;align-self:center;aspect-ratio:16/9;overflow:hidden;
-    background:var(--navy-tint);border-right:1px solid var(--line);
+    position:relative;display:block;flex:none;width:100%;aspect-ratio:16/9;overflow:hidden;
+    background:var(--navy-tint);border-bottom:1px solid var(--line);
     text-decoration:none;color:inherit;
   }
   /* contain rather than cover: the panel is the screenshots' own 16:9 shape, so
@@ -178,7 +178,9 @@
   }
   #accessibility .card .tags li{color:var(--green-deep);background:var(--green-tint)}
 
-  .card .go{margin-top:auto}
+  .card .go{
+    margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+  }
   .card .go a{
     display:inline-flex;align-items:center;gap:8px;
     font-weight:700;text-decoration:none;
@@ -189,7 +191,7 @@
   .card .go a:hover{background:var(--navy-soft)}
   #accessibility .card .go a:hover{background:#08512f}
   .card .go a svg{width:15px;height:15px}
-  .card .go .ext{font-weight:600;color:var(--muted);font-size:.8rem;display:block;margin-top:4px}
+  .card .go .ext{font-weight:600;color:var(--muted);font-size:.78rem;margin:0}
 
   /* retired: the assistants are linked inline in the description instead */
   .more{margin:0 0 9px;padding:8px 0 0;border-top:1px dashed var(--line)}
@@ -216,12 +218,6 @@
   footer.site p{margin:0 0 6px}
 
   @media (max-width:560px){
-    /* stack again, but with a short banner rather than a full 16:9 one */
-    .card{flex-direction:column;align-items:stretch}
-    .thumb{
-      flex:none;width:100%;align-self:stretch;aspect-ratio:16/9;
-      border-right:none;border-bottom:1px solid var(--line);
-    }
     .brand{gap:14px}
     .brand img{width:100%}
     .hero{padding:30px 0 32px}
