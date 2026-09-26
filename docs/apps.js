@@ -21,10 +21,6 @@ const ICONS = {
   accessibility: '<circle cx="12" cy="4.5" r="1.8"/><path d="M4.5 8.5h15M12 8.5v6M12 14.5l-3.5 6M12 14.5l3.5 6"/>',
   // a figure in an academic cap
   professor: '<path d="M3 7.4L12 3.6l9 3.8-9 3.8z"/><circle cx="12" cy="11.6" r="2.5"/><path d="M4.8 21c0-3.5 3.2-5.9 7.2-5.9s7.2 2.4 7.2 5.9"/>',
-  'sparkle-badge': '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18.5 15.5l.8 2.1 2.2.8-2.2.8-.8 2.1-.8-2.1-2.2-.8 2.2-.8z"/>',
-  'image-badge': '<rect x="3" y="4.5" width="18" height="15" rx="2.5"/><circle cx="8.6" cy="10" r="1.7"/><path d="M3.6 17.4l4.9-4.6 3.4 3.1 3.1-2.7 4.4 4.2"/>',
-  'course-badge': '<path d="M4 5.5h7a2 2 0 0 1 2 2v11a1.7 1.7 0 0 0-1.7-1.7H4z"/><path d="M20 5.5h-7a2 2 0 0 0-2 2v11a1.7 1.7 0 0 1 1.7-1.7H20z"/>',
-  'doc-badge': '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h7"/>'
 };
 
 /* Colour sets, all drawn from the FPDS blue and green. */
@@ -36,7 +32,6 @@ const PALETTES = {
     '--accent-border': 'var(--navy)',
     '--accent-hover': 'var(--navy-soft)',
     '--accent-rule': 'linear-gradient(90deg,var(--navy),rgba(44,63,122,0))',
-    '--accent-art': 'linear-gradient(135deg,var(--navy-deep),var(--navy) 60%,#22437f)',
     '--accent-cta': 'var(--navy)',
     '--accent-cta-hover': 'var(--navy-soft)'
   },
@@ -47,7 +42,6 @@ const PALETTES = {
     '--accent-border': 'var(--green)',
     '--accent-hover': 'var(--green-dark)',
     '--accent-rule': 'linear-gradient(90deg,var(--green),rgba(17,179,108,0))',
-    '--accent-art': 'linear-gradient(135deg,var(--green-deep),var(--green) 68%,#3fd39a)',
     '--accent-cta': 'var(--green-deep)',
     '--accent-cta-hover': '#08512f'
   },
@@ -58,7 +52,6 @@ const PALETTES = {
     '--accent-border': 'var(--navy-soft)',
     '--accent-hover': 'var(--green-dark)',
     '--accent-rule': 'linear-gradient(90deg,var(--navy-soft),var(--green) 55%,rgba(17,179,108,0))',
-    '--accent-art': 'linear-gradient(135deg,var(--navy-deep),var(--navy-soft) 55%,var(--green-deep))',
     '--accent-cta': 'var(--navy-soft)',
     '--accent-cta-hover': 'var(--green-deep)'
   }
@@ -85,11 +78,6 @@ function renderThumb(card) {
   const ext = card.external ? ' target="_blank" rel="noopener noreferrer"' : '';
   const aria = ' aria-label="' + esc(t.aria || card.title) + '"';
   const href = ' href="' + esc(card.url) + '"' + ext + aria;
-  if (t.kind === 'badge') {
-    return '        <a class="thumb art"' + href + '>\n' +
-      '          <div class="badge" aria-hidden="true">\n            ' + svg(t.icon || 'sparkle-badge', 1.6) +
-      '\n            <span>' + esc(t.label) + '</span>\n          </div>\n        </a>';
-  }
   return '        <a class="thumb"' + href + '>\n' +
     '          <img src="' + esc(t.src) + '" alt="" loading="lazy" width="720" height="405">\n        </a>';
 }

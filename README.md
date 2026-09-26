@@ -17,18 +17,15 @@ and green; a new section can reuse one of them without any CSS change.
 A card needs a `title`, a `description` (inline links allowed), a `url`, a `cta`
 label and a `thumb`. Set `"external": true` for anything that leaves the site.
 
-Thumbnails are either a screenshot in `docs/img`:
+A `thumb` is a screenshot in `docs/img`, 720x405 like the rest:
 
     "thumb": { "kind": "image", "src": "img/aied.webp", "aria": "Browse the knowledge base" }
 
-or a coloured badge, which is what a resource gets when it cannot be screenshotted,
-such as a tool behind a sign-in:
+The `src` is relative to `docs/`, and `aria` is the link's accessible name, so it
+should read as the action the click performs. Section heading icons are inline SVG
+names from `docs/apps.js`, not files.
 
-    "thumb": { "kind": "badge", "icon": "course-badge", "label": "Canvas course", "aria": "…" }
-
-Available badge and heading icons are named in `docs/apps.js`.
-
-Descriptions are clamped to five lines so that every card in a row stays the same
+Descriptions are clamped to seven lines so that every card in a row stays the same
 height. A description longer than that gets a More toggle that expands it in place,
 so a later edit cannot break the layout.
 
