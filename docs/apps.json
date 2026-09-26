@@ -1,0 +1,160 @@
+{
+  "_comment": "Single source of truth for the cards on index.html. Run `python3 tools/build-index.py` after editing; it rewrites only the regions between the build markers in docs/index.html. Section order here is the order on the page and in the hero navigation. Icons are inline SVG names from tools/build-index.py, not files.",
+  "sections": [
+    {
+      "id": "ai",
+      "label": "AI",
+      "navLabel": "AI resources",
+      "icon": "sparkle",
+      "palette": "navy",
+      "intro": "Tools and resources for using generative AI in your teaching, and for understanding what the research says about it.",
+      "cards": [
+        {
+          "title": "Assignment Redesign for the AI Era",
+          "description": "An interactive worksheet for redesigning assignments around academic integrity: what students are learning, what successful work looks like, and where AI belongs.",
+          "url": "assignment.html",
+          "cta": "Open the worksheet",
+          "external": false,
+          "thumb": {
+            "kind": "image",
+            "src": "img/assignment.webp",
+            "aria": "Open the assignment redesign worksheet"
+          }
+        },
+        {
+          "title": "AI Petting Zoo",
+          "description": "A guided, self-paced tour of AI tools and techniques for saving instructors time and enhancing student learning, with example teaching tasks to try.",
+          "url": "https://liascript.github.io/course/?https://raw.githubusercontent.com/edtechdev/aipettingzoo/master/README.md#1",
+          "cta": "Start the tour",
+          "external": true,
+          "thumb": {
+            "kind": "image",
+            "src": "img/pettingzoo.webp",
+            "aria": "Start the AI Petting Zoo tour"
+          }
+        },
+        {
+          "title": "AI in Education Knowledge Base",
+          "description": "A research knowledge base on AI in education, with concept pages and study summaries. Also available as the <a href=\"https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">AI in Education Advisor</a> Gem or a <a href=\"https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share\" target=\"_blank\" rel=\"noopener noreferrer\">NotebookLM notebook</a>.",
+          "url": "https://edtechdev.github.io/aied/",
+          "cta": "Browse the knowledge base",
+          "external": true,
+          "thumb": {
+            "kind": "image",
+            "src": "img/aied.webp",
+            "aria": "Browse the AI in Education Knowledge Base"
+          }
+        },
+        {
+          "title": "Online Module Designer",
+          "description": "A custom Gemini Gem for designing online learning modules, from outcomes and activities to assessment.",
+          "url": "https://gemini.google.com/gem/1sPeVIqY5wtESVwGFn6kmgFNon0UXTV6S?usp=sharing",
+          "cta": "Open the Gem",
+          "external": true,
+          "thumb": {
+            "kind": "badge",
+            "icon": "sparkle-badge",
+            "label": "Gemini Gem",
+            "aria": "Online Module Designer, Gemini Gem"
+          }
+        }
+      ]
+    },
+    {
+      "id": "accessibility",
+      "label": "Accessibility",
+      "navLabel": "Accessibility resources",
+      "icon": "accessibility",
+      "palette": "green",
+      "intro": "Resources for designing courses and materials that work for every student.",
+      "cards": [
+        {
+          "title": "Canvas Accessibility Checklist",
+          "description": "A practical Canvas accessibility checklist built from three questions: start with what students need next, then improve the course as you go.",
+          "url": "accessibility.html",
+          "cta": "Open the checklist",
+          "external": false,
+          "thumb": {
+            "kind": "image",
+            "src": "img/accessibility.webp",
+            "aria": "Open the Canvas Accessibility Checklist"
+          }
+        },
+        {
+          "title": "Digital Accessibility for Teaching and Learning",
+          "description": "An openly licensed book on accessible course design, documents, and media for higher education.",
+          "url": "https://pressbooks.hcfl.edu/digitalaccessibility/",
+          "cta": "Read the guide",
+          "external": true,
+          "thumb": {
+            "kind": "image",
+            "src": "img/pressbooks.webp",
+            "aria": "Read the Digital Accessibility guide"
+          }
+        },
+        {
+          "title": "Alt Text Generator",
+          "description": "A custom Gemini Gem for writing alt text, so students who cannot see an image still get the information it carries.",
+          "url": "https://gemini.google.com/gem/1qkiILxWUW1tGeVb9IOICQCREKmEIuhNS?usp=sharing",
+          "cta": "Open the Gem",
+          "external": true,
+          "thumb": {
+            "kind": "badge",
+            "icon": "image-badge",
+            "label": "Gemini Gem",
+            "aria": "Alt Text Generator, Gemini Gem"
+          }
+        }
+      ]
+    },
+    {
+      "id": "teaching",
+      "label": "Teaching",
+      "navLabel": "Teaching resources",
+      "icon": "professor",
+      "palette": "blend",
+      "intro": "Canvas courses and checklists for teaching in Canvas, from getting started to teaching online.",
+      "cards": [
+        {
+          "title": "Canvas Starter Kit",
+          "description": "An HCC Canvas course for getting started with teaching in Canvas.",
+          "url": "https://hcc.instructure.com/courses/157140",
+          "cta": "Open the starter kit",
+          "external": true,
+          "thumb": {
+            "kind": "badge",
+            "icon": "course-badge",
+            "label": "Canvas course",
+            "aria": "Canvas Starter Kit, Canvas course"
+          }
+        },
+        {
+          "title": "Evidence-based Teaching in Canvas",
+          "description": "An HCC Canvas course on evidence-based teaching practices in Canvas.",
+          "url": "https://hcc.instructure.com/courses/170816",
+          "cta": "Open the course",
+          "external": true,
+          "thumb": {
+            "kind": "badge",
+            "icon": "course-badge",
+            "label": "Canvas course",
+            "aria": "Evidence-based Teaching in Canvas, Canvas course"
+          }
+        },
+        {
+          "title": "Online Teaching in Canvas Checklist",
+          "description": "A checklist for teaching online in Canvas.",
+          "url": "https://docs.google.com/document/d/1DmSsLqq81J3NUcyNzrqSPYae3aFWB4Ocgg0qc6vjsqU/edit?usp=drivesdk",
+          "cta": "Open the checklist",
+          "external": true,
+          "thumb": {
+            "kind": "badge",
+            "icon": "doc-badge",
+            "label": "Google Doc",
+            "aria": "Online Teaching in Canvas Checklist, Google Doc"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -88,16 +88,17 @@
   section.theme:first-of-type{margin-top:4px}
   section.theme > h2{
     display:flex;align-items:center;gap:12px;
-    font-size:1.3rem;margin:0;color:var(--navy);
+    font-size:1.3rem;margin:0;color:var(--accent-text,var(--navy));
   }
   section.theme > h2 .icon{
     width:42px;height:42px;flex:0 0 42px;
     border-radius:12px;display:grid;place-items:center;color:#fff;
   }
   section.theme > h2 .icon svg{width:22px;height:22px}
-  #ai > h2 .icon{background:linear-gradient(135deg,var(--navy),var(--navy-soft))}
-  #accessibility > h2 .icon{background:linear-gradient(135deg,var(--green-deep),var(--green))}
-  #accessibility > h2{color:var(--green-deep)}
+  /* Every section takes its colours from these variables, set per section by
+     apps.js from the palette named in apps.json. Adding a section therefore
+     needs no CSS change. */
+  section.theme > h2 .icon{background:linear-gradient(135deg,var(--accent,var(--navy)),var(--accent-2,var(--navy-soft)))}
 
   /* a fading rule that distinguishes the two halves of the page */
   section.theme > h2{position:relative;padding-bottom:14px}
@@ -105,8 +106,7 @@
     content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;
     border-radius:3px;
   }
-  #ai > h2::after{background:linear-gradient(90deg,var(--navy),rgba(44,63,122,0))}
-  #accessibility > h2::after{background:linear-gradient(90deg,var(--green),rgba(17,179,108,0))}
+  section.theme > h2::after{background:var(--accent-rule,linear-gradient(90deg,var(--navy),rgba(44,63,122,0)))}
 
   section.theme > p.intro{margin:11px 0 14px;color:var(--muted);max-width:62ch}
 
@@ -123,15 +123,13 @@
     border:1px solid var(--line);border-radius:var(--radius);background:#fff;
     box-shadow:0 2px 6px rgba(29,44,93,.05);
     transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
-    border-top:4px solid var(--navy);
+    border-top:4px solid var(--accent-border,var(--navy));
   }
-  #accessibility .card{border-top-color:var(--green)}
   .card:hover,.card:focus-within{
-    border-color:var(--navy-soft);
+    border-color:var(--accent-hover,var(--navy-soft));
     box-shadow:0 8px 22px rgba(29,44,93,.10);
     transform:translateY(-2px);
   }
-  #accessibility .card:hover,#accessibility .card:focus-within{border-color:var(--green-dark)}
 
   .thumb{
     position:relative;display:block;flex:none;width:100%;aspect-ratio:16/9;overflow:hidden;
@@ -150,31 +148,38 @@
 
   /* for the two Gems, which cannot be screenshotted (they need a Google sign-in) */
   .thumb.art{display:grid;place-items:center;border-bottom:none}
-  #ai .thumb.art{background:linear-gradient(135deg,var(--navy-deep),var(--navy) 60%,#22437f)}
-  #accessibility .thumb.art{background:linear-gradient(135deg,var(--green-deep),var(--green) 68%,#3fd39a)}
+  .thumb.art{background:var(--accent-art,linear-gradient(135deg,var(--navy-deep),var(--navy) 60%,#22437f))}
   .thumb.art .badge{display:flex;flex-direction:column;align-items:center;gap:9px;color:#fff;text-align:center;padding:8px}
   .thumb.art .badge svg{width:38px;height:38px}
   .thumb.art .badge span{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.95}
 
   .card-body{display:flex;flex-direction:column;flex:1;min-width:0;padding:13px 15px}
-  .card h3{margin:0 0 4px;font-size:1rem;color:var(--navy);line-height:1.3}
-  #accessibility .card h3{color:var(--green-deep)}
+  .card h3{margin:0 0 4px;font-size:1rem;color:var(--accent-text,var(--navy));line-height:1.3}
   .card p{margin:0 0 9px;color:var(--muted);font-size:.9rem;line-height:1.5}
-  .card p a{color:var(--navy);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+  .card p a{color:var(--accent-text,var(--navy));font-weight:700;text-decoration:underline;text-underline-offset:2px}
   .card p a:hover{text-decoration-thickness:2px}
-  #accessibility .card p a{color:var(--green-deep)}
+  /* Description text is clamped so the cards in a row stay the same height. A card
+     whose description overflows gets a More toggle that expands it in place, so a
+     longer description never breaks the row or hides behind a scroll area. */
+  .card p.clamped{
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:5;overflow:hidden;
+  }
+  .card .toggle{
+    align-self:flex-start;margin:0 0 8px;padding:2px 0;border:0;background:none;
+    color:var(--accent-text,var(--navy));font:inherit;font-size:.85rem;font-weight:700;
+    text-decoration:underline;text-underline-offset:2px;cursor:pointer;
+  }
+  .card .toggle:hover{text-decoration-thickness:2px}
   .card .go{
     margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px;
   }
   .card .go a{
     display:inline-flex;align-items:center;gap:8px;
     font-weight:700;text-decoration:none;
-    color:#fff;background:var(--navy);
+    color:#fff;background:var(--accent-cta,var(--navy));
     padding:8px 14px;border-radius:9px;font-size:.94rem;
   }
-  #accessibility .card .go a{background:var(--green-deep)}
-  .card .go a:hover{background:var(--navy-soft)}
-  #accessibility .card .go a:hover{background:#08512f}
+  .card .go a:hover{background:var(--accent-cta-hover,var(--navy-soft))}
   .card .go a svg{width:15px;height:15px}
 
   /* retired: the assistants are linked inline in the description instead */
@@ -244,170 +249,17 @@
   <div class="wrap">
     <h1>Educational apps and resources for faculty</h1>
     <p>Practical tools for teaching and learning with AI, and for making your courses work for every student.</p>
-    <nav class="cta-row" aria-label="Sections on this page">
-      <a class="jump" href="#ai">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18.5 15.5l.8 2.1 2.2.8-2.2.8-.8 2.1-.8-2.1-2.2-.8 2.2-.8z"/></svg>
-        AI resources
-      </a>
-      <a class="jump" href="#accessibility">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M4.5 8.5h15M12 8.5v6M12 14.5l-3.5 6M12 14.5l3.5 6"/></svg>
-        Accessibility resources
-      </a>
-    </nav>
+    <nav class="cta-row" id="section-nav" aria-label="Sections on this page"></nav>
   </div>
 </div>
 
 <main id="main" class="wrap">
-
-  <!-- ===================== AI ===================== -->
-  <section class="theme" id="ai" aria-labelledby="ai-heading">
-    <h2 id="ai-heading">
-      <span class="icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18.5 15.5l.8 2.1 2.2.8-2.2.8-.8 2.1-.8-2.1-2.2-.8 2.2-.8z"/>
-        </svg>
-      </span>
-      AI
-    </h2>
-    <p class="intro">Tools and resources for using generative AI in your teaching, and for understanding what the research says about it.</p>
-
-    <ul class="cards">
-      <li class="card">
-        <a class="thumb" href="assignment.html" aria-label="Open the assignment redesign worksheet">
-          <img src="img/assignment.webp" alt="" loading="lazy" width="720" height="405">
-        </a>
-        <div class="card-body">
-          <h3>Assignment Redesign for the AI Era</h3>
-          <p>An interactive worksheet for redesigning assignments around academic integrity: what students are learning, what successful work looks like, and where AI belongs.</p>
-            <div class="go">
-              <a href="assignment.html">Open the worksheet
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-      </li>
-
-      <li class="card">
-        <a class="thumb" href="https://liascript.github.io/course/?https://raw.githubusercontent.com/edtechdev/aipettingzoo/master/README.md#1" target="_blank" rel="noopener noreferrer" aria-label="Start the AI Petting Zoo tour">
-          <img src="img/pettingzoo.webp" alt="" loading="lazy" width="720" height="405">
-        </a>
-        <div class="card-body">
-          <h3>AI Petting Zoo</h3>
-          <p>A guided, self-paced tour of AI tools and techniques for saving instructors time and enhancing student learning, with example teaching tasks to try.</p>
-          <div class="go">
-            <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/edtechdev/aipettingzoo/master/README.md#1" target="_blank" rel="noopener noreferrer">Start the tour
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-            </a>
-            </div>
-        </div>
-      </li>
-
-      <li class="card">
-        <a class="thumb" href="https://edtechdev.github.io/aied/" target="_blank" rel="noopener noreferrer" aria-label="Browse the AI in Education Knowledge Base">
-          <img src="img/aied.webp" alt="" loading="lazy" width="720" height="405">
-        </a>
-        <div class="card-body">
-          <h3>AI in Education Knowledge Base</h3>
-          <p>A research knowledge base on AI in education, with concept pages and study summaries. Also available as the <a href="https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing" target="_blank" rel="noopener noreferrer">AI in Education Advisor</a> Gem or a <a href="https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share" target="_blank" rel="noopener noreferrer">NotebookLM notebook</a>.</p>
-            <div class="go">
-              <a href="https://edtechdev.github.io/aied/" target="_blank" rel="noopener noreferrer">Browse the knowledge base
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-            </a>
-            </div>
-        </div>
-      </li>
-
-      <li class="card">
-        <a class="thumb art" href="https://gemini.google.com/gem/1sPeVIqY5wtESVwGFn6kmgFNon0UXTV6S?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Online Module Designer, Gemini Gem">
-          <div class="badge" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>
-              <path d="M18.5 15.5l.8 2.1 2.2.8-2.2.8-.8 2.1-.8-2.1-2.2-.8 2.2-.8z"/>
-            </svg>
-            <span>Gemini Gem</span>
-          </div>
-        </a>
-        <div class="card-body">
-          <h3>Online Module Designer</h3>
-          <p>A custom Gemini Gem for designing online learning modules, from outcomes and activities to assessment.</p>
-            <div class="go">
-              <a href="https://gemini.google.com/gem/1sPeVIqY5wtESVwGFn6kmgFNon0UXTV6S?usp=sharing" target="_blank" rel="noopener noreferrer">Open the Gem
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-            </a>
-            </div>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <!-- ================== ACCESSIBILITY ================== -->
-  <section class="theme" id="accessibility" aria-labelledby="accessibility-heading">
-    <h2 id="accessibility-heading">
-      <span class="icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="4.5" r="1.8"/>
-          <path d="M4.5 8.5h15M12 8.5v6M12 14.5l-3.5 6M12 14.5l3.5 6"/>
-        </svg>
-      </span>
-      Accessibility
-    </h2>
-    <p class="intro">Resources for designing courses and materials that work for every student.</p>
-
-    <ul class="cards">
-      <li class="card">
-        <a class="thumb" href="accessibility.html" aria-label="Open the Canvas Accessibility Checklist">
-          <img src="img/accessibility.webp" alt="" loading="lazy" width="720" height="405">
-        </a>
-        <div class="card-body">
-          <h3>Canvas Accessibility Checklist</h3>
-          <p>A practical Canvas accessibility checklist built from three questions: start with what students need next, then improve the course as you go.</p>
-            <div class="go">
-              <a href="accessibility.html">Open the checklist
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-      </li>
-
-      <li class="card">
-        <a class="thumb" href="https://pressbooks.hcfl.edu/digitalaccessibility/" target="_blank" rel="noopener noreferrer" aria-label="Read the Digital Accessibility guide">
-          <img src="img/pressbooks.webp" alt="" loading="lazy" width="720" height="405">
-        </a>
-        <div class="card-body">
-          <h3>Digital Accessibility for Teaching and Learning</h3>
-          <p>An openly licensed book on accessible course design, documents, and media for higher education.</p>
-          <div class="go">
-            <a href="https://pressbooks.hcfl.edu/digitalaccessibility/" target="_blank" rel="noopener noreferrer">Read the guide
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-            </a>
-            </div>
-        </div>
-      </li>
-
-      <li class="card">
-        <a class="thumb art" href="https://gemini.google.com/gem/1qkiILxWUW1tGeVb9IOICQCREKmEIuhNS?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Alt Text Generator, Gemini Gem">
-          <div class="badge" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="4.5" width="18" height="15" rx="2.5"/>
-              <circle cx="8.6" cy="10" r="1.7"/>
-              <path d="M3.6 17.4l4.9-4.6 3.4 3.1 3.1-2.7 4.4 4.2"/>
-            </svg>
-            <span>Gemini Gem</span>
-          </div>
-        </a>
-        <div class="card-body">
-          <h3>Alt Text Generator</h3>
-          <p>A custom Gemini Gem for writing alt text, so students who cannot see an image still get the information it carries.</p>
-            <div class="go">
-              <a href="https://gemini.google.com/gem/1qkiILxWUW1tGeVb9IOICQCREKmEIuhNS?usp=sharing" target="_blank" rel="noopener noreferrer">Open the Gem
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-            </a>
-            </div>
-        </div>
-      </li>
-    </ul>
-  </section>
-
+  <noscript>
+    <p class="intro">This page loads its list of resources with JavaScript. A few of them can be reached directly:
+      <a href="assignment.html">Assignment Redesign for the AI Era</a>,
+      <a href="accessibility.html">Canvas Accessibility Checklist</a>,
+      <a href="https://edtechdev.github.io/aied/">AI in Education Knowledge Base</a>.</p>
+  </noscript>
 </main>
 
 <footer class="site">
@@ -415,5 +267,6 @@
     <p><strong>Faculty Professional Development Services</strong> &middot; Hillsborough College</p>
   </div>
 </footer>
+<script src="apps.js" defer></script>
 </body>
 </html>
