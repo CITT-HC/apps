@@ -125,11 +125,14 @@ function renderNav(sections) {
 }
 
 
-/* Keeps a row of cards the same height when a description runs long. Five lines is
-   the longest description currently in apps.json; anything longer than that is
-   clamped, and only then does a More toggle appear to expand it in place. Cards
-   that fit inside the ceiling are untouched, so no description is hidden. */
-const CLAMP_LINES = 5;
+/* Keeps a row of cards the same height when a description runs long. The ceiling has
+   to clear the inline links a description carries: the knowledge-base card points at
+   its Gem and NotebookLM notebook in prose, and clipping either one mid-sentence
+   leaves the card reading as if the link were missing. Seven lines shows those two
+   with a line to spare, which also absorbs font and zoom differences. Anything past
+   the ceiling is clamped, and only then does a More toggle appear to expand it in
+   place; cards that fit inside the ceiling are untouched, so no description is hidden. */
+const CLAMP_LINES = 7;
 function applyClamps() {
   document.querySelectorAll('.card p').forEach((p) => {
     p.style.webkitLineClamp = CLAMP_LINES;

@@ -35,7 +35,7 @@
         },
         {
           "title": "AI in Education Knowledge Base",
-          "description": "A research knowledge base on AI in education, with concept pages, study summaries, FAQ pages and resource reviews, plus offline EPUB and PDF editions. Also available as the <a href=\"https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">AI in Education Advisor</a> Gem for asking questions of it, or a <a href=\"https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share\" target=\"_blank\" rel=\"noopener noreferrer\">NotebookLM notebook</a> built from the same material.",
+          "description": "A research knowledge base on AI in education: concept pages, study summaries, FAQ pages and resource reviews. Ask it questions through the <a href=\"https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">AI in Education Advisor</a> Gem, or read it as a <a href=\"https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share\" target=\"_blank\" rel=\"noopener noreferrer\">NotebookLM notebook</a>. Both draw on the same material, and offline EPUB and PDF editions are available for reading or printing.",
           "url": "https://edtechdev.github.io/aied/",
           "cta": "Browse the knowledge base",
           "external": true,
