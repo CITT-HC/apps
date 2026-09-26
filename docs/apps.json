@@ -11,7 +11,7 @@
       "cards": [
         {
           "title": "Assignment Redesign for the AI Era",
-          "description": "An interactive worksheet for redesigning assignments around academic integrity: what students are learning, what successful work looks like, and where AI belongs.",
+          "description": "An interactive worksheet for redesigning one assignment around academic integrity. It works through what the assignment is really asking students to learn, what successful work looks like, and where generative AI belongs, then helps you set an AI-use policy and an AI-use disclosure statement for students, and look at feedback before and after revision. It also addresses assumptions such as “AI detectors prove authorship” and “a finished product proves learning”, with links to transparent assignment design and proctoring guidance.",
           "url": "assignment.html",
           "cta": "Open the worksheet",
           "external": false,
@@ -23,7 +23,7 @@
         },
         {
           "title": "AI Petting Zoo",
-          "description": "A guided, self-paced tour of AI tools and techniques for saving instructors time and enhancing student learning, with example teaching tasks to try.",
+          "description": "A self-paced, guided tour of AI tools and the teaching tasks they can help with, built around saving instructors time and enhancing student learning and engagement. It covers Gemini and features such as deep research, images, video and canvas, NotebookLM and features such as notebooks, podcasts and infographics, and other tools, pairing each with example tasks to try in your own course.",
           "url": "https://liascript.github.io/course/?https://raw.githubusercontent.com/edtechdev/aipettingzoo/master/README.md#1",
           "cta": "Start the tour",
           "external": true,
@@ -35,7 +35,7 @@
         },
         {
           "title": "AI in Education Knowledge Base",
-          "description": "A research knowledge base on AI in education, with concept pages and study summaries. Also available as the <a href=\"https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">AI in Education Advisor</a> Gem or a <a href=\"https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share\" target=\"_blank\" rel=\"noopener noreferrer\">NotebookLM notebook</a>.",
+          "description": "A research knowledge base on AI in education, with concept pages, study summaries, FAQ pages and resource reviews, plus offline EPUB and PDF editions. Also available as the <a href=\"https://gemini.google.com/gem/1oRhk2pouJb-RpTE36aAMaIRfJrBdMR95?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">AI in Education Advisor</a> Gem for asking questions of it, or a <a href=\"https://notebooklm.google.com/notebook/7de87d06-8998-4f0a-81f5-c2523fc635d0?utm_source=nlmm_share\" target=\"_blank\" rel=\"noopener noreferrer\">NotebookLM notebook</a> built from the same material.",
           "url": "https://edtechdev.github.io/aied/",
           "cta": "Browse the knowledge base",
           "external": true,
@@ -70,7 +70,7 @@
       "cards": [
         {
           "title": "Canvas Accessibility Checklist",
-          "description": "A practical Canvas accessibility checklist built from three questions: start with what students need next, then improve the course as you go.",
+          "description": "A practical Canvas accessibility checklist. Choose what you are working with, such as a page, a document or a video, and it walks through what to check and how to fix it in Canvas, with a reminder to verify the result with a person rather than a tool alone. It links to a core resource library and covers the accessibility issues AI can and cannot help with.",
           "url": "accessibility.html",
           "cta": "Open the checklist",
           "external": false,
@@ -82,7 +82,7 @@
         },
         {
           "title": "Digital Accessibility for Teaching and Learning",
-          "description": "An openly licensed book on accessible course design, documents, and media for higher education.",
+          "description": "A book on accessible course design, documents and media in higher education, written by Hillsborough College authors and published under a non-commercial Creative Commons license. It gives practical guidance for making the materials students read, watch and listen to work with assistive technology.",
           "url": "https://pressbooks.hcfl.edu/digitalaccessibility/",
           "cta": "Read the guide",
           "external": true,
