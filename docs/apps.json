@@ -52,10 +52,9 @@
           "cta": "Open the Gem",
           "external": true,
           "thumb": {
-            "kind": "badge",
-            "icon": "sparkle-badge",
-            "label": "Gemini Gem",
-            "aria": "Online Module Designer, Gemini Gem"
+            "kind": "image",
+            "src": "img/online-module-designer.webp",
+            "aria": "Open the Online Module Designer Gem"
           }
         }
       ]
@@ -99,10 +98,9 @@
           "cta": "Open the Gem",
           "external": true,
           "thumb": {
-            "kind": "badge",
-            "icon": "image-badge",
-            "label": "Gemini Gem",
-            "aria": "Alt Text Generator, Gemini Gem"
+            "kind": "image",
+            "src": "img/alt-text-generator.webp",
+            "aria": "Open the Alt Text Generator Gem"
           }
         }
       ]
