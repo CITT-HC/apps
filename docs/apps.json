@@ -117,41 +117,38 @@
       "cards": [
         {
           "title": "Canvas Starter Kit",
-          "description": "An HCC Canvas course for getting started with teaching in Canvas.",
+          "description": "An optional Canvas course you can copy into your own to save time building it. It comes with a welcome homepage you can rewrite, banner images and buttons you can swap from the files area, and a walkthrough video on importing and customizing it. Highlighted notes in the course are instructions to delete or edit as you go. Import a copy from Canvas Commons by searching for HCC Canvas Starter Kit.",
           "url": "https://hcc.instructure.com/courses/157140",
           "cta": "Open the starter kit",
           "external": true,
           "thumb": {
-            "kind": "badge",
-            "icon": "course-badge",
-            "label": "Canvas course",
-            "aria": "Canvas Starter Kit, Canvas course"
+            "kind": "image",
+            "src": "img/canvas-starter-kit.webp",
+            "aria": "Open the Canvas Starter Kit course"
           }
         },
         {
           "title": "Evidence-based Teaching in Canvas",
-          "description": "An HCC Canvas course on evidence-based teaching practices in Canvas.",
+          "description": "A Canvas course of evidence-based teaching strategies, each with a short explanation and ready-made Canvas items you can adapt: transparent assignment templates, values affirmation and goal setting surveys, social belonging and student testimonial activities, anxiety reappraisal, growth mindset, mindfulness, minute papers, nudges, exam wrappers, midterm student feedback, discussion protocols, and student success skills. Import a copy from Canvas Commons or the included .imscc file.",
           "url": "https://hcc.instructure.com/courses/170816",
           "cta": "Open the course",
           "external": true,
           "thumb": {
-            "kind": "badge",
-            "icon": "course-badge",
-            "label": "Canvas course",
-            "aria": "Evidence-based Teaching in Canvas, Canvas course"
+            "kind": "image",
+            "src": "img/evidence-based-teaching.webp",
+            "aria": "See the Evidence-based Teaching in Canvas course"
           }
         },
         {
           "title": "Online Teaching in Canvas Checklist",
-          "description": "A checklist for teaching online in Canvas.",
+          "description": "A checklist for building an online course in Canvas, grouped into accessibility and usability (link validator, Ally report, alt text, captions, document remediation), content, activities and organization (navigation, syllabus, homepage, orientation module, assignment groups), student and faculty interaction (first-week activities, feedback, discussion), learning objectives and alignment, and a course mapping template. It also covers using AI to save time and fix accessibility issues.",
           "url": "https://docs.google.com/document/d/1DmSsLqq81J3NUcyNzrqSPYae3aFWB4Ocgg0qc6vjsqU/edit?usp=drivesdk",
           "cta": "Open the checklist",
           "external": true,
           "thumb": {
-            "kind": "badge",
-            "icon": "doc-badge",
-            "label": "Google Doc",
-            "aria": "Online Teaching in Canvas Checklist, Google Doc"
+            "kind": "image",
+            "src": "img/online-teaching-checklist.webp",
+            "aria": "Open the Online Teaching in Canvas Checklist"
           }
         }
       ]
