@@ -1,5 +1,5 @@
 {
-  "_comment": "Single source of truth for the cards on index.html. Run `python3 tools/build-index.py` after editing; it rewrites only the regions between the build markers in docs/index.html. Section order here is the order on the page and in the hero navigation. Icons are inline SVG names from tools/build-index.py, not files.",
+  "_comment": "Single source of truth for the cards on index.html. There is no build step: docs/apps.js fetches this file and renders the cards, section headings and jump links at load time, so editing this file is the whole change. Section order here is the order on the page and in the hero navigation. Icons are inline SVG names from docs/apps.js, not files. Visitors without JavaScript see the hand-maintained fallback list in the <noscript> block of docs/index.html, which must be updated by hand when a card changes.",
   "sections": [
     {
       "id": "ai",
@@ -10,15 +10,15 @@
       "intro": "Tools and resources for using generative AI in your teaching, and for understanding what the research says about it.",
       "cards": [
         {
-          "title": "Assignment Redesign for the AI Era",
-          "description": "An interactive worksheet for redesigning one assignment around academic integrity. It works through what the assignment is really asking students to learn, what successful work looks like, and where generative AI belongs, then helps you set an AI-use policy and an AI-use disclosure statement for students, and look at feedback before and after revision. It also addresses assumptions such as “AI detectors prove authorship” and “a finished product proves learning”, with links to transparent assignment design and proctoring guidance.",
-          "url": "assignment.html",
-          "cta": "Open the worksheet",
-          "external": false,
+          "title": "AI-Era Assignment Design Coach",
+          "description": "Design and redesign assignments for an AI-capable world. Use the <a href=\"https://gemini.google.com/gem/17jPYKwi1qp1HmIHKlXgdlnHK0U_EPicV?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">Gemini Gem</a> or the <a href=\"https://www.playlab.ai/project/cmuieflla0xj0lw0wmeog73k9\" target=\"_blank\" rel=\"noopener noreferrer\">Playlab version</a>; <a href=\"https://drive.google.com/drive/folders/1aJwXrVTwof8wID15DTnus_71KoKthGKW?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">instructions and examples</a> are in a shared folder, or try a <a href=\"https://fpdshc.github.io/apps/assignment.html\">non-AI worksheet</a> with fewer features. The coach walks through what an assignment asks students to learn, what successful work looks like, and where generative AI belongs.",
+          "url": "https://gemini.google.com/gem/17jPYKwi1qp1HmIHKlXgdlnHK0U_EPicV?usp=sharing",
+          "cta": "Open the Gem",
+          "external": true,
           "thumb": {
             "kind": "image",
-            "src": "img/assignment.webp",
-            "aria": "Open the assignment redesign worksheet"
+            "src": "img/assignment-design-coach.webp",
+            "aria": "Open the AI-Era Assignment Design Coach Gem"
           }
         },
         {
